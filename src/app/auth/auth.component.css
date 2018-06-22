@@ -1,0 +1,13 @@
+.grid {
+    height: 100%;
+}
+
+.main {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../../assets/hospital.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.column {
+    max-width: 450px;
+}

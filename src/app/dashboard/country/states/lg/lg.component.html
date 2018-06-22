@@ -1,0 +1,38 @@
+<div class="page-content">
+    <div class="container-fluid">
+        <div (click)="back()" class="button"><i class="ui icon angle left"></i> Back</div>
+        <div class="row">
+            <h2 class="title">Countries | {{country.name}} > State | {{state.name}} > LGs</h2>
+            <a (click)="add()" class="button pull-right">
+                <i class="icon add"></i> Add LGs
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div *ngFor="let lg of state.lgs; let i = index" class="col-lg-4">
+            <div class="box">
+                <div class="row" id="{{i}}" (click)="more(i)">
+                    <div class="col-sm-11 title"><span id="t{{i}}">{{lg.name | titlecase}}</span>
+                        <div id="e{{i}}" class="ui left input edit hidden loading">
+                            <input type="text" [(ngModel)]="lg.name" (keyup.enter)="quickEdit(i,country._id)">
+                            <i id="icon{{i}}" class="search icon hidden"></i>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <i class="icon angle down"></i>
+                    </div>
+                </div>
+                <div class="row expanded" id="{{i}}">
+                    <div class="ui secondary labeled icon menu">
+                        <a class="item" (click)="edit(i)">
+                            <i class="icon edit"></i> Quick Edit
+                        </a>
+                        <a class="item" (click)="delete(lg)">
+                            <i class="icon trash"></i> Delete
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

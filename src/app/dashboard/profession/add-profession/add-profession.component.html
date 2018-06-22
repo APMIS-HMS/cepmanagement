@@ -1,0 +1,30 @@
+<div id="add-profession" class="ui small modal">
+    <div class="header">Add Profession</div>
+    <div class="content">
+        <div class="ui left action input">
+            <button class="ui blue button">
+                    Name
+                </button>
+            <input type="text" [(ngModel)]="name" placeholder="e.g. Nurse">
+        </div>
+        <br><br>
+        <div class="ui left action input">
+            <button class="ui blue button">
+                    Create Caders
+                </button>
+            <input type="text" (keyup.enter)="addCaders(editCader)" [(ngModel)]="editCader" placeholder="e.g. Senior Consultant">
+        </div>
+        <br><br>
+        <div>
+            <button *ngFor="let cader of caders" class="ui right grey icon labeled button" style="margin:10px;">
+                {{cader.name}}
+                <i (click)="deleteCader(cader)" class="right icon delete"></i>
+            </button>
+        </div>
+        <div style="color: #f00" *ngIf="error.isSet">{{error.message}}</div>
+
+    </div>
+    <div class="actions">
+        <button class="ui blue button" (click)="addProfession()">Add</button>
+    </div>
+</div>

@@ -1,1 +1,129 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    /* overflow: hidden; */
+}
+
+body {
+    background-color: #eeeeee;
+}
+
+.white {
+    color: #fff;
+}
+
+.my-card {
+    background: white;
+}
+
+.page-content {
+    margin-top: 20px;
+}
+
+.box {
+    z-index: 0;
+    padding: 20px 30px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    background-color: #FCFCFC;
+    box-shadow: 0 5px 10px 0 rgba(154, 164, 175, 0.1);
+    transition: 0.2s;
+    color: #222;
+}
+
+.button {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #FCFCFC;
+    box-shadow: 0 5px 10px 0 rgba(154, 164, 175, 0.1);
+    transition: 0.2s;
+    color: #222;
+    max-width: 300px;
+    display: inline-block;
+}
+
+.button:hover {
+    z-index: 100;
+    background-color: #6c6cff;
+    transform: scale(1.03);
+    cursor: pointer;
+    color: #fff;
+    box-shadow: 0 10px 20px 0 rgba(154, 164, 175, 0.4);
+}
+
+.box:hover {
+    z-index: 100;
+    background-color: #6c6cff;
+    transform: scale(1.03);
+    cursor: pointer;
+    color: #fff;
+    box-shadow: 0 10px 20px 0 rgba(154, 164, 175, 0.4);
+}
+
+.title {
+    font-weight: 900;
+}
+
+.tag {
+    font-weight: 900;
+    opacity: 0.4;
+    text-align: left;
+}
+
+.thin {
+    font-weight: 100;
+}
+
+h2.title {
+    font-weight: 100;
+    font-size: 24px;
+}
+
+.pull-right {
+    position: absolute;
+    right: 20px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #6c6cff;
+}
+
+.ui.dropdown .menu {
+    z-index: 100 !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.expanded {
+    height: 0;
+    overflow: hidden;
+    display: none;
+    margin-top: 10px;
+    margin-bottom: -20px;
+}
+
+.expanded .item {
+    color: inherit !important;
+}
+
+.expanded.show {
+    height: auto;
+    display: inline-block;
+}

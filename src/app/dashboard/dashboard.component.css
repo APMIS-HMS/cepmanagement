@@ -1,0 +1,40 @@
+header {
+    background: #fff;
+    width: 100%;
+    box-shadow: 0px 2px 10px #aaaaaa;
+    position: fixed;
+    top: 0;
+    z-index: 99;
+}
+
+aside {
+    padding-top: 100px;
+    background: #fff;
+    height: 100%;
+    position: fixed;
+    margin-right: 20px;
+    top: 0;
+    width: 200px;
+}
+
+.ui.vertical.menu {
+    width: auto !important;
+}
+
+.ui.sidemenu .item {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+main {
+    margin-top: 100px;
+    margin-left: 200px;
+}
+
+.ui.secondary.pointing.menu .item.active {
+    background-color: transparent;
+    box-shadow: none;
+    border-color: #6c6cff !important;
+    font-weight: 900;
+    color: #6c6cff !important;
+}
