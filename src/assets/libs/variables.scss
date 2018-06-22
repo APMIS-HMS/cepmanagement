@@ -1,0 +1,64 @@
+
+//fonts
+$font-main: 'Montserrat', sans-serif;
+$font-titles: 'Josefin Sans', sans-serif;
+$base-font-size: 10px;
+
+$primary-color: #1919ff;
+$primary-depth-1: darken($primary-color, 10%);
+$primary-depth-1-5: darken($primary-color, 15%);
+$primary-depth-2: darken($primary-color, 20%);
+$primary-depth-3: darken($primary-color, 30%);
+$primary-depth-3-5: darken($primary-color, 35%);
+$primary-depth-4: darken($primary-color, 40%);
+$primary-lite-1: lighten($primary-color, 10%);
+$primary-lite-2: lighten($primary-color, 20%);
+
+$green: #4CAF50; 
+$green-lite: lighten($green, 10%);
+$green-dept: darken($green, 10%);
+
+$red: #ff2500;
+$red-lite: lighten($red, 10%);
+$red-dept: darken($red, 10%);
+
+$btn-primary: $primary-depth-2;
+$btn-primary-hover: $primary-depth-3;
+
+$btn-success: $green;
+$btn-success-hover: $green-dept;
+
+$btn-danger: $red;
+$btn-danger-hover: $red-dept;
+
+$btn-grey: #777;
+$btn-grey-hover: #a6a6a6;
+
+$bg-0verlay-lite-1: rgba(255,255,255,0.3);
+$bg-0verlay-lite-2: rgba(255,255,255,0.6);
+$bg-0verlay-lite-2-5: rgba(255,255,255,0.8);
+$bg-0verlay-lite-3: rgba(255,255,255,0.9);
+$bg-0verlay-dark-1: rgba(0,0,0,0.3);
+$bg-0verlay-dark-2: rgba(0,0,0,0.5);
+$bg-0verlay-dark-3: rgba(0,0,0,0.7);
+$bg-0verlay-dark-4: rgba(0,0,0,0.9);
+
+//colors 
+
+$grey-1: #f8f8f8;
+$grey-1b: #f4f4f4;
+$grey-2: #bebebe;
+$grey-3: #777;
+$grey-4: #474747;
+
+
+$space-x0-5: 5px;
+$space-x1: 10px;
+$space-x1-5: 15px;
+$space-x2: 20px;
+
+$td-border: #ddd;
+$th-background: #4bb8ef;
+$th-border: #35a7e0;
+$tr-hover: #f5f5f5;
+$tr-stripe: #f8f8f8;
