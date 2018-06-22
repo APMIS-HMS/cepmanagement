@@ -20,6 +20,7 @@ import { CountryService } from './services/country.service';
 import { StatesComponent } from './dashboard/country/states/states.component';
 import { LgComponent } from './dashboard/country/states/lg/lg.component';
 import { HomeComponent } from './dashboard/home/home.component';
+import { DashboardStatsComponent } from './dashboard/dashboard-stats/dashboard-stats.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { HomeComponent } from './dashboard/home/home.component';
     CountryComponent,
     StatesComponent,
     LgComponent,
-    HomeComponent
+    HomeComponent,
+    DashboardStatsComponent
   ],
   imports: [
     HttpClientModule,
