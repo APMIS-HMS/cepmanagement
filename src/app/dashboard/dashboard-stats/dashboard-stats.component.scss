@@ -89,19 +89,11 @@
     min-width: 500px;
     border: 1px solid #777;
 }
-.user-wrap{
+.filt-item {
     display: flex;
-    align-items: center;
 }
-.user-img-wrap {
-    width: 52px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    margin-right: 10px;
-    border-radius: 100%;
-}
-.user-img-wrap img{
-    width: 100%; 
+.filt-label {
+    font-weight: bold;
+    width: 107px;
+    color: #ff2500;
 }
