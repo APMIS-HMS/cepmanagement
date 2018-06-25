@@ -91,9 +91,13 @@
 }
 .filt-item {
     display: flex;
+    border-bottom: 1px solid #ccc;
 }
 .filt-label {
-    font-weight: bold;
     width: 107px;
     color: #ff2500;
+    font-size: 0.8rem; 
+}
+.filt-val{
+    font-size: 1rem;
 }
