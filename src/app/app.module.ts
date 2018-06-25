@@ -21,6 +21,8 @@ import { StatesComponent } from './dashboard/country/states/states.component';
 import { LgComponent } from './dashboard/country/states/lg/lg.component';
 import { HomeComponent } from './dashboard/home/home.component';
 import { DashboardStatsComponent } from './dashboard/dashboard-stats/dashboard-stats.component';
+import { MyDatePickerModule } from 'mydatepicker';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { DashboardStatsComponent } from './dashboard/dashboard-stats/dashboard-s
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MyDatePickerModule,
+    ChartsModule
   ],
   providers: [ProfessionService, TitleService, CountryService],
   bootstrap: [AppComponent]
