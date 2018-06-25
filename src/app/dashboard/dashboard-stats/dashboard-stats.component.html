@@ -1,3 +1,12 @@
-<p>
-  dashboard-stats works!
-</p>
+<div class="db-filters">
+  <div class="filter-item">
+    <label>Filter Dashboard By</label>
+    <div class="ui search">
+        <div class="ui left icon input"> 
+          <input (keyup)="onFilter()" [formControl]="filterBy" class="prompt" type="text" placeholder="filter dashboard by...">
+          <i class="search icon"></i>
+        </div>
+        <div class="results"></div>
+      </div>
+  </div>
+</div>

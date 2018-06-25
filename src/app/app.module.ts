@@ -44,6 +44,7 @@ import { DashboardStatsComponent } from './dashboard/dashboard-stats/dashboard-s
     HttpClientModule,
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [ProfessionService, TitleService, CountryService],
