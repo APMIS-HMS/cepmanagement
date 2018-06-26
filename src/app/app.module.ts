@@ -23,6 +23,8 @@ import { HomeComponent } from './dashboard/home/home.component';
 import { DashboardStatsComponent } from './dashboard/dashboard-stats/dashboard-stats.component';
 import { MyDatePickerModule } from 'mydatepicker';
 import { ChartsModule } from 'ng2-charts';
+import { FacilityManagerComponent } from './dashboard/facility-manager/facility-manager.component';
+import { FacilityWalletComponent } from './dashboard/facility-manager/facility-wallet/facility-wallet.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { ChartsModule } from 'ng2-charts';
     StatesComponent,
     LgComponent,
     HomeComponent,
-    DashboardStatsComponent
+    DashboardStatsComponent,
+    FacilityManagerComponent,
+    FacilityWalletComponent
   ],
   imports: [
     HttpClientModule,

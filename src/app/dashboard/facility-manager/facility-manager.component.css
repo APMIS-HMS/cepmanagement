@@ -1,0 +1,32 @@
+.sect-wrap{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.sect-tbl{
+    max-height: 270px;
+    overflow-y: auto; 
+    margin-bottom: 10px; 
+}
+.border-liners{
+    border-top: 1px solid #ccc; 
+    border-bottom: 1px solid #ccc; 
+    padding-top: 10px;
+    padding-bottom: 10px; 
+}
+.sect-toplinks{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;  
+    margin-bottom: 10px; 
+}
+.sect-links{
+    display: flex;
+}
+.sect-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #777;
+}
+.facility-data {
+    margin-top: 20px;
+}

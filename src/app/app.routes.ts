@@ -10,6 +10,7 @@ import { TitleComponent } from './dashboard/title/title.component';
 import { CountryComponent } from './dashboard/country/country.component';
 import { StatesComponent } from './dashboard/country/states/states.component';
 import { LgComponent } from './dashboard/country/states/lg/lg.component'; 
+import { FacilityManagerComponent } from './dashboard/facility-manager/facility-manager.component';
 
 const appRoutes: Routes = [
     {path: '', redirectTo: 'auth', pathMatch: 'full'},
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
       children : [
         {path: '', redirectTo : 'home', pathMatch: 'full'},
         {path : 'home', component : HomeComponent},
+        {path : 'facility', component : FacilityManagerComponent},
         {path : 'profession', component : ProfessionComponent},
         {path: 'profession/:id', component: ProfessionCaderComponent},
         {path: 'title', component: TitleComponent},
