@@ -30,3 +30,17 @@
 .facility-data {
     margin-top: 20px;
 }
+.card-img-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    width: 100px;
+    height: 100px;
+    margin: 5px auto;
+    border-radius: 100%;
+    overflow: hidden;
+    border: 1px solid #ccc;
+}
+.card-img-wrap img{
+    width: 100%;
+}
