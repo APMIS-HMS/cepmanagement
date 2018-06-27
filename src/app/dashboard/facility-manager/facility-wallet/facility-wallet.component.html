@@ -11,7 +11,7 @@
       <table class="ui striped table">
         <thead>
           <tr>
-            <th>Transaction ID</th>
+            <th>ID</th>
             <th>Date</th>
             <th>Description</th>
             <th>Status</th>
@@ -44,23 +44,43 @@
             <td>Cr</td>
             <td>&#x20A6;1,000</td>
           </tr>
-          <tr>
-            <td>cr2211ac</td>
-            <td>September 14, 2013</td>
-            <td>Billed for registration</td>
-            <td>Completed</td>
-            <td>Cr</td>
-            <td>&#x20A6;1,000</td>
-          </tr>
-          <tr>
-            <td>cr2211ac</td>
-            <td>September 14, 2013</td>
-            <td>Billed for registration</td>
-            <td>Completed</td>
-            <td>Cr</td>
-            <td>&#x20A6;1,000</td>
-          </tr>
         </tbody>
+        <tfoot>
+            <tr><th colspan="6">
+              <div class="ui right floated pagination menu">
+                <a class="icon item">
+                  <i class="left chevron icon"></i>
+                </a>
+                <a class="item">1</a>
+                <a class="item">2</a>
+                <a class="item">3</a>
+                <a class="item">4</a>
+                <a class="icon item">
+                  <i class="right chevron icon"></i>
+                </a>
+              </div>
+            </th>
+          </tr>
+          <tr><th colspan="6">
+            <div class="summary-sect">
+              <div class="summary-item">
+                <div class="summary-label">Total Credit</div>
+                <div class="summary-val">&#x20A6;120,000,000</div>
+              </div>
+        
+              <div class="summary-item">
+                <div class="summary-label">Total Debit</div>
+                <div class="summary-val">&#x20A6;90,000,000</div>
+              </div>
+        
+              <div class="summary-item">
+                <div class="summary-label">Available Balance</div>
+                <div class="summary-val">&#x20A6;30,000,000</div>
+              </div>
+            </div>
+            </th>
+          </tr>
+        </tfoot>
       </table>
     </div>
   </div>
@@ -69,7 +89,7 @@
     <div class="sect-toplinks">
       <div class="sect-title">Pay Outs</div>
       <div class="sect-links">
-        <button class="ui primary button">Initiate Payout</button> 
+        <button (click)="initiatepayout_click()" class="ui primary button">Initiate Payout</button> 
       </div>
     </div>
 
@@ -77,9 +97,8 @@
       <table class="ui striped table">
         <thead>
           <tr>
-            <th>Transaction ID</th>
+            <th>ID</th> 
             <th>Date</th>
-            <th>Description</th>
             <th>Status</th>
             <th>Amount</th>
           </tr>
@@ -88,45 +107,76 @@
           <tr>
             <td>cr2211ac</td>
             <td>September 14, 2013</td>
-            <td>Billed for registration</td>
             <td>Completed</td>
             <td>&#x20A6;120,000</td>
           </tr>
           <tr>
             <td>cr2211ac</td>
             <td>September 14, 2013</td>
-            <td>Billed for registration</td>
             <td>Completed</td>
             <td>&#x20A6;221,000</td>
           </tr>
           <tr>
             <td>cr2211ac</td>
             <td>September 14, 2013</td>
-            <td>Billed for registration</td>
             <td>Completed</td>
             <td>&#x20A6;150,000</td>
           </tr>
           <tr>
             <td>cr2211ac</td>
             <td>September 14, 2013</td>
-            <td>Billed for registration</td>
             <td>Completed</td>
             <td>&#x20A6;190,000</td>
           </tr>
-          <tr>
-            <td>cr2211ac</td>
-            <td>September 14, 2013</td>
-            <td>Billed for registration</td>
-            <td>Completed</td>
-            <td>&#x20A6;100,000</td>
-          </tr>
         </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="4">
+              <div class="ui right floated pagination menu">
+                <a class="icon item">
+                  <i class="left chevron icon"></i>
+                </a>
+                <a class="item">1</a>
+                <a class="item">2</a>
+                <a class="item">3</a>
+                <a class="item">4</a>
+                <a class="icon item"> 
+                  <i class="right chevron icon"></i>
+                </a>
+              </div>
+            </th>
+          </tr>
+          <tr>
+            <th colspan="4">
+              <div class="summary-sect">
+                <div class="summary-item">
+                  <div class="summary-label">Last Payout Date</div>
+                  <div class="summary-val">11th Oct, 2018.</div>
+                </div>
+          
+                <div class="summary-item">
+                  <div class="summary-label">Last Amount Paid</div>
+                  <div class="summary-val">&#x20A6;90,000,000</div> 
+                </div> 
+          
+                <div class="summary-item">
+                  <div class="summary-label">Available Balance</div>
+                  <div class="summary-val">&#x20A6;30,000,000</div>
+                </div>
+              </div>
+            </th>
+          </tr>
+        </tfoot>
       </table>
     </div>
   </div>
 </div>
 
-<div class="ui tiny modal"> 
+<div id="fundwallet" class="ui tiny modal"> 
   <app-fund-wallet></app-fund-wallet> 
 </div>
+
+<div id="payout" class="ui tiny modal"> 
+  <app-initiate-payout></app-initiate-payout> 
+</div> 
 

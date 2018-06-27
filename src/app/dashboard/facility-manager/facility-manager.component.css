@@ -3,8 +3,8 @@
     margin-bottom: 20px;
 }
 .sect-tbl{
-    max-height: 270px;
-    overflow-y: auto; 
+    /* max-height: 270px;
+    overflow-y: auto;  */
     margin-bottom: 10px; 
 }
 .border-liners{
@@ -51,4 +51,21 @@
 }
 .by-2{
     width: 49%; 
+}
+.summary-sect {
+    width: 100%;
+    padding: 10px;
+}
+.summary-item {
+    display: flex;
+}
+.summary-label {
+    width: 136px;
+    color: #333;
+    font-style: italic;
+}
+.summary-val {
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #ff2500;
 }

@@ -14,7 +14,11 @@ export class FacilityWalletComponent implements OnInit {
   }
 
   fundwallet_click(){
-    $('.tiny.modal').modal('show');  
+    $('#fundwallet').modal('show');  
+  }
+
+  initiatepayout_click(){
+    $('#payout').modal('show');  
   }
 
 }

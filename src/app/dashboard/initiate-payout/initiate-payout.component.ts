@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-initiate-payout',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InitiatePayoutComponent implements OnInit {
 
-  constructor() { }
+  public frm_payout: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.frm_payout = this.formBuilder.group({
+      amount: ['', [<any>Validators.required]],
+      type: ['', [<any>Validators.required]] 
+    });
   }
 
 }
