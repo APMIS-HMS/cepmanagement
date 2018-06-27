@@ -10,6 +10,7 @@ export class PersonManagerComponent implements OnInit {
 
   user_type = 'Admin';
   //or user_type = 'User';
+  person_active = true;
 
   constructor() { }
 
@@ -29,5 +30,14 @@ export class PersonManagerComponent implements OnInit {
       minCharacters : 3
     });
   }
+
+  onActivate(){
+    $('#confirm').modal('show');
+  } 
+  
+  onApprove(){
+    this.person_active = !this.person_active;
+    $('#confirm').modal('hide');
+  } 
 
 }

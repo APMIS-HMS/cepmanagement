@@ -21,8 +21,9 @@
               <img src="../../../assets/default.png">
             </div>
           </div>
-          <div class="content">
-            <div class="ui ribbon label">Active</div> 
+          <div class="content"> 
+            <div *ngIf="facility_active" class="ui ribbon label">Active</div>
+            <div *ngIf="!facility_active" class="ui ribbon label">Inactive</div> 
             <div class="header name">Continental Hospital</div>
             <div class="meta">
               <a>Hospital</a>
@@ -42,9 +43,9 @@
             <div class="meta">
               <a>john.seyi@continentalhospitals.com</a>
             </div>
-            <div class="status-btn"> 
-              <!-- <button class="ui positive basic button">Activate User</button> -->
-              <button class="ui negative basic button">Deactivate Facility</button>
+            <div class="status-btn">
+              <button *ngIf="!facility_active" (click)="onActivate()" class="ui positive basic button">Activate Facility</button>
+              <button *ngIf="facility_active" (click)="onActivate()" class="ui negative basic button">Deactivate Facility</button>
             </div>
           </div>
           <div class="extra content">
@@ -160,6 +161,20 @@
           </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div id="confirm" class="ui mini modal">
+  <div class="header">Confirmation</div>
+  <div class="content">
+    <p>Are you sure you want to <span *ngIf="facility_active">deactivate</span><span *ngIf="!facility_active">activate</span> this faciliity?</p>
+  </div> 
+  <div class="actions">
+    <div (click)="onApprove()" class="ui approve button">
+      <span *ngIf="facility_active">Deactivate</span>
+      <span *ngIf="!facility_active">Activate</span>
+    </div>
+    <div class="ui cancel button">Cancel</div>
   </div>
 </div>
 

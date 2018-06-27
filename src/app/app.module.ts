@@ -28,6 +28,7 @@ import { FacilityWalletComponent } from './dashboard/facility-manager/facility-w
 import { FundWalletComponent } from './dashboard/fund-wallet/fund-wallet.component';
 import { InitiatePayoutComponent } from './dashboard/initiate-payout/initiate-payout.component';
 import { PersonManagerComponent } from './dashboard/person-manager/person-manager.component';
+import { PersonWalletComponent } from './dashboard/person-manager/person-wallet/person-wallet.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { PersonManagerComponent } from './dashboard/person-manager/person-manage
     FacilityWalletComponent,
     FundWalletComponent,
     InitiatePayoutComponent,
-    PersonManagerComponent
+    PersonManagerComponent,
+    PersonWalletComponent
   ],
   imports: [
     HttpClientModule,

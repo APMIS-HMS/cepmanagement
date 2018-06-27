@@ -8,6 +8,8 @@ declare var $;
 })
 export class FacilityManagerComponent implements OnInit {
 
+  facility_active = true;
+
   constructor() { }
 
   ngOnInit() {
@@ -26,5 +28,14 @@ export class FacilityManagerComponent implements OnInit {
       minCharacters : 3
     });
   }
+
+  onActivate(){
+    $('#confirm').modal('show');
+  } 
+  
+  onApprove(){
+    this.facility_active = !this.facility_active;
+    $('#confirm').modal('hide');
+  } 
 
 }

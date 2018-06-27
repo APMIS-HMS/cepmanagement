@@ -17,10 +17,11 @@
             </div>
           </div>
           <div class="content">
-            <div class="ui ribbon label">Active {{user_type}}</div> 
+            <div *ngIf="person_active" class="ui ribbon label">Active {{user_type}}</div>
+            <div *ngIf="!person_active" class="ui ribbon label">Inactive {{user_type}}</div> 
             <div class="header name">Jide Daniel</div>
             <div class="meta">
-              <a>11b Samuel Ali Street, Ikeja.</a>
+              <a>11b Samuel Ali Street, Ikeja.</a> 
             </div>
             <div class="meta">
               <a>08088778877</a>
@@ -29,19 +30,15 @@
               <a>samuel.ali@gmail.com</a>
             </div>
             <div class="status-btn">
-              <!-- <button class="ui positive basic button">Activate User</button> -->
-              <button class="ui negative basic button">Deactivate User</button>
+              <button *ngIf="!person_active" (click)="onActivate()" class="ui positive basic button">Activate User</button>
+              <button *ngIf="person_active" (click)="onActivate()" class="ui negative basic button">Deactivate User</button>
             </div>
           </div>
           <div class="extra content">
             <span class="right floated">
-              <i class="users icon"></i>
-              128 Employees
-            </span>
-            <span>
-              <i class="wheelchair icon"></i>
-              75,000 Patients
-            </span>
+              <i class="sign in alternate icon"></i>
+              Last Seen: 28th June, 2018. 
+            </span> 
           </div>
         </div>
         
@@ -119,5 +116,19 @@
   </div>
 </div> 
 
-<app-facility-wallet></app-facility-wallet>
+<div id="confirm" class="ui mini modal">
+  <div class="header">Confirmation</div>
+  <div class="content">
+    <p>Are you sure you want to <span *ngIf="person_active">deactivate</span><span *ngIf="!person_active">activate</span> this user?</p>
+  </div> 
+  <div class="actions">
+    <div (click)="onApprove()" class="ui approve button">
+      <span *ngIf="person_active">Deactivate</span>
+      <span *ngIf="!person_active">Activate</span>
+    </div>
+    <div class="ui cancel button">Cancel</div>
+  </div>
+</div>
+
+<app-person-wallet></app-person-wallet>
   
