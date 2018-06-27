@@ -25,6 +25,8 @@ import { MyDatePickerModule } from 'mydatepicker';
 import { ChartsModule } from 'ng2-charts';
 import { FacilityManagerComponent } from './dashboard/facility-manager/facility-manager.component';
 import { FacilityWalletComponent } from './dashboard/facility-manager/facility-wallet/facility-wallet.component';
+import { FundWalletComponent } from './dashboard/fund-wallet/fund-wallet.component';
+import { InitiatePayoutComponent } from './dashboard/initiate-payout/initiate-payout.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { FacilityWalletComponent } from './dashboard/facility-manager/facility-w
     HomeComponent,
     DashboardStatsComponent,
     FacilityManagerComponent,
-    FacilityWalletComponent
+    FacilityWalletComponent,
+    FundWalletComponent,
+    InitiatePayoutComponent
   ],
   imports: [
     HttpClientModule,

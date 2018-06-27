@@ -1,0 +1,25 @@
+
+<form [formGroup]="frm_fundwallet" class="ui form">
+  <h4 class="ui dividing header">Fund Wallet</h4>
+  <div class="field">
+    <label>Amount (&#x20A6;)</label>
+    <div class="field">
+      <input type="number" formControlName="amount" placeholder="Amount (&#x20A6;)">
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Payment Type</label>
+    <div class="ui form">
+      <div class="field">
+        <select formControlName="type">
+          <!-- <option value="">Pa</option> -->
+          <option value="1">Flutter Wave</option>
+          <option value="0">Paystack</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  
+  <div class="ui button" tabindex="0">Fund Wallet</div>
+</form>

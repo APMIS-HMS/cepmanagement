@@ -44,3 +44,11 @@
 .card-img-wrap img{
     width: 100%;
 }
+.x-2{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.by-2{
+    width: 49%; 
+}
