@@ -69,3 +69,15 @@
     line-height: 1.4;
     color: #ff2500;
 }
+.name{
+    margin-top: 10px !important;
+} 
+.status-btn{
+    display: flex;
+    justify-content: center; 
+    margin-top: 10px;
+}
+.card{
+    max-height: 410px;
+    overflow-y: auto; 
+}

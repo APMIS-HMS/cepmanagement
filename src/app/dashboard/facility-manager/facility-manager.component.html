@@ -2,7 +2,7 @@
   <div class="sect-inner">
     <div class="ui search">
       <div class="ui icon input">
-        <input (keyup)="onSearch()" class="prompt" type="text" placeholder="Facilities...">
+        <input (keyup)="onSearch()" class="prompt" type="text" placeholder="select facility">
         <i class="search icon"></i>
       </div>
       <div class="results"></div>
@@ -22,12 +22,29 @@
             </div>
           </div>
           <div class="content">
-            <div class="header">Continental Hospital</div>
+            <div class="ui ribbon label">Active</div> 
+            <div class="header name">Continental Hospital</div>
             <div class="meta">
               <a>Hospital</a>
             </div>
+            <div class="meta">
+              <a>No. 10B Jobi Fele Street, Alausa Ikeja.</a>
+            </div>
             <div class="description">
-              No. 10B Jobi Fele Street, Alausa Ikeja.
+              Contact Person
+            </div>
+            <div class="meta">
+              <a>John Seyi</a>
+            </div>
+            <div class="meta">
+              <a>08099889988</a>
+            </div>
+            <div class="meta">
+              <a>john.seyi@continentalhospitals.com</a>
+            </div>
+            <div class="status-btn"> 
+              <!-- <button class="ui positive basic button">Activate User</button> -->
+              <button class="ui negative basic button">Deactivate Facility</button>
             </div>
           </div>
           <div class="extra content">

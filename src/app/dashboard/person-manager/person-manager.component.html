@@ -1,0 +1,123 @@
+<div class="sect-wrap">
+  <div class="sect-inner">
+    <div class="ui search">
+      <div class="ui icon input">
+        <input (keyup)="onSearch()" class="prompt" type="text" placeholder="select person">
+        <i class="search icon"></i>
+      </div>
+      <div class="results"></div>
+    </div>  
+
+    <div class="facility-data"> 
+      <div class="ui link cards">
+        <div class="card">
+          <div class="image">
+            <div class="card-img-wrap">
+              <img src="../../../assets/users/default.png">
+            </div>
+          </div>
+          <div class="content">
+            <div class="ui ribbon label">Active {{user_type}}</div> 
+            <div class="header name">Jide Daniel</div>
+            <div class="meta">
+              <a>11b Samuel Ali Street, Ikeja.</a>
+            </div>
+            <div class="meta">
+              <a>08088778877</a>
+            </div>
+            <div class="meta">
+              <a>samuel.ali@gmail.com</a>
+            </div>
+            <div class="status-btn">
+              <!-- <button class="ui positive basic button">Activate User</button> -->
+              <button class="ui negative basic button">Deactivate User</button>
+            </div>
+          </div>
+          <div class="extra content">
+            <span class="right floated">
+              <i class="users icon"></i>
+              128 Employees
+            </span>
+            <span>
+              <i class="wheelchair icon"></i>
+              75,000 Patients
+            </span>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="content">
+            <div class="header">Recent Activities</div> 
+            <div class="ui feed">
+              <div class="event">
+                <div class="label">
+                  <img src="../../../assets/users/default.png">
+                </div>
+                <div class="content">
+                  <div class="date">
+                    3 days ago
+                  </div>
+                  patient was registered at <a>Continental Hospital</a>
+                </div>
+              </div>
+
+              <div class="event">
+                <div class="label">
+                  <img src="../../../assets/users/default.png">
+                </div>
+                <div class="content">
+                  <div class="date">
+                    3 days ago
+                  </div>
+                  patient was registered at <a>Continental Hospital</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="content">
+            <div class="header">Facilities</div> 
+            <div class="ui search">
+              <div class="ui icon input">
+                <input (keyup)="onSearch()" class="prompt" type="text" placeholder="search for patient">
+                <i class="search icon"></i>
+              </div>
+              <div class="results"></div>
+            </div>  
+            <div class="ui list">
+              <div class="item">
+                <img class="ui avatar image" src="../../../assets/default.png">
+                <div class="content">
+                  <a class="header">Continental Hospital</a>
+                  <div class="description">Hospital</div>
+                  <div class="description">Employee</div>
+                </div>
+              </div>
+              <div class="item">
+                <img class="ui avatar image" src="../../../assets/default.png">
+                <div class="content">
+                  <a class="header">Lagoon Hospital</a>
+                  <div class="description">Hospital</div> 
+                  <div class="description">Patient</div>
+                </div>
+              </div>
+              <div class="item">
+                <img class="ui avatar image" src="../../../assets/default.png">
+                <div class="content">
+                  <a class="header">Clinix</a>
+                  <div class="description">Diagnostics Center</div>
+                  <div class="description">Patient</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<app-facility-wallet></app-facility-wallet>
+  
