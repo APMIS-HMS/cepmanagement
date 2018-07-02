@@ -1,0 +1,132 @@
+<button routerLink="../list" class="ui right labeled icon button top-btn">
+  <i class="left arrow icon"></i>Persons  
+</button>
+
+<div class="sect-wrap">
+  <div class="sect-inner">
+    <div class="facility-data"> 
+      <div class="ui link cards">
+        <div class="card">
+          <div class="image">
+            <div class="card-img-wrap">
+              <img src="../../../assets/users/default.png">
+            </div>
+          </div>
+          <div class="content">
+            <div *ngIf="person_active" class="ui ribbon label">Active {{user_type}}</div>
+            <div *ngIf="!person_active" class="ui ribbon label">Inactive {{user_type}}</div> 
+            <div class="header name">Jide Daniel</div>
+            <div class="meta">
+              <a>11b Samuel Ali Street, Ikeja.</a> 
+            </div>
+            <div class="meta">
+              <a>08088778877</a>
+            </div>
+            <div class="meta">
+              <a>samuel.ali@gmail.com</a>
+            </div>
+            <div class="status-btn">
+              <button *ngIf="!person_active" (click)="onActivate()" class="ui positive basic button">Activate User</button>
+              <button *ngIf="person_active" (click)="onActivate()" class="ui negative basic button">Deactivate User</button>
+              <button *ngIf="!person_active" (click)="onActivate()" class="ui positive basic button">Activate Person</button>
+              <button *ngIf="person_active" (click)="onActivate()" class="ui negative basic button">Deactivate Person</button>
+            </div>
+          </div>
+          <div class="extra content">
+            <span class="right floated">
+              <i class="sign in alternate icon"></i>
+              Last Seen: 28th June, 2018. 
+            </span> 
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="content">
+            <div class="header">Recent Activities</div> 
+            <div class="ui feed">
+              <div class="event">
+                <div class="label">
+                  <img src="../../../assets/users/default.png">
+                </div>
+                <div class="content">
+                  <div class="date">
+                    3 days ago
+                  </div>
+                  patient was registered at <a>Continental Hospital</a>
+                </div>
+              </div>
+
+              <div class="event">
+                <div class="label">
+                  <img src="../../../assets/users/default.png">
+                </div>
+                <div class="content">
+                  <div class="date">
+                    3 days ago
+                  </div>
+                  patient was registered at <a>Continental Hospital</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="content">
+            <div class="header">Facilities</div> 
+            <div class="ui search">
+              <div class="ui icon input">
+                <input (keyup)="onSearch()" class="prompt" type="text" placeholder="search for patient">
+                <i class="search icon"></i>
+              </div>
+              <div class="results"></div>
+            </div>  
+            <div class="ui list">
+              <div class="item">
+                <img class="ui avatar image" src="../../../assets/default.png">
+                <div class="content">
+                  <a class="header">Continental Hospital</a>
+                  <div class="description">Hospital</div>
+                  <div class="description">Employee</div>
+                </div>
+              </div>
+              <div class="item">
+                <img class="ui avatar image" src="../../../assets/default.png">
+                <div class="content">
+                  <a class="header">Lagoon Hospital</a>
+                  <div class="description">Hospital</div> 
+                  <div class="description">Patient</div>
+                </div>
+              </div>
+              <div class="item">
+                <img class="ui avatar image" src="../../../assets/default.png">
+                <div class="content">
+                  <a class="header">Clinix</a>
+                  <div class="description">Diagnostics Center</div>
+                  <div class="description">Patient</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<div id="confirm" class="ui mini modal">
+  <div class="header">Confirmation</div>
+  <div class="content">
+    <p>Are you sure you want to <span *ngIf="person_active">deactivate</span><span *ngIf="!person_active">activate</span> this user?</p>
+  </div> 
+  <div class="actions">
+    <div (click)="onApprove()" class="ui approve button">
+      <span *ngIf="person_active">Deactivate</span>
+      <span *ngIf="!person_active">Activate</span>
+    </div>
+    <div class="ui cancel button">Cancel</div>
+  </div>
+</div>
+
+<app-person-wallet></app-person-wallet>
+    

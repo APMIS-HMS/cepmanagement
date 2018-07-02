@@ -12,16 +12,34 @@ import { StatesComponent } from './dashboard/country/states/states.component';
 import { LgComponent } from './dashboard/country/states/lg/lg.component'; 
 import { FacilityManagerComponent } from './dashboard/facility-manager/facility-manager.component';
 import { PersonManagerComponent } from './dashboard/person-manager/person-manager.component';
+import { PersonsComponent } from './dashboard/person-manager/persons/persons.component';
+import { PersonComponent } from './dashboard/person-manager/person/person.component';
+import { FacilitiesComponent } from './dashboard/facility-manager/facilities/facilities.component';
+import { FacilityComponent } from './dashboard/facility-manager/facility/facility.component';
 
 const appRoutes: Routes = [
     {path: '', redirectTo: 'auth', pathMatch: 'full'},
     {path: 'auth', component : AuthComponent},
     {path: 'dashboard', component : DashboardComponent,
       children : [
-        {path: '', redirectTo : 'home', pathMatch: 'full'},
+        {path: '', redirectTo : 'facility', pathMatch: 'full'},
         {path : 'home', component : HomeComponent},
-        {path : 'facility', component : FacilityManagerComponent},
-        {path : 'person', component : PersonManagerComponent},
+        {
+          path : 'facility', component : FacilityManagerComponent, 
+          children:[
+            {path: '', redirectTo: 'list', pathMatch: 'full'},
+            {path: 'list', component : FacilitiesComponent},
+            {path: 'detail', component : FacilityComponent}
+          ]
+        },
+        {
+          path : 'person', component : PersonManagerComponent, 
+          children:[
+            {path: '', redirectTo: 'list', pathMatch: 'full'},
+            {path: 'list', component : PersonsComponent},
+            {path: 'detail', component : PersonComponent}
+          ]
+        },
         {path : 'profession', component : ProfessionComponent},
         {path: 'profession/:id', component: ProfessionCaderComponent},
         {path: 'title', component: TitleComponent},

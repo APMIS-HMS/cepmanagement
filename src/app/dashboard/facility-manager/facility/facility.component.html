@@ -1,0 +1,174 @@
+<button routerLink="../list" class="ui right labeled icon button top-btn">
+  <i class="left arrow icon"></i>Facilities   
+</button>
+
+<div class="sect-wrap">
+  <div class="sect-inner"> 
+
+    <div class="facility-data"> 
+
+      <div class="ui link cards">
+        <div class="card">
+          <div class="image">
+            <div class="card-img-wrap">
+              <img src="../../../assets/default.png">
+            </div>
+          </div>
+          <div class="content"> 
+            <div *ngIf="facility_active" class="ui ribbon label">Active</div>
+            <div *ngIf="!facility_active" class="ui ribbon label">Inactive</div> 
+            <div class="header name">Continental Hospital</div>
+            <div class="meta">
+              <a>Hospital</a>
+            </div>
+            <div class="meta">
+              <a>No. 10B Jobi Fele Street, Alausa Ikeja.</a>
+            </div>
+            <div class="description">
+              Contact Person
+            </div>
+            <div class="meta">
+              <a>John Seyi</a>
+            </div>
+            <div class="meta">
+              <a>08099889988</a>
+            </div>
+            <div class="meta">
+              <a>john.seyi@continentalhospitals.com</a>
+            </div>
+            <div class="status-btn">
+              <button *ngIf="!facility_active" (click)="onActivate()" class="ui positive basic button">Activate Facility</button>
+              <button *ngIf="facility_active" (click)="onActivate()" class="ui negative basic button">Deactivate Facility</button>
+            </div>
+          </div>
+          <div class="extra content">
+            <span class="right floated">
+              <i class="users icon"></i>
+              128 Employees
+            </span>
+            <span>
+              <i class="wheelchair icon"></i>
+              75,000 Patients
+            </span>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="content">
+          <div class="header">Employees</div>
+          <div class="ui search">
+            <div class="ui icon input">
+              <input (keyup)="onSearch()" class="prompt" type="text" placeholder="search for employee">
+              <i class="search icon"></i>
+            </div>
+            <div class="results"></div>
+          </div>  
+          <div class="ui list">
+            <div class="item">
+              <img class="ui avatar image" src="../../../assets/users/default.png">
+              <div class="content">
+                <a class="header">Rachel Chidi</a>
+                <div class="description">Last seen watching just now.</div>
+              </div>
+            </div>
+            <div class="item">
+                <img class="ui avatar image" src="../../../assets/users/default.png">
+                <div class="content">
+                <a class="header">Sammy Dele</a>
+                <div class="description">Last seen watching 10 hours ago.</div>
+              </div>
+            </div>
+            <div class="item">
+                <img class="ui avatar image" src="../../../assets/users/default.png">
+                <div class="content">
+                <a class="header">Matthew John</a>
+                <div class="description">Last seen watching yesterday.</div>
+              </div>
+            </div>
+            <div class="item">
+                <img class="ui avatar image" src="../../../assets/users/default.png">
+                <div class="content">
+                <a class="header">Jenny Hess</a>
+                <div class="description">Last seen watching 3 days ago.</div>
+              </div>
+            </div>
+            <div class="item">
+              <img class="ui avatar image" src="../../../assets/users/default.png">
+              <div class="content">
+              <a class="header">Veronika Ossi</a>
+              <div class="description">Has not watched anything recently</div>
+            </div>
+          </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="content">
+            <div class="header">Patients</div> 
+            <div class="ui search">
+              <div class="ui icon input">
+                <input (keyup)="onSearch()" class="prompt" type="text" placeholder="search for patient">
+                <i class="search icon"></i>
+              </div>
+              <div class="results"></div>
+            </div>  
+            <div class="ui list">
+              <div class="item">
+                <img class="ui avatar image" src="../../../assets/users/default.png">
+                <div class="content">
+                  <a class="header">Rachel Chidi</a>
+                  <div class="description">Last seen watching just now.</div>
+                </div>
+              </div>
+              <div class="item">
+                  <img class="ui avatar image" src="../../../assets/users/default.png">
+                  <div class="content">
+                  <a class="header">Sammy Dele</a>
+                  <div class="description">Last seen watching 10 hours ago.</div>
+                </div>
+              </div>
+              <div class="item">
+                  <img class="ui avatar image" src="../../../assets/users/default.png">
+                  <div class="content">
+                  <a class="header">Matthew John</a>
+                  <div class="description">Last seen watching yesterday.</div>
+                </div>
+              </div>
+              <div class="item">
+                  <img class="ui avatar image" src="../../../assets/users/default.png">
+                  <div class="content">
+                  <a class="header">Jenny Hess</a>
+                  <div class="description">Last seen watching 3 days ago.</div>
+                </div>
+              </div>
+              <div class="item">
+                <img class="ui avatar image" src="../../../assets/users/default.png">
+                <div class="content">
+                <a class="header">Veronika Ossi</a>
+                <div class="description">Has not watched anything recently</div>
+              </div>
+            </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="confirm" class="ui mini modal">
+  <div class="header">Confirmation</div>
+  <div class="content">
+    <p>Are you sure you want to <span *ngIf="facility_active">deactivate</span><span *ngIf="!facility_active">activate</span> this faciliity?</p>
+  </div> 
+  <div class="actions">
+    <div (click)="onApprove()" class="ui approve button">
+      <span *ngIf="facility_active">Deactivate</span>
+      <span *ngIf="!facility_active">Activate</span>
+    </div>
+    <div class="ui cancel button">Cancel</div>
+  </div>
+</div>
+
+<app-facility-wallet></app-facility-wallet>

@@ -29,7 +29,10 @@ import { FundWalletComponent } from './dashboard/fund-wallet/fund-wallet.compone
 import { InitiatePayoutComponent } from './dashboard/initiate-payout/initiate-payout.component';
 import { PersonManagerComponent } from './dashboard/person-manager/person-manager.component';
 import { PersonWalletComponent } from './dashboard/person-manager/person-wallet/person-wallet.component';
-
+import { PersonsComponent } from './dashboard/person-manager/persons/persons.component';
+import { PersonComponent } from './dashboard/person-manager/person/person.component';
+import { FacilitiesComponent } from './dashboard/facility-manager/facilities/facilities.component';
+import { FacilityComponent } from './dashboard/facility-manager/facility/facility.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +55,11 @@ import { PersonWalletComponent } from './dashboard/person-manager/person-wallet/
     FundWalletComponent,
     InitiatePayoutComponent,
     PersonManagerComponent,
-    PersonWalletComponent
+    PersonWalletComponent,
+    PersonComponent,
+    PersonsComponent,
+    FacilitiesComponent,
+    FacilityComponent
   ],
   imports: [
     HttpClientModule,

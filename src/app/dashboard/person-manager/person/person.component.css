@@ -1,0 +1,11 @@
+.ui.ribbon.label, .top-btn{ 
+    margin-bottom: 10px !important; 
+}
+.status-btn{
+    display: flex;
+    justify-content: space-between; 
+    margin-top: 10px; 
+}
+.status-btn .ui.button{
+    padding: 10px !important; 
+}
