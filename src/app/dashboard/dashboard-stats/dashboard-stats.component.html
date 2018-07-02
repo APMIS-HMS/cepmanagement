@@ -1,176 +1,178 @@
-<div class="db-filters">
-  <div class="filter-item">
-    <div class="filt-item">
-      <div class="filt-label">Filtered By</div>
-      <div class="filt-val">All Facilities</div>
-    </div>
-    <div class="filt-item">
-      <div class="filt-label">Filtered From</div>
-      <div class="filt-val">12th Nov, 2016.</div>
-    </div>
-    <div class="filt-item">
-      <div class="filt-label">Filtered To</div>
-      <div class="filt-val">12th Nov, 2016.</div>
-    </div>
-  </div>
-  <div class="filter-item">
-    <label>Filter Dashboard By</label>
-    <div class="ui search">
-      <div class="ui left icon input"> 
-        <input (keyup)="onFilter()" [formControl]="filterBy" class="prompt" type="text" placeholder="filter dashboard by...">
-        <i class="search icon"></i>
+<div class="dashboard">
+  <div class="db-filters">
+    <div class="filter-item">
+      <div class="filt-item">
+        <div class="filt-label">Filtered By</div>
+        <div class="filt-val">All Facilities</div>
       </div>
-      <div class="results"></div>
-    </div>
-  </div>
-
-  <div class="filter-item">
-    <label>From</label>
-    <my-date-picker name="mydate" [formControl]="filterFrom" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
-  </div>
-
-  <div class="filter-item">
-    <label>To</label>
-    <my-date-picker name="mydate" [formControl]="filterTo" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
-  </div>
-</div>
-
-<div class="counters-bg-wrap">
-  <div class="chats-wrap">
-    <div class="chat-wrap">
-      <div style="display: block">
-        <canvas baseChart
-                [data]="polarAreaChartData"
-                [labels]="polarAreaChartLabels"
-                [legend]="polarAreaLegend"
-                [chartType]="polarAreaChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
+      <div class="filt-item">
+        <div class="filt-label">Filtered From</div>
+        <div class="filt-val">12th Nov, 2016.</div>
+      </div>
+      <div class="filt-item">
+        <div class="filt-label">Filtered To</div>
+        <div class="filt-val">12th Nov, 2016.</div>
       </div>
     </div>
-  
-    <div class="chat-wrap">
-      <div style="display: block">
-        <canvas baseChart
-                [datasets]="radarChartData"
-                [labels]="radarChartLabels"
-                [chartType]="radarChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
+    <div class="filter-item">
+      <label>Filter Dashboard By</label>
+      <div class="ui search">
+        <div class="ui left icon input"> 
+          <input (keyup)="onFilter()" [formControl]="filterBy" class="prompt" type="text" placeholder="filter dashboard by...">
+          <i class="search icon"></i>
+        </div>
+        <div class="results"></div>
+      </div>
+    </div>
+
+    <div class="filter-item">
+      <label>From</label>
+      <my-date-picker name="mydate" [formControl]="filterFrom" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
+    </div>
+
+    <div class="filter-item">
+      <label>To</label>
+      <my-date-picker name="mydate" [formControl]="filterTo" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
+    </div>
+  </div>
+
+  <div class="counters-bg-wrap">
+    <div class="chats-wrap">
+      <div class="chat-wrap">
+        <div style="display: block">
+          <canvas baseChart
+                  [data]="polarAreaChartData"
+                  [labels]="polarAreaChartLabels"
+                  [legend]="polarAreaLegend"
+                  [chartType]="polarAreaChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+    
+      <div class="chat-wrap">
+        <div style="display: block">
+          <canvas baseChart
+                  [datasets]="radarChartData"
+                  [labels]="radarChartLabels"
+                  [chartType]="radarChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="db-counters">
-  <div class="db-counter">
-    <div class="ico-wrap">
-      <i class="building icon"></i>
+  <div class="db-counters">
+    <div class="db-counter">
+      <div class="ico-wrap">
+        <i class="building icon"></i>
+      </div>
+      <div class="content-wrap">
+        <div class="count">22,000</div>
+        <div class="count-label">Facilities</div>
+        <div class="count-cta">Detail</div> 
+      </div> 
     </div>
-    <div class="content-wrap">
-      <div class="count">22,000</div>
-      <div class="count-label">Facilities</div>
-      <div class="count-cta">Detail</div> 
-    </div> 
-  </div>
 
-  <div class="db-counter">
-    <div class="ico-wrap">
-      <i class="users icon"></i>
+    <div class="db-counter">
+      <div class="ico-wrap">
+        <i class="users icon"></i>
+      </div>
+      <div class="content-wrap">
+        <div class="count">5,301,403</div>
+        <div class="count-label">Persons</div>
+        <div class="count-cta">Detail</div> 
+      </div> 
     </div>
-    <div class="content-wrap">
-      <div class="count">5,301,403</div>
-      <div class="count-label">Persons</div>
-      <div class="count-cta">Detail</div> 
-    </div> 
-  </div>
 
-  <div class="db-counter">
-    <div class="ico-wrap">
-      <i class="wheelchair icon"></i>
+    <div class="db-counter">
+      <div class="ico-wrap">
+        <i class="wheelchair icon"></i>
+      </div>
+      <div class="content-wrap">
+        <div class="count">2,922,000</div>
+        <div class="count-label">Patients</div>
+        <div class="count-cta">Detail</div> 
+      </div> 
     </div>
-    <div class="content-wrap">
-      <div class="count">2,922,000</div>
-      <div class="count-label">Patients</div>
-      <div class="count-cta">Detail</div> 
-    </div> 
-  </div>
 
-  <div class="db-counter">
-    <div class="ico-wrap">
-      &#x20A6;
+    <div class="db-counter">
+      <div class="ico-wrap">
+        &#x20A6;
+      </div>
+      <div class="content-wrap">
+        <div class="count">&#x20A6;500,322,000</div>
+        <div class="count-label">Pay In</div>
+        <div class="count-cta">Detail</div> 
+      </div> 
     </div>
-    <div class="content-wrap">
-      <div class="count">&#x20A6;500,322,000</div>
-      <div class="count-label">Pay In</div>
-      <div class="count-cta">Detail</div> 
-    </div> 
-  </div>
 
-  <div class="db-counter">
-    <div class="ico-wrap">
-      &#x20A6;
+    <div class="db-counter">
+      <div class="ico-wrap">
+        &#x20A6;
+      </div>
+      <div class="content-wrap">
+        <div class="count">&#x20A6;200,022,000</div>
+        <div class="count-label">Pay Outs</div>
+        <div class="count-cta">Detail</div> 
+      </div> 
     </div>
-    <div class="content-wrap">
-      <div class="count">&#x20A6;200,022,000</div>
-      <div class="count-label">Pay Outs</div>
-      <div class="count-cta">Detail</div> 
-    </div> 
-  </div>
 
-  <div class="db-counter">
-    <div class="ico-wrap">
-      &#x20A6;
+    <div class="db-counter">
+      <div class="ico-wrap">
+        &#x20A6;
+      </div>
+      <div class="content-wrap">
+        <div class="count">&#x20A6;300,422,000</div>
+        <div class="count-label">Profit Facilities</div>
+        <div class="count-cta">Detail</div> 
+      </div> 
     </div>
-    <div class="content-wrap">
-      <div class="count">&#x20A6;300,422,000</div>
-      <div class="count-label">Profit Facilities</div>
-      <div class="count-cta">Detail</div> 
-    </div> 
-  </div>
 
-  <div class="db-counter">
-    <div class="ico-wrap">
-      <i class="calendar alternate outline icon"></i> 
+    <div class="db-counter">
+      <div class="ico-wrap">
+        <i class="calendar alternate outline icon"></i> 
+      </div>
+      <div class="content-wrap">
+        <div class="count">300,422,000</div>
+        <div class="count-label">Appointments</div>
+        <div class="count-cta">Detail</div> 
+      </div> 
     </div>
-    <div class="content-wrap">
-      <div class="count">300,422,000</div>
-      <div class="count-label">Appointments</div>
-      <div class="count-cta">Detail</div> 
-    </div> 
-  </div>
 
-  <div class="db-counter">
-    <div class="ico-wrap">
-      <i class="ellipsis horizontal icon"></i>
+    <div class="db-counter">
+      <div class="ico-wrap">
+        <i class="ellipsis horizontal icon"></i>
+      </div>
+      <div class="content-wrap">
+        <div class="count">300,422,000</div>
+        <div class="count-label">Check Ins</div>
+        <div class="count-cta">Detail</div> 
+      </div> 
     </div>
-    <div class="content-wrap">
-      <div class="count">300,422,000</div>
-      <div class="count-label">Check Ins</div>
-      <div class="count-cta">Detail</div> 
-    </div> 
-  </div>
 
-  <div class="db-counter">
-    <div class="ico-wrap">
-      <i class="check circle icon"></i>
+    <div class="db-counter">
+      <div class="ico-wrap">
+        <i class="check circle icon"></i>
+      </div>
+      <div class="content-wrap">
+        <div class="count">300,422,000</div>
+        <div class="count-label">Sucessful Transactions</div>
+        <div class="count-cta">Detail</div> 
+      </div> 
     </div>
-    <div class="content-wrap">
-      <div class="count">300,422,000</div>
-      <div class="count-label">Sucessful Transactions</div>
-      <div class="count-cta">Detail</div> 
-    </div> 
-  </div>
 
-  <div class="db-counter">
-    <div class="ico-wrap">
-      <i class="sign in alternate icon"></i>
+    <div class="db-counter">
+      <div class="ico-wrap">
+        <i class="sign in alternate icon"></i>
+      </div>
+      <div class="content-wrap">
+        <div class="count">300,422,000</div>
+        <div class="count-label">Logged In Users</div>
+        <div class="count-cta">Detail</div> 
+      </div> 
     </div>
-    <div class="content-wrap">
-      <div class="count">300,422,000</div>
-      <div class="count-label">Logged In Users</div>
-      <div class="count-cta">Detail</div> 
-    </div> 
   </div>
-</div>
+</div> 
 
