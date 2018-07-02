@@ -17,37 +17,46 @@ import { PersonComponent } from './dashboard/person-manager/person/person.compon
 import { FacilitiesComponent } from './dashboard/facility-manager/facilities/facilities.component';
 import { FacilityComponent } from './dashboard/facility-manager/facility/facility.component';
 import { FacilityPayoutComponent } from './dashboard/facility-payout/facility-payout.component';
+import { ManagementPortalComponent } from './management-portal/management-portal.component';
+import { DashboardStatsComponent } from './dashboard/dashboard-stats/dashboard-stats.component';
 
 const appRoutes: Routes = [
     {path: '', redirectTo: 'auth', pathMatch: 'full'},
     {path: 'auth', component : AuthComponent},
-    {path: 'dashboard', component : DashboardComponent,
-      children : [
-        {path: '', redirectTo : 'facility', pathMatch: 'full'},
-        // {path : 'home', component : HomeComponent},
-        {
-          path : 'facility', component : FacilityManagerComponent, 
-          children:[
-            {path: '', redirectTo: 'list', pathMatch: 'full'},
-            {path: 'list', component : FacilitiesComponent},
-            {path: 'detail', component : FacilityComponent}
+
+    {path: 'app', component : DashboardComponent,
+      children : [ 
+        {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+        {path: 'dashboard', component : DashboardStatsComponent},
+        {path: 'management-portal', component : ManagementPortalComponent,
+          children : [
+            {path: '', redirectTo : 'facility', pathMatch: 'full'},
+            // {path : 'home', component : HomeComponent},
+            {
+              path : 'facility', component : FacilityManagerComponent, 
+              children:[
+                {path: '', redirectTo: 'list', pathMatch: 'full'},
+                {path: 'list', component : FacilitiesComponent},
+                {path: 'detail', component : FacilityComponent}
+              ]
+            },
+            {
+              path : 'person', component : PersonManagerComponent, 
+              children:[
+                {path: '', redirectTo: 'list', pathMatch: 'full'},
+                {path: 'list', component : PersonsComponent},
+                {path: 'detail', component : PersonComponent}
+              ]
+            },
+            {path : 'profession', component : ProfessionComponent},
+            {path: 'profession/:id', component: ProfessionCaderComponent},
+            {path: 'title', component: TitleComponent},
+            {path: 'country', component: CountryComponent},
+            {path: 'country/:id', component: StatesComponent},
+            {path: 'country/:id/:id2', component: LgComponent},
+            {path: 'payout', component: FacilityPayoutComponent}
           ]
-        },
-        {
-          path : 'person', component : PersonManagerComponent, 
-          children:[
-            {path: '', redirectTo: 'list', pathMatch: 'full'},
-            {path: 'list', component : PersonsComponent},
-            {path: 'detail', component : PersonComponent}
-          ]
-        },
-        {path : 'profession', component : ProfessionComponent},
-        {path: 'profession/:id', component: ProfessionCaderComponent},
-        {path: 'title', component: TitleComponent},
-        {path: 'country', component: CountryComponent},
-        {path: 'country/:id', component: StatesComponent},
-        {path: 'country/:id/:id2', component: LgComponent},
-        {path: 'payout', component: FacilityPayoutComponent}
+        }
       ]
     }
 ];

@@ -36,6 +36,7 @@ import { FacilityComponent } from './dashboard/facility-manager/facility/facilit
 import { FacilityPayoutComponent } from './dashboard/facility-payout/facility-payout.component';
 import { PayoutRequestComponent } from './dashboard/facility-payout/payout-request/payout-request.component';
 import { PayoutHistoryComponent } from './dashboard/facility-payout/payout-history/payout-history.component';
+import { ManagementPortalComponent } from './management-portal/management-portal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +66,8 @@ import { PayoutHistoryComponent } from './dashboard/facility-payout/payout-histo
     FacilityComponent,
     FacilityPayoutComponent,
     PayoutRequestComponent,
-    PayoutHistoryComponent
+    PayoutHistoryComponent,
+    ManagementPortalComponent
   ],
   imports: [
     HttpClientModule,

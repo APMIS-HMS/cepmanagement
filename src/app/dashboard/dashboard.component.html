@@ -18,41 +18,8 @@
         </div>
     </div>
 </header>
-<div *ngIf="isDashboard" class="dashboard"> 
+<!-- <div class="dashboard"> 
     <app-dashboard-stats></app-dashboard-stats>
-</div>
+</div> -->
 
-<div *ngIf="!isDashboard" class="portal"> 
-    <aside>
-        <div class="ui sidemenu secondary vertical pointing menu">
-            <a class="item" routerLink="home" routerLinkActive="active">
-                <i class="angle right icon"></i>Dashboard
-            </a>
-            <a class="item" routerLink="facility" routerLinkActive="active">
-                <i class="angle right icon"></i>Facility Manager
-            </a>
-            <a class="item" routerLink="person" routerLinkActive="active">
-                <i class="angle right icon"></i>Person Manager
-            </a>
-            <a class="item" routerLink="payout" routerLinkActive="active">
-                <i class="angle right icon"></i>Facility Payout
-            </a>
-            <a class="item" routerLink="profession" routerLinkActive="active">
-                <i class="angle right icon"></i>Profession
-            </a>
-            <a class="item" routerLink="title" routerLinkActive="active">
-                <i class="angle right icon"></i>Title
-            </a>
-            <a class="item" routerLink="country" routerLinkActive="active">
-                <i class="angle right icon"></i>Country
-            </a>
-        </div>
-    </aside>
-    <main>
-        <div class="container-fluid">
-            <router-outlet></router-outlet>
-        </div>
-    </main>
-</div>
-<delete-modal></delete-modal>
-<add-modal></add-modal>
+<router-outlet></router-outlet>
