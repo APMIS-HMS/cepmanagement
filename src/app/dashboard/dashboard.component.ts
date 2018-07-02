@@ -12,6 +12,8 @@ export class DashboardComponent implements OnInit {
   constructor(private _router: Router) { }
 
   ngOnInit() {
+    const page: string = this._router.url;
+    this.checkPageUrl(page);
   }
 
   show_db(){
@@ -21,6 +23,14 @@ export class DashboardComponent implements OnInit {
     } else{
       this._router.navigate(['/app/management-portal']);
     } 
+  }
+
+  checkPageUrl(param: string) {
+    if (param.includes('dashboard')) {
+      this.isDashboard = true;
+    } else if (param.includes('management-portal')) {
+      this.isDashboard = false;
+    }
   }
 
 }
