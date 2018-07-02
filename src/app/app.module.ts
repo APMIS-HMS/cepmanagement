@@ -37,6 +37,7 @@ import { FacilityPayoutComponent } from './dashboard/facility-payout/facility-pa
 import { PayoutRequestComponent } from './dashboard/facility-payout/payout-request/payout-request.component';
 import { PayoutHistoryComponent } from './dashboard/facility-payout/payout-history/payout-history.component';
 import { ManagementPortalComponent } from './management-portal/management-portal.component';
+import { FacilityService } from './dashboard/facility-manager/facility.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +79,7 @@ import { ManagementPortalComponent } from './management-portal/management-portal
     MyDatePickerModule,
     ChartsModule
   ],
-  providers: [ProfessionService, TitleService, CountryService],
+  providers: [ProfessionService, TitleService, CountryService,FacilityService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

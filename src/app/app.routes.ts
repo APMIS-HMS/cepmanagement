@@ -30,14 +30,13 @@ const appRoutes: Routes = [
         {path: 'dashboard', component : DashboardStatsComponent},
         {path: 'management-portal', component : ManagementPortalComponent,
           children : [
-            {path: '', redirectTo : 'facility', pathMatch: 'full'},
-            // {path : 'home', component : HomeComponent},
+            {path: '', redirectTo : 'facilities', pathMatch: 'full'},
             {
-              path : 'facility', component : FacilityManagerComponent, 
+              path : 'facilities', component : FacilityManagerComponent, 
               children:[
-                {path: '', redirectTo: 'list', pathMatch: 'full'},
-                {path: 'list', component : FacilitiesComponent},
-                {path: 'detail', component : FacilityComponent}
+                // { path: '', redirectTo: ':id', pathMatch: 'full'},
+                // { path: ':id', component : FacilitiesComponent },
+                { path: 'detail', component : FacilityComponent }
               ]
             },
             {
