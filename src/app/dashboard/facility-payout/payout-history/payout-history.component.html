@@ -1,0 +1,86 @@
+<div>
+  <div class="sect-toplinks">
+    <div class="sect-title">Payout History</div>
+    <div class="sect-links">
+      <div class="ui search">
+        <div class="ui icon input">
+          <input (keyup)="onSearch()" class="prompt" type="text" placeholder="seach...">
+          <i class="search icon"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sect-tbl">
+    <table class="ui striped table">
+      <thead>
+        <tr>
+          <th>Facillity</th>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Initiated By</th>
+          <th>Phone</th>
+        </tr>
+      </thead> 
+      <tbody class="tbody-persons">
+        <tr routerLink="../detail">
+          <td>
+            <div class="tbl-img-wrap">
+              <img class="ui avatar image" src="../../../../assets/default.png">
+              <div class="tbl-img-label">Continental Hospital</div>
+            </div>
+          </td>
+          <td>September 14, 2013</td>
+          <td>&#x20A6;1,000</td>
+          <td>Unprocessed</td>
+          <td>John Smith</td>
+          <td>08032323211</td>
+        </tr>
+        <tr routerLink="../detail">
+          <td>
+            <div class="tbl-img-wrap">
+              <img class="ui avatar image" src="../../../../assets/default.png">
+              <div class="tbl-img-label">Continental Hospital</div>
+            </div>
+          </td>
+          <td>September 14, 2013</td>
+          <td>&#x20A6;1,000</td>
+          <td>Unprocessed</td>
+          <td>John Smith</td>
+          <td>08032323211</td>
+        </tr>
+        <tr routerLink="../detail">
+          <td>
+            <div class="tbl-img-wrap">
+              <img class="ui avatar image" src="../../../../assets/default.png">
+              <div class="tbl-img-label">Continental Hospital</div>
+            </div>
+          </td>
+          <td>September 14, 2013</td>
+          <td>&#x20A6;1,000</td>
+          <td>Unprocessed</td>
+          <td>John Smith</td>
+          <td>08032323211</td>
+        </tr>
+      </tbody>
+      <tfoot>
+          <tr><th colspan="6">
+            <div class="ui right floated pagination menu">
+              <a class="icon item">
+                <i class="left chevron icon"></i>
+              </a>
+              <a class="item">1</a>
+              <a class="item">2</a>
+              <a class="item">3</a>
+              <a class="item">4</a>
+              <a class="icon item">
+                <i class="right chevron icon"></i>
+              </a>
+            </div>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

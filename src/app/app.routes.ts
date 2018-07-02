@@ -16,6 +16,7 @@ import { PersonsComponent } from './dashboard/person-manager/persons/persons.com
 import { PersonComponent } from './dashboard/person-manager/person/person.component';
 import { FacilitiesComponent } from './dashboard/facility-manager/facilities/facilities.component';
 import { FacilityComponent } from './dashboard/facility-manager/facility/facility.component';
+import { FacilityPayoutComponent } from './dashboard/facility-payout/facility-payout.component';
 
 const appRoutes: Routes = [
     {path: '', redirectTo: 'auth', pathMatch: 'full'},
@@ -23,7 +24,7 @@ const appRoutes: Routes = [
     {path: 'dashboard', component : DashboardComponent,
       children : [
         {path: '', redirectTo : 'facility', pathMatch: 'full'},
-        {path : 'home', component : HomeComponent},
+        // {path : 'home', component : HomeComponent},
         {
           path : 'facility', component : FacilityManagerComponent, 
           children:[
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
         {path: 'title', component: TitleComponent},
         {path: 'country', component: CountryComponent},
         {path: 'country/:id', component: StatesComponent},
-        {path: 'country/:id/:id2', component: LgComponent}
+        {path: 'country/:id/:id2', component: LgComponent},
+        {path: 'payout', component: FacilityPayoutComponent}
       ]
     }
 ];

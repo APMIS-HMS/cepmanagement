@@ -131,3 +131,9 @@ h2.title {
     display: flex;
     align-items: center; 
 }
+.td-action{
+    display: flex;
+}
+.td-action button, .td-action i{
+    margin-right: 10px;
+}

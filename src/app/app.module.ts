@@ -33,6 +33,9 @@ import { PersonsComponent } from './dashboard/person-manager/persons/persons.com
 import { PersonComponent } from './dashboard/person-manager/person/person.component';
 import { FacilitiesComponent } from './dashboard/facility-manager/facilities/facilities.component';
 import { FacilityComponent } from './dashboard/facility-manager/facility/facility.component';
+import { FacilityPayoutComponent } from './dashboard/facility-payout/facility-payout.component';
+import { PayoutRequestComponent } from './dashboard/facility-payout/payout-request/payout-request.component';
+import { PayoutHistoryComponent } from './dashboard/facility-payout/payout-history/payout-history.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +62,10 @@ import { FacilityComponent } from './dashboard/facility-manager/facility/facilit
     PersonComponent,
     PersonsComponent,
     FacilitiesComponent,
-    FacilityComponent
+    FacilityComponent,
+    FacilityPayoutComponent,
+    PayoutRequestComponent,
+    PayoutHistoryComponent
   ],
   imports: [
     HttpClientModule,
