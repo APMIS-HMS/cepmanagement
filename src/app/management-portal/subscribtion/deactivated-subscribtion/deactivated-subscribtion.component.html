@@ -1,6 +1,6 @@
 <div>
   <div class="sect-toplinks">
-    <div class="sect-title">Payout Requests</div>
+    <div class="sect-title">Deactivated Subscribtions</div>
     <div class="sect-links">
       <div class="ui search">
         <div class="ui icon input">
@@ -17,10 +17,9 @@
         <tr>
           <th>Facillity</th>
           <th>Date</th>
-          <th>Amount</th>
           <th>Status</th>
-          <th>Initiated By</th>
-          <th>Phone</th>
+          <th>Deactivated By</th>
+          <th>Contact Phone</th>
           <th></th>
         </tr>
       </thead> 
@@ -33,13 +32,11 @@
             </div>
           </td>
           <td>September 14, 2013</td>
-          <td>&#x20A6;1,000</td>
           <td>Unprocessed</td>
           <td>John Smith</td>
           <td>08032323211</td>
           <td class="td-action">
-            <button (click)="initiatepayout_click()" class="ui positive basic button">Approve</button>
-            <button class="ui negative basic button">Decline</button>
+            <button (click)="initiatepayout_click()" class="ui positive basic button">Re-Activate</button>
           </td>
         </tr>
         <tr routerLink="../detail">
@@ -50,13 +47,11 @@
             </div>
           </td>
           <td>September 14, 2013</td>
-          <td>&#x20A6;1,000</td>
           <td>Unprocessed</td>
           <td>John Smith</td>
           <td>08032323211</td>
           <td class="td-action">
-            <button (click)="initiatepayout_click()" class="ui positive basic button">Approve</button>
-            <button class="ui negative basic button">Decline</button>
+            <button (click)="initiatepayout_click()" class="ui positive basic button">Re-Activate</button>
           </td>
         </tr>
         <tr routerLink="../detail">
@@ -67,13 +62,11 @@
             </div>
           </td>
           <td>September 14, 2013</td>
-          <td>&#x20A6;1,000</td>
           <td>Unprocessed</td>
           <td>John Smith</td>
           <td>08032323211</td>
           <td class="td-action">
-            <button (click)="initiatepayout_click()" class="ui positive basic button">Approve</button>
-            <button class="ui negative basic button">Decline</button>
+            <button (click)="initiatepayout_click()" class="ui positive basic button">Re-Activate</button>
           </td>
         </tr>
       </tbody>
@@ -98,6 +91,6 @@
   </div>
 </div>
 
-<div id="payout" class="ui tiny modal"> 
+<!-- <div id="payout" class="ui tiny modal"> 
   <app-initiate-payout></app-initiate-payout> 
-</div> 
+</div>  -->

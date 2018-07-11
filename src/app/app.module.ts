@@ -37,6 +37,10 @@ import { FacilityPayoutComponent } from './management-portal/facility-payout/fac
 import { PayoutRequestComponent } from './management-portal/facility-payout/payout-request/payout-request.component';
 import { PayoutHistoryComponent } from './management-portal/facility-payout/payout-history/payout-history.component';
 import { ManagementPortalComponent } from './management-portal/management-portal.component';
+import { SubscribtionComponent } from './management-portal/subscribtion/subscribtion.component';
+import { PendingSubscribtionComponent } from './management-portal/subscribtion/pending-subscribtion/pending-subscribtion.component';
+import { DeactivatedSubscribtionComponent } from './management-portal/subscribtion/deactivated-subscribtion/deactivated-subscribtion.component';
+import { ActiveSubscribtionComponent } from './management-portal/subscribtion/active-subscribtion/active-subscribtion.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +71,11 @@ import { ManagementPortalComponent } from './management-portal/management-portal
     FacilityPayoutComponent,
     PayoutRequestComponent,
     PayoutHistoryComponent,
-    ManagementPortalComponent
+    ManagementPortalComponent,
+    SubscribtionComponent,
+    PendingSubscribtionComponent,
+    DeactivatedSubscribtionComponent,
+    ActiveSubscribtionComponent
   ],
   imports: [
     HttpClientModule,

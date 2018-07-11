@@ -18,6 +18,7 @@ import { FacilityComponent } from './management-portal/facility-manager/facility
 import { FacilityPayoutComponent } from './management-portal/facility-payout/facility-payout.component';
 import { ManagementPortalComponent } from './management-portal/management-portal.component';
 import { DashboardStatsComponent } from './dashboard/dashboard-stats/dashboard-stats.component';
+import { SubscribtionComponent } from './management-portal/subscribtion/subscribtion.component';
 
 const appRoutes: Routes = [
     {path: '', redirectTo: 'auth', pathMatch: 'full'},
@@ -53,7 +54,8 @@ const appRoutes: Routes = [
             {path: 'country', component: CountryComponent},
             {path: 'country/:id', component: StatesComponent},
             {path: 'country/:id/:id2', component: LgComponent},
-            {path: 'payout', component: FacilityPayoutComponent}
+            {path: 'payout', component: FacilityPayoutComponent},
+            {path: 'subscribtion', component: SubscribtionComponent}
           ]
         }
       ]

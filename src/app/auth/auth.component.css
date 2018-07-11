@@ -11,3 +11,6 @@
 .column {
     max-width: 450px;
 }
+.ui.blue.button{
+    margin: 0 auto; 
+}

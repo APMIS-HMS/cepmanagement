@@ -1,6 +1,6 @@
 <div>
   <div class="sect-toplinks">
-    <div class="sect-title">Payout Requests</div>
+    <div class="sect-title">Active Subscribtions</div>
     <div class="sect-links">
       <div class="ui search">
         <div class="ui icon input">
@@ -19,8 +19,8 @@
           <th>Date</th>
           <th>Amount</th>
           <th>Status</th>
-          <th>Initiated By</th>
-          <th>Phone</th>
+          <th>Activated By</th>
+          <th>Contact Phone</th>
           <th></th>
         </tr>
       </thead> 
@@ -38,8 +38,7 @@
           <td>John Smith</td>
           <td>08032323211</td>
           <td class="td-action">
-            <button (click)="initiatepayout_click()" class="ui positive basic button">Approve</button>
-            <button class="ui negative basic button">Decline</button>
+            <button class="ui negative basic button">Deactivate</button>
           </td>
         </tr>
         <tr routerLink="../detail">
@@ -55,8 +54,7 @@
           <td>John Smith</td>
           <td>08032323211</td>
           <td class="td-action">
-            <button (click)="initiatepayout_click()" class="ui positive basic button">Approve</button>
-            <button class="ui negative basic button">Decline</button>
+            <button class="ui negative basic button">Deactivate</button>
           </td>
         </tr>
         <tr routerLink="../detail">
@@ -72,13 +70,12 @@
           <td>John Smith</td>
           <td>08032323211</td>
           <td class="td-action">
-            <button (click)="initiatepayout_click()" class="ui positive basic button">Approve</button>
-            <button class="ui negative basic button">Decline</button>
-          </td>
+            <button class="ui negative basic button">Deactivate</button>
+          </td> 
         </tr>
       </tbody>
       <tfoot>
-          <tr><th colspan="7">
+          <tr><th colspan="6">
             <div class="ui right floated pagination menu">
               <a class="icon item">
                 <i class="left chevron icon"></i>
@@ -97,7 +94,3 @@
     </table>
   </div>
 </div>
-
-<div id="payout" class="ui tiny modal"> 
-  <app-initiate-payout></app-initiate-payout> 
-</div> 
