@@ -18,9 +18,8 @@
           <th>Facillity</th>
           <th>Date</th>
           <th>Amount</th>
-          <th>Status</th>
           <th>Initiated By</th>
-          <th>Phone</th>
+          <th>Contact Phone</th>
           <th></th>
         </tr>
       </thead> 
@@ -34,11 +33,10 @@
           </td>
           <td>September 14, 2013</td>
           <td>&#x20A6;1,000</td>
-          <td>Unprocessed</td>
           <td>John Smith</td>
           <td>08032323211</td>
           <td class="td-action">
-            <button (click)="initiatepayout_click()" class="ui positive basic button">Approve</button>
+            <button (click)="approveSubscribtion_click()" class="ui positive basic button">Approve</button>
             <button class="ui negative basic button">Decline</button>
           </td>
         </tr>
@@ -51,11 +49,10 @@
           </td>
           <td>September 14, 2013</td>
           <td>&#x20A6;1,000</td>
-          <td>Unprocessed</td>
           <td>John Smith</td>
           <td>08032323211</td>
           <td class="td-action">
-            <button (click)="initiatepayout_click()" class="ui positive basic button">Approve</button>
+            <button (click)="approveSubscribtion_click()" class="ui positive basic button">Approve</button>
             <button class="ui negative basic button">Decline</button>
           </td>
         </tr>
@@ -68,11 +65,10 @@
           </td>
           <td>September 14, 2013</td>
           <td>&#x20A6;1,000</td>
-          <td>Unprocessed</td>
           <td>John Smith</td>
           <td>08032323211</td>
           <td class="td-action">
-            <button (click)="initiatepayout_click()" class="ui positive basic button">Approve</button>
+            <button (click)="approveSubscribtion_click()" class="ui positive basic button">Approve</button>
             <button class="ui negative basic button">Decline</button>
           </td>
         </tr>
@@ -98,6 +94,6 @@
   </div>
 </div>
 
-<!-- <div id="payout" class="ui tiny modal"> 
-  <app-initiate-payout></app-initiate-payout> 
-</div>  -->
+<div id="approve" class="ui tiny modal"> 
+  <app-approve-subscribtion></app-approve-subscribtion> 
+</div> 

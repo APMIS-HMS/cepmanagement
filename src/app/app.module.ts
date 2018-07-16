@@ -41,6 +41,7 @@ import { SubscribtionComponent } from './management-portal/subscribtion/subscrib
 import { PendingSubscribtionComponent } from './management-portal/subscribtion/pending-subscribtion/pending-subscribtion.component';
 import { DeactivatedSubscribtionComponent } from './management-portal/subscribtion/deactivated-subscribtion/deactivated-subscribtion.component';
 import { ActiveSubscribtionComponent } from './management-portal/subscribtion/active-subscribtion/active-subscribtion.component';
+import { ApproveSubscribtionComponent } from './management-portal/subscribtion/approve-subscribtion/approve-subscribtion.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +76,8 @@ import { ActiveSubscribtionComponent } from './management-portal/subscribtion/ac
     SubscribtionComponent,
     PendingSubscribtionComponent,
     DeactivatedSubscribtionComponent,
-    ActiveSubscribtionComponent
+    ActiveSubscribtionComponent,
+    ApproveSubscribtionComponent
   ],
   imports: [
     HttpClientModule,

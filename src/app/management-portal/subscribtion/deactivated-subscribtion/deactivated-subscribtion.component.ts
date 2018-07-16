@@ -13,8 +13,8 @@ export class DeactivatedSubscribtionComponent implements OnInit {
   ngOnInit() {
   }
 
-  initiatepayout_click(){
-    $('#payout').modal('show');  
+  approveSubscribtion_click(){
+    $('#approve').modal('show');  
   }
 
 }
