@@ -40,6 +40,11 @@
 /** IE10 and IE11 requires the following for the Reflect API. */
 // import 'core-js/es6/reflect';
 
+/**
+ * global is not defined error in Angular@6. Solution is to add global to window, 
+ * assigning the value of window itself as below.
+ */
+(window as any).global = window;
 
 /** Evergreen browsers require these. **/
 // Used for reflect-metadata in JIT. If you use AOT (and only Angular decorators), you can remove.
