@@ -27,9 +27,7 @@ const appRoutes: Routes = [
       path: 'app', component : DashboardComponent,
       children : [ 
         { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-        // { path: 'user-panel', loadChildren: () => UserPanelModule, },
         { path : 'management-portal' , loadChildren : 'app/management-portal/management-portal.module#ManagementPortalModule'},
-        //{path : 'management-portal', loadChildren : () => ManagementPortalModule},
         { path: 'dashboard', component : DashboardStatsComponent }
         
       ]
