@@ -1,3 +1,6 @@
 .tbody-persons{
     cursor: pointer;
 }
+.div-hidden {
+    visibility: hidden;
+}

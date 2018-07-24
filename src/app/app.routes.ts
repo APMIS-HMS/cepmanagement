@@ -23,38 +23,13 @@ const appRoutes: Routes = [
     {path: '', redirectTo: 'auth', pathMatch: 'full'},
     {path: 'auth', component : AuthComponent},
 
-    {path: 'app', component : DashboardComponent,
+    {
+      path: 'app', component : DashboardComponent,
       children : [ 
-        {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-        {path: 'dashboard', component : DashboardStatsComponent},
-        {path: 'management-portal', component : ManagementPortalComponent,
-          children : [
-            {path: '', redirectTo : 'facilities', pathMatch: 'full'},
-            {
-              path : 'facilities', component : FacilityManagerComponent, 
-              children:[
-                // { path: '', redirectTo: ':id', pathMatch: 'full'},
-                // { path: ':id', component : FacilitiesComponent },
-                { path: 'detail', component : FacilityComponent }
-              ]
-            },
-            {
-              path : 'person', component : PersonManagerComponent, 
-              children:[
-                {path: '', redirectTo: 'list', pathMatch: 'full'},
-                {path: 'list', component : PersonsComponent},
-                {path: 'detail', component : PersonComponent}
-              ]
-            },
-            {path : 'profession', component : ProfessionComponent},
-            {path: 'profession/:id', component: ProfessionCaderComponent},
-            {path: 'title', component: TitleComponent},
-            {path: 'country', component: CountryComponent},
-            {path: 'country/:id', component: StatesComponent},
-            {path: 'country/:id/:id2', component: LgComponent},
-            {path: 'payout', component: FacilityPayoutComponent}
-          ]
-        }
+        { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+        { path : 'management-portal' , loadChildren : './management-portal/management-portal.module#ManagementPortalModule'},
+        { path: 'dashboard', component : DashboardStatsComponent }
+        
       ]
     }
 ];

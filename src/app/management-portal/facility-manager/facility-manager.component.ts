@@ -10,6 +10,7 @@ export class FacilityManagerComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('facility manager component');
   }
 
 }

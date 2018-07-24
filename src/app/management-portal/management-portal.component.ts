@@ -10,6 +10,8 @@ export class ManagementPortalComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
+
 
 }
