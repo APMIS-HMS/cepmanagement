@@ -21,7 +21,6 @@ import { DataShareService } from './shared/datashare.service';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { LoaderService } from './shared/loader.service';
 import { MaterialModule } from './shared/material-design.module';
-import { ManagementPortalModule } from './management-portal/management-portal.module';
 import { FacilityManagerService } from './services/facility-manager-service';
 
 
@@ -49,7 +48,7 @@ import { FacilityManagerService } from './services/facility-manager-service';
     MyDatePickerModule,
     ChartsModule,
     AppRoutingModule,
-    ManagementPortalModule
+    
   ],
   providers: [
             ProfessionService, TitleService,CountryService,
