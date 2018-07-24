@@ -29,9 +29,6 @@ import { FacilityManagerService } from './services/facility-manager-service';
     AppComponent,
     AuthComponent,
     DashboardComponent,
-    ProfessionComponent,
-    AddProfessionComponent,
-    ProfessionCaderComponent,
     DashboardStatsComponent,
     LoaderComponent
   ],
