@@ -1,3 +1,5 @@
+import { AddProfessionComponent } from './profession/add-profession/add-profession.component';
+import { ProfessionCaderComponent } from './profession/profession-cader/profession-cader.component';
 import { FacilityManagerComponent } from './facility-manager/facility-manager.component';
 import { ManagementPortalComponent } from './management-portal.component';
 import { PayoutRequestComponent } from './facility-payout/payout-request/payout-request.component';
@@ -28,6 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '../../../node_modules/@angular
 import { PersonWalletComponent } from './person-manager/person-wallet/person-wallet.component';
 import { SpinnerComponent } from '../shared/spinner/spinner.component';
 import { PayoutHistoryComponent } from './facility-payout/payout-history/payout-history.component';
+import { ProfessionComponent } from './profession/profession.component';
 
 
 @NgModule({
@@ -57,7 +60,10 @@ import { PayoutHistoryComponent } from './facility-payout/payout-history/payout-
         PayoutRequestComponent,
         PayoutHistoryComponent,
         ManagementPortalComponent,
-        FacilityManagerComponent
+        FacilityManagerComponent,
+        ProfessionComponent,
+        ProfessionCaderComponent,
+        AddProfessionComponent
     ],
     imports : [
         CommonModule,

@@ -16,7 +16,7 @@ import { NgModule } from "../../../node_modules/@angular/core";
 import { Routes, RouterModule } from '@angular/router';
 
 const managementportalroutes : Routes = [
-  
+    
     { path: '', component : ManagementPortalComponent,
     children : [
       {
