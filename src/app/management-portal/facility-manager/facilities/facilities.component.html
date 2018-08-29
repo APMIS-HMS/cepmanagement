@@ -1,67 +1,82 @@
-<app-spinner></app-spinner>
-
-<div [class.div-hidden] = "!dataLoaded">
-  <div class="sect-toplinks">
-    <div class="sect-title">Facilities</div>
-    <div class="sect-links">
-      <div class="ui search">
-        <div class="ui icon input">
-          <input [(ngModel)]="filteredFacility" class="prompt" type="text" placeholder="select facility">
-          <i class="search icon"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="sect-tbl">
-    <table class="ui striped table" >
-      <thead>
-        <tr>
-          <th>Facillity</th>
-          <th>Type</th>
-          <th>Signup Date</th>
-          <th>Status</th>
-          <th>Contact Person</th>
-          <th>Phone</th>
-        </tr>
-      </thead> 
-      <tbody class="tbody-persons">
-          <span *ngIf="isNull"><i>There are currently no records to show</i></span>
-          <tr [routerLink]="facility._id" *ngFor="let facility of facilities | facilityFilter : filteredFacility; let i = index">
-            <td>
-              <div class="tbl-img-wrap">
-
-                {{ i + 1 }} <img class="ui avatar image" src="../../../../assets/default.png">
-                <div class="tbl-img-label">{{facility.name}}</div>
+<!-- <app-spinner></app-spinner> -->
+<div class="main">
+    <div [class.div-hidden] = "!dataLoaded">
+        <div class="sect-toplinks">
+            <div class="btn" (click)="newFacility_click()"><i class="plus icon"></i>New Facility</div>
+          <!-- <div class="sect-title">
+              <div class="btn"><i class="plus icon"></i>New Facility</div>
+          </div> -->
+          <!-- <div class="sect-title">
+              <div class="btn"><i class="plus icon"></i>New Facility</div>
+          </div> -->
+          <div class="sect-links">
+            <div class="ui search">
+              <div class="ui icon input">
+                <input [(ngModel)]="filteredFacility" class="prompt" type="text" placeholder="select facility">
+                <i class="search icon"></i>
               </div>
-            </td>
-            <td>{{facility.createdAt | date: 'MMMM d, y'}}</td>
-            <td>Billed for registration</td>
-            <td>Completed</td>
-            <td>Cr</td>
-            <td>&#x20A6;1,000</td>
-          </tr>  
-        </tbody>
-        <!-- <app-facility-item *ngFor="let facility of facilities" [facility]="facility"></app-facility-item> -->
-      <!-- <tfoot>
-          <tr><th colspan="6">
-            <div class="ui right floated pagination menu">
-              <a class="icon item">
-                <i class="left chevron icon"></i>
-              </a>
-              <a class="item">1</a>
-              <a class="item">2</a>
-              <a class="item">3</a>
-              <a class="item">4</a>
-              <a class="icon item">
-                <i class="right chevron icon"></i>
-              </a>
             </div>
-          </th>
-        </tr>
-      </tfoot> -->
-      <!-- <mat-paginator [pageIndex]="0" [length]="facilities.length" [pageSize]="pageSize" (page)="pageEvent = $event; onPaginateChange($event)" [pageSizeOptions]="pageSizeOptions">
-      </mat-paginator> -->
-    </table>
-  </div>
+          </div>
+        </div>
+      
+        <div class="sect-tbl">
+          <table class="ui striped table" >
+            <thead>
+              <tr>
+                <th></th>
+                <th>Facillity</th>
+                <th>Type</th>
+                <th>Signup Date</th>
+                <th>Status</th>
+                <th>Contact Person</th>
+                <th>Phone</th>
+              </tr>
+            </thead> 
+            <tbody class="tbody-persons">
+                <span *ngIf="isNull"><i>There are currently no records to show</i></span>
+                <tr [routerLink]="facility._id" *ngFor="let facility of facilities | searchFilter : filteredFacility; let i = index">
+                  <td> 
+                      <div class="fac-index">{{ i + 1 }}</div> 
+                  </td>
+                  <td>
+                    <div class="tbl-img-wrap">
+                      <img class="ui avatar image" src="../../../../assets/default.png">
+                      <div class="tbl-img-label">{{facility.name}}</div>
+                    </div>
+                  </td>
+                  <td>{{facility.createdAt | date: 'MMMM d, y'}}</td>
+                  <td>Billed for registration</td>
+                  <td>Completed</td>
+                  <td>Cr</td>
+                  <td>&#x20A6;1,000</td>
+                </tr>  
+              </tbody>
+                <!-- <app-facility-item *ngFor="let facility of facilities" [facility]="facility"></app-facility-item> -->
+                <!-- <tfoot>
+                <tr><th colspan="6">
+                  <div class="ui right floated pagination menu">
+                    <a class="icon item">
+                      <i class="left chevron icon"></i>
+                    </a>
+                    <a class="item">1</a>
+                    <a class="item">2</a>
+                    <a class="item">3</a>
+                    <a class="item">4</a>
+                    <a class="icon item">
+                      <i class="right chevron icon"></i>
+                    </a>
+                  </div>
+                </th>
+              </tr>
+            </tfoot>
+            <mat-paginator [pageIndex]="0" [length]="facilities.length" [pageSize]="pageSize" (page)="pageEvent = $event; onPaginateChange($event)" [pageSizeOptions]="pageSizeOptions">
+            </mat-paginator> -->
+          </table>
+        </div>
+      </div> 
 </div>
+
+
+<div id="newFacility" class="ui tiny modal"> 
+    <!-- <app-fund-wallet></app-fund-wallet>  -->
+  </div>

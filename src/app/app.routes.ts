@@ -2,34 +2,33 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {AuthComponent} from './auth/auth.component';
-import { ProfessionComponent } from './management-portal/profession/profession.component';
-import { AddProfessionComponent } from './management-portal/profession/add-profession/add-profession.component';
-import { ProfessionCaderComponent } from './management-portal/profession/profession-cader/profession-cader.component';
-import { TitleComponent } from './management-portal/title/title.component';
-import { CountryComponent } from './management-portal/country/country.component';
-import { StatesComponent } from './management-portal/country/states/states.component';
-import { LgComponent } from './management-portal/country/states/lg/lg.component'; 
-import { FacilityManagerComponent } from './management-portal/facility-manager/facility-manager.component';
-import { PersonManagerComponent } from './management-portal/person-manager/person-manager.component';
-import { PersonsComponent } from './management-portal/person-manager/persons/persons.component';
-import { PersonComponent } from './management-portal/person-manager/person/person.component';
-import { FacilitiesComponent } from './management-portal/facility-manager/facilities/facilities.component';
-import { FacilityComponent } from './management-portal/facility-manager/facility/facility.component';
-import { FacilityPayoutComponent } from './management-portal/facility-payout/facility-payout.component';
-import { ManagementPortalComponent } from './management-portal/management-portal.component';
-import { DashboardStatsComponent } from './dashboard/dashboard-stats/dashboard-stats.component';
+import { PortalComponent } from './dashboard/portal/portal.component';
+import { ReportComponent } from './dashboard/report/report.component';
 
 const appRoutes: Routes = [
-    {path: '', redirectTo: 'auth', pathMatch: 'full'},
-    {path: 'auth', component : AuthComponent},
+    {
+      path: '', redirectTo: 'auth', pathMatch: 'full'
+    },
+    {
+      path: 'auth', component : AuthComponent
+    },
 
     {
-      path: 'app', component : DashboardComponent,
+      path: 'portal', component : DashboardComponent,
+
       children : [ 
         { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
         { path : 'management-portal' , loadChildren : 'app/management-portal/management-portal.module#ManagementPortalModule'},
-        { path: 'dashboard', component : DashboardStatsComponent }
-        
+        { path: 'dashboard', component : PortalComponent }    
+      ]
+    },
+    {
+      path : 'report', component : DashboardComponent,
+      
+      children : [
+        { path : '' , redirectTo: 'dashboard', pathMatch: 'full' },
+        { path : 'analytics-portal' , loadChildren : 'app/report-analytics/report-analytics.module#ReportAnalyticsModule'},
+        { path : 'dashboard', component : ReportComponent }
       ]
     }
 ];

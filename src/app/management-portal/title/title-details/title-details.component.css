@@ -1,0 +1,15 @@
+.facility-data {
+    margin-top: 20px;
+}
+.hearder-sect {
+    background: #f1f1f1;
+    font-size: 2em;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.label-name {
+    padding: .78571429em .78571429em;
+    text-align: inherit;   
+}

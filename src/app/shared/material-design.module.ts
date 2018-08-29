@@ -46,7 +46,7 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatTreeModule,
+  MatTreeModule
 } from '@angular/material';
 import { FacilityFilterPipe } from './pipes/facility-filter.pipe';
 /**
@@ -102,7 +102,8 @@ import { FacilityFilterPipe } from './pipes/facility-filter.pipe';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule,
+    MatTreeModule
+
   ]
 })
 export class MaterialModule {}

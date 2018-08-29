@@ -1,10 +1,11 @@
 import { LoaderService } from '../../../shared/loader.service';
 import { DataShareService } from '../../../shared/datashare.service';
 import { Component, OnInit,ChangeDetectorRef, OnDestroy, ViewChild } from '@angular/core';
-import { FacilityManagerService } from '../../../services/facility-manager-service';
+import { FacilityManagerService } from '../../../services/management-portal/facility-manager-service';
 import { Facility } from '../../../models/facility';
 import { Subscription } from 'rxjs/Subscription';
 import { MatPaginator, PageEvent } from '@angular/material';
+declare var $;
 
 @Component({
   selector: 'app-facilities',
@@ -34,13 +35,14 @@ export class FacilitiesComponent implements OnInit, OnDestroy {
 
   ngOnInit () {
     this.getFacilities();
-    //console.log('facilities component');
+    console.log('facilities component');
   }
 
   getFacilities() {
     this.showLoader();
 		this.facilityService.findAll().then((payload: any) => {
       this.facilities = payload.data;
+      console.log(payload.data);
       if(this.facilities.length > 0){
         this.dataLoaded = true;
         this.isNull = false;
@@ -50,7 +52,7 @@ export class FacilitiesComponent implements OnInit, OnDestroy {
       this.showLoader();
       this.dataLoaded = false;
 		});
-  }
+  };
 
   onPaginateChange(event){
     const startIndex = event.pageIndex * event.pageSize;
@@ -74,6 +76,10 @@ export class FacilitiesComponent implements OnInit, OnDestroy {
   private hideLoader(): void {
       this.loaderService.hide();
     };
+
+    newFacility_click(){
+      $('#newFacility').modal('show');  
+    }
 
   public ngOnDestroy() {
 

@@ -1,7 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { CountryService } from '../../services/country.service';
+import { Observable } from 'rxjs/Observable';
+import { GenericService } from '../../services/global/generic-service';
+import { BaseService } from '../../services/global/base-service';
+import { DataShareService } from '../../shared/datashare.service';
+import { Component, OnInit,OnDestroy } from '@angular/core';
+import { CountryService } from '../../services/management-portal/country.service';
 import { Country } from '../../models/country';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
 declare var $;
 
 @Component({
@@ -9,26 +15,67 @@ declare var $;
   templateUrl: './country.component.html',
   styleUrls: ['./country.component.css']
 })
-export class CountryComponent implements OnInit {
+export class CountryComponent implements OnInit,OnDestroy {
+
   countries: Country[];
-  constructor(public countryService: CountryService, public router: Router) { }
+  pageName : string = 'Country';
+  private serviceName = 'countries';
 
-  ngOnInit() {
-    this.getContries();
+  private timerSubscription : Subscription;
+  
+  dataLoaded : boolean = false;
+  selectedCountry : any;
+  showDetails : boolean = false;
+  filteredCountry : string = ''; 
+  stateCount  : number = 0;
+
+  constructor(public countryService: CountryService, private baseService : BaseService,
+    private dataShare : DataShareService,private genericeService : GenericService,
+     public router: Router) { 
+
+      this.dataShare.emitData(this.serviceName);
+     }
+
+     ngOnInit() {
+      this.getCountries();
+    }
+
+  getCountries() {
+    this.baseService.findAll().then( (payload : any) => {
+      this.countries = payload.data;
+      console.log(this.countries);
+     // this.subscribeToData();
+      //this.dataLoaded = true;
+  
+    }).catch(err => {
+      //this.dataLoaded = false;
+        console.log(err);
+    });  
   }
 
-  getContries() {
-    this.countryService.fetch()
-      .subscribe((res:any) => {
-        this.countries = res.data;
-        console.log(this.countries);
-      });
+  private subscribeToData(): void {
+    this.timerSubscription = Observable.timer(5000).first().subscribe(() => this.getCountries());
   }
 
-  add() {
+  onSelect(data){
+    if(data){
+      this.showDetails = true;
+      this.selectedCountry = data;
+    }
+    else{
+      
+    }
+  }
+  onView(id : string){
+    console.log(id);
+    this.router.navigate(['portal/management-portal/countries',id])
+  }
+ 
+  add() 
+  {
     $('#addModal')
     .modal({
-      closable  : false,
+      closable  : true,
       onApprove : () => {
         this.addCountry($('#add-content').val());
       }
@@ -68,7 +115,6 @@ export class CountryComponent implements OnInit {
       });
   }
 
-
   delete(country) {
     $('#deleteModal')
     .modal({
@@ -92,6 +138,12 @@ export class CountryComponent implements OnInit {
 
   viewStates(id) {
     this.router.navigate(['/dashboard/country', id]);
+  }
+
+  ngOnDestroy(){
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+    }
   }
 }
  

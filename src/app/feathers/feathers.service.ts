@@ -12,8 +12,8 @@ import { Injectable } from '@angular/core';
 const rx = require('feathers-reactive');
 const RxJS = require('rxjs/Rx');
 
-const HOST = 'https://apmisapitest.azurewebsites.net'; // Online
-//const HOST = 'http://localhost:3031'; //local
+//const HOST = 'https://apmisapitest.azurewebsites.net'; // Online
+const HOST = 'http://localhost:3031'; //local
 
 
 @Injectable()
@@ -39,9 +39,8 @@ export class SocketService {
     this._app = feathers()
       .configure(socketio(this.socket))
       .configure(rx({ idField: "_id", listStrategy: 'always' }))
-      //.configure(rx(RxJS, { listStrategy: 'always' }))
-      // .configure(hooks())
       .configure(authentication({ storage: window.localStorage }));
+
      this._app.on('reauthentication-error', this.errorHandler)
     
   }
@@ -51,11 +50,18 @@ export class SocketService {
     this.locker.remove();
   }
   loginIntoApp(query: any) {
-    return this._app.authenticate({
+    let login = this._app.authenticate({
       'strategy': 'local',
       'email': query.email,
       'password': query.password
     });
+    //console.log(login);
+    return login;
+    // return this._app.authenticate({
+    //   'strategy': 'local',
+    //   'email': query.email,
+    //   'password': query.password
+    // });
   }
   authenticateService() {
     return this._app.authenticate();
@@ -67,6 +73,50 @@ export class SocketService {
 
 }
 
-export class RestService{
-
+const superagent = require('superagent');
+@Injectable()
+export class RestService {
+  public HOST;
+  private _app: any;
+  logOut() {
+    // this.locker.clear();
+    this.locker.clearAll();
+  }
+  constructor(private locker: LocalStorageService, private _router: Router) {
+    this.HOST = HOST;
+    if (this.locker.get('auth') !== undefined && this.locker.get('auth') != null) {
+      const auth: any = this.locker.get('token')
+      this._app = feathers()
+        .configure(rest(this.HOST).superagent(superagent,
+          {
+            headers: { 'authorization': 'Bearer ' + auth }
+          }
+        )) // Fire up rest
+        .configure(rx({ idField: '_id', listStrategy: 'always' }))
+        // .configure(hooks())
+        .configure(authentication({ storage: window.localStorage }));
+    } else {
+      this._app = feathers() // Initialize feathers
+        .configure(rest(this.HOST).superagent(superagent)) // Fire up rest
+        // .configure(hooks())
+        .configure(authentication({ storage: window.localStorage })); // Configure feathers-hooks
+    }
+  }
+  loginIntoApp(query) {
+    return this._app.authenticate({
+      'strategy': 'local',
+      'email': query.email,
+      'password': query.password
+    });
+  }
+  getService(value: any) {
+    // this._app.authenticate();
+    return this._app.service(value);
+  }
+  authenticateService() {
+    return this._app.authenticate();
+  }
+  getHost() {
+    return this.HOST;
+  }
 }

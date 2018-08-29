@@ -1,41 +1,87 @@
-<div class="page-content">
-    <div class="container-fluid">
-        <div class="row">
-            <h2 class="title">Countries</h2>
-            <a (click)="add()" class="button pull-right">
-                <i class="icon add"></i> Add Country
-            </a>
-        </div>
-    </div>
-    <div class="row">
-        <div *ngFor="let country of countries; let i = index" class="col-lg-4">
-            <div class="box">
-                <div class="row" id="{{i}}" (click)="more(i)">
-                    <div class="col-sm-8 title"><span id="t{{i}}">{{country.name | titlecase}}</span>
-                        <div id="e{{i}}" class="ui left input edit hidden loading">
-                            <input type="text" [(ngModel)]="country.name" (keyup.enter)="quickEdit(i,country._id,country.name)">
-                            <i id="icon{{i}}" class="search icon hidden"></i>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 tag">{{country.states.length}} States</div>
-                    <div class="col-sm-1">
-                        <i class="icon angle down"></i>
-                    </div>
-                </div>
-                <div class="row expanded" id="{{i}}">
-                    <div class="ui secondary labeled icon menu">
-                        <a class="item" (click)="viewStates(country._id)">
-                            <i class="icon unhide"></i> View
-                        </a>
-                        <a class="item" (click)="edit(i)">
-                            <i class="icon edit"></i> Quick Edit
-                        </a>
-                        <a class="item" (click)="delete(country)">
-                            <i class="icon trash"></i> Delete
-                        </a>
-                    </div>
-                </div>
+<div class="wrapper">
+    <div class="top-container">
+        <div class="sect-title">
+            <div class="row">
+                <h2 class="title">Countries</h2>
+                <a (click)="add()" class="button pull-right">
+                    <i class="icon add"></i> Add Country
+                </a>
             </div>
         </div>
     </div>
+    <div class="content-container">
+        <div class="list-content">
+            <div [class.div-hidden] = "!dataLoaded">
+                <div class="sect-toplinks">
+                    <div class="sect-links">
+                    <div class="ui search">
+                        <div class="ui icon input">
+                        <input [(ngModel)]="filteredCountry" class="prompt" type="text" placeholder="select country">
+                        <i class="search icon"></i>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                    
+                <div class="sect-tbl">
+                    <table class="ui striped table" >
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                        </tr>
+                    </thead> 
+                    <tbody class="tbody-persons">
+                        <!-- <span *ngIf="isNull"><i>There are currently no records to show</i></span> -->
+                        <tr *ngFor="let country of countries | searchFilter : filteredCountry; let i = index">
+                            <td> 
+                                <div class="fac-index">{{ i + 1 }}</div> 
+                            </td>
+                            <td>
+                                <div class="tbl-img-label">
+                                    <div class="item-count-details">
+                                        <span>{{country.name}}</span>
+                                        <div class="item-count">{{country.states.length}}</div>
+                                    </div>
+                                    
+                                    <div class="action-links">
+                                        <div (click)="onView(country._id)" [class.disable-div]="country.states.length > 0 ? false : true"><i class="expand arrows alternate icon"></i></div>
+                                        <div (click)="onSelect(country)"><i class="edit icon"></i></div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>  
+                        </tbody>
+                        <!-- <app-facility-item *ngFor="let facility of facilities" [facility]="facility"></app-facility-item> -->
+                        <!-- <tfoot>
+                        <tr><th colspan="6">
+                            <div class="ui right floated pagination menu">
+                            <a class="icon item">
+                                <i class="left chevron icon"></i>
+                            </a>
+                            <a class="item">1</a>
+                            <a class="item">2</a>
+                            <a class="item">3</a>
+                            <a class="item">4</a>
+                            <a class="icon item">
+                                <i class="right chevron icon"></i>
+                            </a>
+                            </div>
+                        </th>
+                        </tr>
+                    </tfoot>
+                    <mat-paginator [pageIndex]="0" [length]="facilities.length" [pageSize]="pageSize" (page)="pageEvent = $event; onPaginateChange($event)" [pageSizeOptions]="pageSizeOptions">
+                    </mat-paginator> -->
+                    </table>
+                </div>
+            </div>
+         </div>
+        <div class="detail-content" *ngIf="showDetails" >
+            <app-country-details [country-details]="selectedCountry"></app-country-details>
+        </div>
+    </div>
 </div>
+
+
+<add-modal [pageTitle] = "pageName"></add-modal>
+<app-yesno-dialog></app-yesno-dialog>

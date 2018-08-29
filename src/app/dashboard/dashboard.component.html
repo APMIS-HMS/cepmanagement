@@ -4,18 +4,58 @@
             <img src="assets/APMIS-LOGO.png"> &nbsp; Management Portal
         </a> 
         <div class="right menu"> 
-            <div (click)="show_db()" *ngIf="isDashboard" class="head-link">Management Portal</div>
-            <div (click)="show_db()" *ngIf="!isDashboard" class="head-link">Dashboard</div>
+            <div (click)="show_db()" *ngIf="isPortal" class="head-link">Reports / Analytics</div>
+            <div (click)="show_db()" *ngIf="!isPortal" class="head-link">Portal</div>
 
-            <div class="user-wrap">
+            <div class="user-wrap" (click)="toggleMenu()">
                 <div class="user-img-wrap">
                     <img src="../../../assets/users//default.png">
                 </div>
                 <div class="user-label">
                     <div class="username">John Wade</div>
+                    <div class="dropdown-content" [class.open]="isOpen">
+                        <div class ="menu-item">
+                            <li>Some link</li>
+                            <li (click)="onLogout()">Log out</li>         
+                        </div>               
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </header>
-<router-outlet></router-outlet>
+
+
+<div class="portal-container">
+    <div class="top-sect-title">
+        <i class="align justify icon hamburger-styl" (click)="showFullTb()"></i>
+    </div>
+    <div class="items-display">
+        <ul class="side-links" *ngIf="!showFull && isPortal">
+            <li class="quick-links-li" *ngFor="let menu of managementMenus;let i = index">
+                <div (click)="openMenu(i,menu.title)" class="menu-label" [class.menu-label-active]="menu.active">{{menu.title}}</div>
+                <ul *ngIf="menu.active" class="child-links">
+                    <li *ngFor="let child of menu.submenu;let j = index" class="child-links-li side-link-active" (click)="child_click(child.title,j,i)" [class.menu-child-links]="child.active" [routerLink] =" [child.path]">{{child.title}}</li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="side-links" *ngIf="!showFull && !isPortal">
+            <li class="quick-links-li" *ngFor="let menu of reportMenus;let i = index">
+                <div (click)="openMenu(i,menu.title)" class="menu-label" [class.menu-label-active]="menu.active">{{menu.title}}</div>
+                <ul *ngIf="menu.active" class="child-links">
+                    <li *ngFor="let child of menu.submenu;let j = index" class="child-links-li side-link-active" (click)="child_click(child.title,j,i)" [class.menu-child-links]="child.active" [routerLink] =" [child.path]">{{child.title}}</li>
+                </ul>
+            </li>
+        </ul>
+                  
+        <div class="item-table">
+            <!-- <app-spinner></app-spinner> -->
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
+
+<footer>
+    <p>APMIS : All Purpose Medical Information System </p>
+</footer>

@@ -1,8 +1,8 @@
 import { Subscription } from 'rxjs/Subscription';
 import { Observer } from 'rxjs/Observer';
 import { Observable } from 'rxjs/Observable';
-import { Facility } from '../models/facility';
-import { SocketService, RestService } from '../feathers/feathers.service';
+import { Facility } from '../../models/facility';
+import { SocketService, RestService } from '../../feathers/feathers.service';
 import { Injectable, OnInit } from "@angular/core";
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';

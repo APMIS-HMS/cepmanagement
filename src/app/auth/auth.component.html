@@ -4,23 +4,31 @@
             <img src="assets/APMIS-LOGO.png" class="image">
             <div class="content">
                 Management Portal
+                <!-- <div class="mainErr animated shake" [hidden]="mainErr">{{errMsg}}</div> -->
+                
             </div>
+            <!-- <div class="text alert-danger" [hidden]="mainErr"><span>{{errMsg}}</span></div> -->
         </h2>
-        <form class="ui large form">
+        
+
+        <form [formGroup]="frm_login" class="ui large form" novalidate>
+            <div class="mainErr animated shake" *ngIf="mainErr">{{errMsg}}</div>
 
             <div class="field">
                 <div class="ui left icon input">
                     <i class="user icon"></i>
-                    <input type="text" name="email" placeholder="E-mail address">
+                    <input type="text" formControlName="username" placeholder="E-mail address" [(ngModel)]="input_username">
                 </div>
             </div>
             <div class="field">
                 <div class="ui left icon input">
                     <i class="lock icon"></i>
-                    <input type="password" name="password" placeholder="Password">
+                    <input type="password" formControlName="password" placeholder="Password" [(ngModel)]="input_password">
                 </div>
             </div>
-            <div class="ui fluid large blue submit button">Login</div>
+            <div class="ui fluid">
+                    <button class="small-btn" [disabled]="!frm_login.valid" (click)="login(frm_login.valid)" mat-raised-button>Login</button>
+            </div>
 
             <!-- 
             <div class="ui error message"></div> -->

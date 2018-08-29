@@ -1,4 +1,4 @@
-import { LoaderState } from '../../models/loader';
+import { GenericState } from '../../models/generic-state';
 import { LoaderService } from '../loader.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -18,7 +18,7 @@ private loaderSubscription : Subscription
   ngOnInit() {
 
     this.loaderSubscription = this.loaderService.loaderState
-            .subscribe( (state : LoaderState) => {
+            .subscribe( (state : GenericState) => {
             this.show = state.show;
         });
 

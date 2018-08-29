@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LoaderService } from '../loader.service';
 import { Subscription } from 'rxjs/Subscription';
-import { LoaderState } from '../../models/loader';
+import { GenericState } from '../../models/generic-state';
 
 @Component({
   selector: 'app-spinner',
@@ -16,11 +16,10 @@ export class SpinnerComponent implements OnInit,OnDestroy {
 
 
   ngOnInit() {
-    this.spinnerSubscription = this.loaderService.loaderState.subscribe((state : LoaderState) => {
+    this.spinnerSubscription = this.loaderService.loaderState.subscribe((state : GenericState) => {
         this.show = state.show
         console.log(state);
     });
-    
   };
 
   ngOnDestroy(){

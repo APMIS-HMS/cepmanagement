@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute  } from '@angular/router';
 import {Location} from '@angular/common';
-import { ProfessionService } from '../../../services/profession.service';
+import { ProfessionService } from '../../../services/management-portal/profession.service';
 import { Profession } from '../../../models/profession';
 import { Cader } from '../../../models/cader';
 declare var $;

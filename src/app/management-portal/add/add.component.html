@@ -1,10 +1,13 @@
 <div id="addModal" class="ui mini modal">
-    <div class="content">
-        <div class="ui input">
-            <input id="add-content" type="text" placeholder="Enter...">
+
+    <form [formGroup]="frm_newEntry" novalidate>
+        <div class="content">
+            <mat-form-field class="form-full-width">
+                <input formControlName="name" matInput placeholder="{{pageTitle}} name">
+            </mat-form-field>
+            <div class="actions">
+                    <button class="ui approve ok blue button" (click)="onAddEntry(frm_newEntry.valid)">Add</button>
+            </div>
         </div>
-    </div>
-    <div class="actions">
-        <div class="ui approve ok blue button">Add</div>
-    </div>
+    </form>
 </div>

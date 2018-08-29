@@ -1,3 +1,14 @@
+@import "../../assets/libs/variables";
+
+ul li{
+    cursor:pointer;
+    outline: 0;
+}
+.active{
+  color:blue;
+}
+.active ul{display:block !important;}
+
 header {
     background: #0a2945;
     width: 100%;
@@ -16,19 +27,28 @@ aside {
     top: 0;
     width: 200px;
 }
-
 .ui.vertical.menu {
     width: auto !important;
 }
 
+footer {
+    position: fixed;
+    bottom: 0;
+    left : 0;
+    background-color: #0a2945;
+    width : 100%;
+    color : #6c6cff;
+    text-align: center;
+}
 .ui.sidemenu .item {
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
 main {
-    margin-top: 100px;
-    margin-left: 200px;
+    margin-top: 0px;
+    margin-left: 0px;
+    width: 100%;
 }
 
 .ui.secondary.pointing.menu .item.active {
@@ -48,11 +68,34 @@ main {
     cursor: pointer;
 }
 
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffff;
+    color : #6c6cff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 10px;
+    list-style: none;
+}
+.dropdown-content li:hover
+ {
+     background-color: #ddd
+ }
+.open {
+    display:block;
+}
+.menu-item {
+    //margin-bottom: 10px;
+    border-bottom: chartreuse;
+}
+
 .user-wrap{
     display: flex;
     align-items: center;
     color: #fff;
     margin-right: 10px;
+    cursor: pointer;
 }
 .user-img-wrap {
     width: 40px;
@@ -66,4 +109,72 @@ main {
 }
 .user-img-wrap img{
     width: 100%; 
+}
+
+.portal-container {
+    padding: 20px;
+    margin-top: 60px;
+    width: 100%;
+    margin-bottom : 20px;
+}
+.title-space {
+    font-size: 1.5rem;
+    margin-right: 600px;
+}
+
+.items-display {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    //align-items: baseline;
+}
+
+.item-table {
+    width : 100%;
+}
+.tbody-persons{
+    cursor: pointer;
+}
+.div-hidden {
+    visibility: hidden;
+}
+.icon-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.icon-item-magnify {
+    color : green;
+}
+.hamburger-styl {
+    color: #6c6cff;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+.quick-links{
+    width : 300px;
+    margin-right : 20px;
+    color : #f9fafb;
+    background: $grey-1;
+    padding: 0;
+    margin: 0;
+    margin-right: 10px;
+}
+.menu-active{
+    background: #fff !important;
+    color: #0288D1 !important;
+}
+.ql-item{
+    cursor: pointer;
+    padding: 5px;
+    border-bottom: 1px solid $grey-2;
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    color: $grey-3;
+    font-size: 0.9rem;
+    margin-top : 0px;
+}
+.ql-item:hover{
+    background: $grey-2b;
 }

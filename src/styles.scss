@@ -11,11 +11,26 @@ body {
 }
 
 body {
-    background-color: #eeeeee;
+    // background-color: #eeeeee;
+}
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .white {
     color: #fff;
+}
+
+.list-content {
+    display: flex;
+    width : 350px;
+    justify-content: space-between;
+    margin-left: 0.25rem;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 45px;
 }
 
 .my-card {
@@ -23,9 +38,15 @@ body {
 }
 
 .page-content {
-    margin-top: 20px;
+    margin-top: 0px;
+    // display: flex;
 }
-
+.btn {
+    background: #6c6cff;
+    padding: 4px 10px;
+    cursor: pointer;
+    color: #fff;
+}
 .box {
     z-index: 0;
     padding: 20px 30px;
@@ -41,7 +62,7 @@ body {
     padding: 10px 15px;
     margin-bottom: 10px;
     border-radius: 5px;
-    background-color: #FCFCFC;
+    background-color : lightgray;
     box-shadow: 0 5px 10px 0 rgba(154, 164, 175, 0.1);
     transition: 0.2s;
     color: #222;
@@ -130,7 +151,6 @@ h2.title {
     display: inline-block;
 }
 .tbl-img-wrap{
-    display: flex;
     align-items: center; 
 }
 .td-action{
@@ -138,4 +158,42 @@ h2.title {
 }
 .td-action button, .td-action i{
     margin-right: 10px;
+}
+.side-links {
+    width: 300px;
+    background: #eee;
+    color: #777;
+    font-weight: 500;
+} 
+.menu-label, .child-links-li {
+    padding: 5px 10px;
+}
+.menu-label:hover, .menu-label-active{
+    background: #6c6cff;
+    color: #fff;
+}
+.child-links{ 
+    padding-left: 15px !important;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+.side-link-active:hover, .side-link-isactive{
+    background: #d6d6d6;
+    border-radius: 20px 0 0 20px; 
+}
+.wrapper {
+    // border: 2px rgb(1, 23, 37);
+    width : 100%;
+}
+.fac-index {
+    /* margin-right: .25em; */
+    /* padding: .25em; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2em;
+    height: 2em;
+    border-radius: 500rem;
+    background: #6c6cff;
+    color : #fff;
 }

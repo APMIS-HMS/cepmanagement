@@ -11,3 +11,14 @@
 .column {
     max-width: 450px;
 }
+
+.mainErr {
+    color : red;
+}
+.small-btn:hover {
+    z-index: 100;
+    background-color: #6c6cff;
+    transform: scale(1.03);
+    color: #fff;
+    box-shadow: 0 10px 20px 0 rgba(154, 164, 175, 0.4);
+}

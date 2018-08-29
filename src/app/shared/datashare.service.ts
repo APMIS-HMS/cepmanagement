@@ -1,12 +1,19 @@
-import { Injectable } from "@angular/core";
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Title } from '../models/title';
+import { Injectable, OnInit } from "@angular/core";
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()
-export class DataShareService{
+export class DataShareService {
 
-    public _dataShareSubject = new Subject<any>();
+    private dataShareSubject = new Subject();
+    currentData = this.dataShareSubject.asObservable();
 
-    sendDataToComponent(data : any){
-        this._dataShareSubject.next(data);
+    private dataShareBehaviourSbj = new BehaviorSubject<string>('');
+    componentData = this.dataShareBehaviourSbj.asObservable();
+
+    emitData (data : any){
+        this.dataShareSubject.next(data);
+        this.dataShareBehaviourSbj.next(data);
     }
 }

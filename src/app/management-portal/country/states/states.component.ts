@@ -1,10 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { GenericService } from './../../../services/global/generic-service';
+import { BaseService } from './../../../services/global/base-service';
+import { DataShareService } from './../../../shared/datashare.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CountryService } from '../../../services/country.service';
+import { CountryService } from '../../../services/management-portal/country.service';
 import { State } from '../../../models/state';
 import { Country } from '../../../models/country';
-import { Location } from '@angular/common';
+// import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { Observable, Subscription } from '../../../../../node_modules/rxjs';
+import { Title } from '../../../models/title';
 
 declare var $;
 
@@ -13,35 +18,63 @@ declare var $;
   templateUrl: './states.component.html',
   styleUrls: ['./states.component.css']
 })
-export class StatesComponent implements OnInit {
-  country: Country;
+export class StatesComponent implements OnInit,OnDestroy {
+  
+  showDetails : boolean = false;
+  filteredState : string = '';
+  pageName : string = 'State';
+  selectedState : any;
+  private serviceName = 'countries';
+  result : Country;
+  timerSubscription : Subscription;
+  countryName : string ='';
 
- constructor( public activeRoute: ActivatedRoute,
-              public countryService: CountryService,
-              public location: Location,
-              public router: Router) { }
+
+  
+
+ constructor(public countryService: CountryService, private baseService : BaseService,
+  private dataShare : DataShareService,private genericeService : GenericService,
+   public router: Router,private route : ActivatedRoute) {
+
+    this.dataShare.emitData(this.serviceName);
+    }
 
   ngOnInit() {
-    this.activeRoute.params.subscribe(params => {
-      console.log(params);
-      this.getStates(params['id']);
-       });
+    const id = this.route.snapshot.params['id'];
+    this.getStatesByCountryId(id);
   }
 
-  back() {
-    this.location.back();
+  getStatesByCountryId(id) {
+
+    this.baseService.get(id,{}).then( (payload ) => {
+      this.result = payload.states;
+      this.countryName = payload.name;
+      this.subscribeToData(id);
+      //this.dataLoaded = true;
+  
+    }).catch(err => {
+      //this.dataLoaded = false;
+        console.log(err);
+    });  
   }
 
-  getStates(id) {
-    this.countryService.getState(id)
-      .subscribe(
-        (res:any) => {
-          this.country = res;
-        }
-      );
+  private subscribeToData(id): void {
+    console.log(id);
+    this.timerSubscription = Observable.timer(5000).first().subscribe(() => this.getStatesByCountryId(id) );
   }
 
-  add() {
+  onSelect(data){
+    if(data){
+      this.showDetails = true;
+      this.selectedState = data;
+    }
+    else{
+      
+    }
+  }
+
+  add() 
+  {
     $('#addModal')
     .modal({
       closable  : true,
@@ -51,65 +84,19 @@ export class StatesComponent implements OnInit {
     })
     .modal('show');
   }
-
   addState(name) {
-     const newState = {
-      'name' : name ,
-      'lgs' : [],
-      'cities' : []
+    const newCountry = {
+      'name' : name
     };
-    this.country.states.push(newState);
-    this.countryService.saveState(this.country._id, this.country.states)
-      .subscribe((res:any) => {
-        this.getStates(this.country._id);
-      }, err => {
-        console.log(err);
-      }
-    );
+    // this.countryService.add(newCountry)
+    //   .subscribe((res:any) => {
+    //     this.countries.push(res);
+    //   });
   }
-
-  more(id) {
-    $('#' + id + '.expanded').toggleClass('show');
-    $('#' + id).find('i').toggleClass('down');
-    $('#' + id).find('i').toggleClass('up');
-  }
-
-  edit(id) {
-    $('#e' + id).toggleClass('hidden');
-    $('#t' + id).toggleClass('hidden');
-  }
-
-  quickEdit(i, id) {
-    console.log($('#icon' + i).removeClass('hidden'));
-    this.countryService.saveState(id, this.country.states)
-      .subscribe((res:any) => {
-        $('#icon' + i).addClass('hidden');
-        this.edit(i);
-      });
-  }
-
-  viewLg(id, id2) {
-    this.router.navigate(['/dashboard/country', id, id2]);
-  }
-
-  delete(state) {
-    $('#deleteModal')
-    .modal({
-      closable  : false,
-      onDeny    : function(){
-
-      },
-      onApprove : () => {
-        this.deleteState(state);
-      }
-    })
-    .modal('show');
-  }
-
-  deleteState(state) {
-    this.country.states = this.country.states.filter(e => e !== state);
-    this.countryService.saveState(this.country._id, this.country.states)
-      .subscribe();
+  ngOnDestroy() {
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+    }
   }
 
 }

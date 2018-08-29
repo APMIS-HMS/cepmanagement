@@ -1,0 +1,18 @@
+<div class="facility-data"> 
+        <div class="ui link cards">
+            <div class="card">
+            <div class="hearder-sect">
+                <div>{{country.name}}</div>
+            </div>
+            <div class="content"> 
+                <div class="ui left input edit">
+                    <div class="label-name">Country name: </div><input type="text" [(ngModel)]="country.name">
+                </div>
+                <div class="status-btn">
+                <button class="ui positive basic button" (click)="onEdit(country)">Update</button>
+                <button class="ui negative basic button" (click)="onDelete(country)">Delete</button>
+                </div>
+            </div>
+
+            </div>
+        </div>

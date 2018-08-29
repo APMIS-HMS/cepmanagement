@@ -1,5 +1,5 @@
 import { Facility } from '../../../models/facility';
-import { FacilityManagerService } from '../../../services/facility-manager-service';
+import { FacilityManagerService } from '../../../services/management-portal/facility-manager-service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 declare var $;
@@ -20,10 +20,10 @@ export class FacilityComponent implements OnInit {
   }
 
   ngOnInit() {
-      console.log('i was called');
+    console.log(this.facilityId);
   }
 
-  getFacilityById(facilityId){
+  getFacilityById(){
     //this.facility = this.facilityService.get(this.facilityId,)
   }
   onSearch(){

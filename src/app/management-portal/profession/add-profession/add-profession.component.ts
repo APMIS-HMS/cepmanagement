@@ -3,7 +3,7 @@ import {ProfessionComponent} from '../profession.component';
 import { Profession } from '../../../models/profession';
 import { Cader } from '../../../models/cader';
 import { Error } from '../../../models/error';
-import { ProfessionService } from '../../../services/profession.service';
+import { ProfessionService } from '../../../services/management-portal/profession.service';
 declare var $;
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfessionService } from '../../services/profession.service';
+import { ProfessionService } from '../../services/management-portal/profession.service';
 import { Profession } from '../../models/profession';
 import { TitleCasePipe } from '@angular/common';
 import { Router } from '@angular/router';

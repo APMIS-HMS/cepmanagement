@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { CountryService } from '../../../../services/country.service';
+import { CountryService } from '../../../../services/management-portal/country.service';
 import { Country } from '../../../../models/country';
 import { State } from '../../../../models/state';
 declare var $;

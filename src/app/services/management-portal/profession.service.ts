@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CONSTANTS } from './global.service';
+import { CONSTANTS } from '../global/global.service';
 // tslint:disable-next-line:import-blacklist
 import 'rxjs/Rx';
 
