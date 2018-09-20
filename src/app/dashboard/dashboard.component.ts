@@ -1,6 +1,7 @@
 import { Component, OnInit  } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user-management/user.service';
+declare var $;
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -10,12 +11,13 @@ export class DashboardComponent implements OnInit {
 
   showFull = false; 
   isPortal = true;
-  // isReport = true;
+  isPortalDashboard = true;
   dateToday : string = '';
   managementMenus : any;
   reportMenus : any;
   activeSubMenu : {};
   isOpen : boolean = false;
+  subMenuOpen : boolean = false;
 
   constructor(private _router: Router,private userService : UserService) {
 
@@ -30,7 +32,18 @@ export class DashboardComponent implements OnInit {
         extralink: false,
         active : true,
         
-        submenu: [                                                        
+        submenu: [  
+            {
+              path: 'dashboard',
+              title: 'Dashboard',
+              icon: '',
+              class: '',
+              label: '',
+              labelClass: '',
+              extralink: false,
+              active : true,
+              submenu: []
+            },                                                      
             {
                 path: 'management-portal/facilities',
                 title: 'Facilities',
@@ -90,7 +103,7 @@ export class DashboardComponent implements OnInit {
       active : true,
       submenu: [                                                        
           {
-              path: '/dashboard/dashboard1',
+              path: 'user-management/users',
               title: 'Manage user',
               icon: '',
               class: '',
@@ -101,19 +114,42 @@ export class DashboardComponent implements OnInit {
               submenu: []
           },
           {
-              path: '/dashboard/dashboard2',
-              title: 'Some more',
+              path: null,
+              title: 'Configuration',
               icon: '',
               class: '',
               label: '',
               labelClass: '',
               extralink: false,
               active : false,
-              submenu: []
+              submenu: [
+                {
+                  path: 'user-management/roles',
+                  title: 'Roles',
+                  icon: '',
+                  class: '',
+                  label: '',
+                  labelClass: '',
+                  extralink: false,
+                  active : false,
+                  submenu: []
+                },
+                {
+                  path: 'user-management/routes',
+                  title: 'Routes',
+                  icon: '',
+                  class: '',
+                  label: '',
+                  labelClass: '',
+                  extralink: false,
+                  active : false,
+                  submenu: []
+                }
+              ]
           },
           {
               path: '/dashboard/dashboard3',
-              title: 'some more link',
+              title: 'Create User',
               icon: '',
               class: '',
               label: '',
@@ -203,8 +239,7 @@ export class DashboardComponent implements OnInit {
     this.checkPageUrl(page);
   }
 
-
-  show_db(){
+  show_route(){
     this.isPortal = !this.isPortal;
     if(this.isPortal){
       this._router.navigate(['/portal/dashboard']);
@@ -212,8 +247,12 @@ export class DashboardComponent implements OnInit {
       this._router.navigate(['/report/dashboard']);
     } 
   }
+
   toggleMenu(){
     this.isOpen = !this.isOpen;
+  }
+  toggleSubMenu(){
+    this.subMenuOpen = !this.subMenuOpen;
   }
   onLogout(){
     this.userService.logOut();
@@ -225,7 +264,7 @@ export class DashboardComponent implements OnInit {
 
   checkPageUrl(param: string) {
     if (param.includes('portal')) {
-      this.isPortal = true;
+      this.isPortalDashboard = true;
       } else if (param.includes('report')) {
         this.isPortal = false;
       }
@@ -246,10 +285,14 @@ export class DashboardComponent implements OnInit {
     }
 
   openMenu(index,title){
-    if (title === 'Management portal'){
+    title = title.toLowerCase();
+    if (title === 'management portal'){
       this.managementMenus[index].active = !this.managementMenus[index].active;
     }
-    else if (title === 'User management'){
+    else if (title === 'user management'){
+      this.managementMenus[index].active = !this.managementMenus[index].active;
+    }
+    else if( title === 'configuration'){
       this.managementMenus[index].active = !this.managementMenus[index].active;
     }
 

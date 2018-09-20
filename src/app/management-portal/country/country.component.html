@@ -43,9 +43,8 @@
                                         <span>{{country.name}}</span>
                                         <div class="item-count">{{country.states.length}}</div>
                                     </div>
-                                    
                                     <div class="action-links">
-                                        <div (click)="onView(country._id)" [class.disable-div]="country.states.length > 0 ? false : true"><i class="expand arrows alternate icon"></i></div>
+                                        <div (click)="onView(country._id)" matTooltip="View states in {{country.name}}" [class.disable-div]="country.states.length > 0 ? false : true"><i class="expand arrows alternate icon"></i></div>
                                         <div (click)="onSelect(country)"><i class="edit icon"></i></div>
                                     </div>
                                 </div>

@@ -68,22 +68,21 @@ export class FacilitiesComponent implements OnInit, OnDestroy {
   // }
 
 
-  private showLoader() : void {
+  private showLoader(): void {
       this.loaderService.show();
-      //.loaderService.show();
-    };
+    }
 
   private hideLoader(): void {
       this.loaderService.hide();
-    };
+  }
 
-    newFacility_click(){
-      $('#newFacility').modal('show');  
+    newFacility_click() {
+      $('#newFacility').modal('show');
     }
 
   public ngOnDestroy() {
 
     //this.facilitySubscription.unsubscribe();
-  };
+  }
 
 }

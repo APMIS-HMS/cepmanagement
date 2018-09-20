@@ -1,3 +1,4 @@
+import { UserManagementModule } from './../user-management/user-management.module';
 import { State } from './../models/state';
 import { ManagementPortalSharedModule } from './management-portal-shared.module';
 import { PersonComponent } from './person-manager/person/person.component';

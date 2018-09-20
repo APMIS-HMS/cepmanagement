@@ -8,22 +8,22 @@ import { GenericState } from '../../models/generic-state';
   templateUrl: './spinner.component.html',
   styleUrls: ['./spinner.component.css']
 })
-export class SpinnerComponent implements OnInit,OnDestroy {
+export class SpinnerComponent implements OnInit, OnDestroy {
 
-  show : boolean = true;
-  private spinnerSubscription : Subscription;
-  constructor(private loaderService : LoaderService) { }
+  show = true;
+  private spinnerSubscription: Subscription;
+  constructor(private loaderService: LoaderService) { }
 
 
   ngOnInit() {
-    this.spinnerSubscription = this.loaderService.loaderState.subscribe((state : GenericState) => {
-        this.show = state.show
+    this.spinnerSubscription = this.loaderService.loaderState.subscribe((state: GenericState) => {
+        this.show = state.show;
         console.log(state);
     });
-  };
+  }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.spinnerSubscription.unsubscribe();
-  };
+  }
 
 }

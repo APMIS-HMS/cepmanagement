@@ -16,19 +16,33 @@ const appRoutes: Routes = [
     {
       path: 'portal', component : DashboardComponent,
 
-      children : [ 
-        { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-        { path : 'management-portal' , loadChildren : 'app/management-portal/management-portal.module#ManagementPortalModule'},
-        { path: 'dashboard', component : PortalComponent }    
+      children : [
+        {
+           path: '', redirectTo: 'dashboard', pathMatch: 'full'
+        },
+        {
+          path : 'management-portal' , loadChildren : 'app/management-portal/management-portal.module#ManagementPortalModule'
+        },
+        {
+          path : 'user-management' , loadChildren : 'app/user-management/user-management.module#UserManagementModule'
+        },
+        {
+           path: 'dashboard', component : PortalComponent
+        }
       ]
     },
     {
       path : 'report', component : DashboardComponent,
-      
       children : [
-        { path : '' , redirectTo: 'dashboard', pathMatch: 'full' },
-        { path : 'analytics-portal' , loadChildren : 'app/report-analytics/report-analytics.module#ReportAnalyticsModule'},
-        { path : 'dashboard', component : ReportComponent }
+        {
+           path : '' , redirectTo: 'dashboard', pathMatch: 'full'
+        },
+        {
+           path : 'analytics-portal' , loadChildren : 'app/report-analytics/report-analytics.module#ReportAnalyticsModule'
+        },
+        {
+           path : 'dashboard', component : ReportComponent
+        }
       ]
     }
 ];
@@ -42,4 +56,4 @@ const appRoutes: Routes = [
     ]
   })
   export class AppRoutingModule {
-  }
+}

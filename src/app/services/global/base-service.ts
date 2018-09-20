@@ -1,5 +1,6 @@
+import { PortalUserService } from './../user-management/portal-user.service';
 import { DataShareService } from '../../shared/datashare.service';
-import { Injectable,OnDestroy, Injector } from "@angular/core";
+import { Injectable, OnDestroy, Injector } from '@angular/core';
 import { CONSTANTS } from './global.service';
 import { HttpClient } from '@angular/common/http';
 import { SocketService, RestService } from '../../feathers/feathers.service';
@@ -15,39 +16,39 @@ import { Response } from '../../models/error';
 
 
 @Injectable()
-export class BaseService  implements OnDestroy {
+export class BaseService implements OnDestroy {
 
     public _socket;
+    public _localSocket;
     public _rest;
-    serviceSubscription :  Subscription;
+    serviceSubscription:  Subscription;
+    localServiceSubscription: Subscription;
     serviceName;
-    entryObject : {
-      name : string
-    }; 
-    notify : Response;
-    entryList : any = [];
-    objList : any = [];
-  
+    localServiceName;
+    entryObject: {
+      name: String
+    };
+    notify: Response;
+    entryList: any = [];
+    objList: any = [];
     private dataSubject = new Subject<any>();
     dataObserver = this.dataSubject.asObservable();
 
     private entriesChanged = new Subject<any>();
     entryObserver = this.entriesChanged.asObservable();
 
-    constructor(dataShare : DataShareService,protected socketService : SocketService,
-        protected restService : RestService,protected customService : CustomService,
-        protected injector : Injector,protected response : ExceptionRefinerService) {
-            
-        this.serviceSubscription = dataShare.currentData.subscribe(data => {
-            this.serviceName = data;
-            this._socket = this.socketService.getService(this.serviceName);   
-        });       
-    }
-  
-     findAllAsObservable() {
+    constructor(dataShare: DataShareService, protected socketService: SocketService,
+        protected restService: RestService, protected customService: CustomService,
+        protected injector: Injector, protected response: ExceptionRefinerService) {
 
+        this.serviceSubscription = dataShare.currentData.subscribe(data => {
+            console.log(this.serviceName = data);
+            this._socket = this.socketService.getService(this.serviceName);
+        });
+
+    }
+     findAllAsObservable() {
       // this._socket.find( (data : any) => {
-        
       //   this.dataSubject.next(data);
       // })
       // this.findAll().then( (payload : any) => {
@@ -57,13 +58,13 @@ export class BaseService  implements OnDestroy {
       }
 
       findAll() {
-        return this._socket.find(); 
+        return this._socket.find();
       }
 
       find(query: any) {
         return this._socket.find(query);
       }
-      get(_id : any, query: any) {
+      get(_id: any, query: any) {
         return this._socket.get(_id, query);
       }
 
@@ -72,6 +73,27 @@ export class BaseService  implements OnDestroy {
         this.getEntries();
       }
 
+      currentUserDetailsById(appId) {
+        return this._localSocket.find();
+
+      }
+
+      objectArrayUpdate(query: string, entry: any) {
+        this.get(query, {})
+        .then(payload => {
+          const country = payload;
+          const states = country.states;
+          const stateIndex = this.customService.getIndexofObjectInArray(states, entry._id);
+          const state = country.states.find(x => x._id === entry._id);
+          state.name = entry.name;
+          country.states[stateIndex] = state ;
+          this.update(country);
+          this.notifySuccess(entry.name, 'updated');
+        })
+        .catch(err => {
+          this.response.handleError(err);
+        });
+      }
       patch(entry: any) {
           return this._socket.patch(entry._id, entry)
           .then(payload => {
@@ -89,43 +111,42 @@ export class BaseService  implements OnDestroy {
         })
         .catch(err => {
           this.response.handleError(err);
-        })
+        });
       }
 
-      customCreate(data : CustomEntry){
+      customCreate(data: CustomEntry) {
         this.entryObject = {
-            name : data.name  
-        } 
+            name : data.name
+        };
         this._socket.create(this.entryObject)
         .then(payload => {
           this.getEntries();
         },
-        this.notifySuccess(data.name)
+        this.notifySuccess(data.name, 'added')
        )
         .catch(err => {
           this.response.handleError(err);
-        })
-      };
+        });
+      }
 
-      private notifySuccess(data) {
+      private notifySuccess(data, messageType) {
         this.notify = {
           code : 200,
           data : {
             isSuccess : true,
-            message : `${data} successfully added.`
+            message : `${data} successfully ${messageType}.`
           }
-        }
+        };
         this.response.handleSuccess(this.notify);
       }
 
-      private getEntries(){
-        this.findAll().then( (payload : any) => {
+      private getEntries() {
+        this.findAll().then( (payload: any) => {
           this.entryList = payload.data;
           this.entriesChanged.next(this.entryList);
-        })
+        });
       }
-      ngOnDestroy(){
-        this.serviceSubscription.unsubscribe();
+      ngOnDestroy() {
+      if (this.serviceSubscription) { this.serviceSubscription.unsubscribe(); }
     }
-
 }

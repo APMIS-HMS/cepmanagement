@@ -43,14 +43,25 @@
                     </thead> 
                     <tbody class="tbody-persons">
                         <!-- <span *ngIf="isNull"><i>There are currently no records to show</i></span> -->
-                        <tr (click)="onSelect(state)" *ngFor="let state of result | searchFilter : filteredState; let i = index">
+                        <tr *ngFor="let state of result | searchFilter : filteredState; let i = index">
                             <td> 
                                 <div class="fac-index">{{ i + 1 }}</div> 
                             </td>
                             <td>
-                            <div class="tbl-img-wrap">
+                                <div class="tbl-img-label">
+                                    <div class="item-count-details">
+                                        <span>{{state.name}}</span>
+                                        <!-- <div class="item-count">{{state.states.length}}</div> -->
+                                    </div>
+                                    <div class="action-links">
+                                        <div (click)="onViewCity(state._id)" matTooltip="View cities in {{state.name}}" [class.disable-div]="state.lgs.length > 0 ? false : true"><i class="expand arrows alternate icon"></i></div>
+                                        <div (click)="onViewLg(state._id)" matTooltip="View lgs in {{state.name}}" [class.disable-div]="state.cities.length > 0 ? false : true"><i class="expand arrows alternate icon"></i></div>
+                                        <div (click)="onSelect(state)" matTooltip="Edit {{state.name}}"><i class="edit icon"></i></div>
+                                    </div>
+                                </div>
+                            <!-- <div class="tbl-img-wrap">
                                 <div class="tbl-img-label">{{state.name}}</div>
-                            </div>
+                            </div> -->
                             </td>
                             
                         </tr>  

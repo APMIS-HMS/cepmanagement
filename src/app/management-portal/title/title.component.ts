@@ -1,11 +1,12 @@
 import { DataStateService } from '../../shared/data-state.service';
 import { BaseService } from '../../services/global/base-service';
 import { DataShareService } from '../../shared/datashare.service';
-import { Component, OnInit,OnDestroy,ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '../../models/title';
 import { Subscription } from 'rxjs/Subscription';
 import { GenericService } from '../../services/global/generic-service';
 import { CustomService } from '../../services/global/custom-service';
+import { CONSTANTS } from '../../services/global/global.service';
 
 declare var $;
 
@@ -14,30 +15,30 @@ declare var $;
   templateUrl: './title.component.html',
   styleUrls: ['./title.component.css']
 })
-export class TitleComponent implements OnInit,OnDestroy {
+export class TitleComponent implements OnInit, OnDestroy {
   titles: Title[];
-  filteredTitle : string = '';
-  showDetails : boolean = false;
-  selectedTitle : any;
+  filteredTitle = '';
+  showDetails = false;
+  selectedTitle: any;
   title: Title;
-  dataLoaded : boolean = false;
-  serviceToLoad : string = '';
-  private titlesChanged : Subscription;
+  dataLoaded = false;
+  serviceToLoad = '';
+  private titlesChanged: Subscription;
   private serviceName = 'titles';
   pageName = 'Title';
-  expanded : boolean = false;
-  showDown : boolean = true;
+  expanded = false;
+  showDown = true;
   toggle = {};
   e = {};
   showModal = false;
 
-  constructor(private dataShare : DataShareService, private customService : CustomService,
-    private genericService : GenericService, private baseService : BaseService,
-    private dataState : DataStateService) { 
+  constructor(private dataShare: DataShareService, private customService: CustomService,
+    private genericService: GenericService, private baseService: BaseService,
+    private dataState: DataStateService) {
 
     this.dataShare.emitData(this.serviceName);
     this.getTitles();
-    };
+    }
 
   // private alertServiceName(){
   //   this.dataShare.updateData(this.serviceName);
@@ -45,35 +46,33 @@ export class TitleComponent implements OnInit,OnDestroy {
 
 
   getTitles() {
-      this.baseService.findAll().then( (payload : any) => {
+      this.baseService.findAll().then( (payload: any) => {
       this.titles = payload.data;
       this.dataLoaded = true;
 
     }).catch(err => {
       this.dataLoaded = false;
       console.log(err);
-    });  
+    });
 
     this.titlesChanged = this.baseService.entryObserver.subscribe( data => {
       this.titles = data;
     });
-  };
+  }
 
-  onSelect(data){
-    if(data){
+  onSelect(data) {
+    if (data) {
       this.showDetails = true;
       this.selectedTitle = data;
-    }
-    else{
-      
+    } else {
     }
   }
   ngOnDestroy() {
     this.titlesChanged.unsubscribe();
-  };
+  }
 
   ngOnInit() {
-  };
+  }
 
   more(id) {
     $('#' + id + '.expanded').toggleClass('show');
@@ -82,7 +81,7 @@ export class TitleComponent implements OnInit,OnDestroy {
     $('#' + id).find('i').toggleClass('up');
   }
 
-  showMore(id){
+  showMore(id) {
     this.toggle[id] = !this.toggle[id];
     $('#' + id + '.expanded').toggleClass('show');
   }
@@ -124,10 +123,10 @@ export class TitleComponent implements OnInit,OnDestroy {
       this.baseService.patch(this.title);
   }
 
-  private showConfirmModal() : void {
+  private showConfirmModal(): void {
     this.showModal = !this.showModal;
     this.dataState.activeState(this.showModal);
-  };
+  }
 
   closeModal() {
     $('deleteModal')
@@ -135,7 +134,7 @@ export class TitleComponent implements OnInit,OnDestroy {
     console.log('closing modal now');
   }
 
-  delete(title,id) {
+  delete(title, id) {
     this.showConfirmModal();
 
     // $('#deleteModal')
@@ -146,10 +145,10 @@ export class TitleComponent implements OnInit,OnDestroy {
     //   }
     // })
     // .modal('show');
-    //this.showModal = !this.showModal;
-    //console.log(this.showModal);
+    // this.showModal = !this.showModal;
+    // console.log(this.showModal);
 
-    //this.modalState.activeState();
+    // this.modalState.activeState();
 
 
     // $('#deleteModal')

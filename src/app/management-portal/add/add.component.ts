@@ -1,6 +1,6 @@
 import { Response } from './../../models/error';
 import { BaseService } from '../../services/global/base-service';
-import { FormGroup, FormBuilder,Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NewEntry } from '../../models/generic';
 import { DataShareService } from '../../shared/datashare.service';
 import { GenericService } from '../../services/global/generic-service';
@@ -17,39 +17,38 @@ import { NotificationService } from '../../services/global/notification.service'
 })
 export class AddComponent implements OnInit,OnDestroy {
 
-  @Input() pageTitle : string;
+  @Input() pageTitle: string;
 
-  srvName : string = '';
-  frm_newEntry : FormGroup;
-  serviceNameSubscription : Subscription;
-  newEntry : NewEntry = {
-    serviceName : '',
-    name : ''
+  srvName = '';
+  frm_newEntry: FormGroup;
+  serviceNameSubscription: Subscription;
+  newEntry: NewEntry = {
+    serviceName: '',
+    name: ''
   };
-  notifySubscription : Subscription;
-  responseObj : Response
+  notifySubscription: Subscription;
+  responseObj: Response;
 
 
-  constructor(private dataShareService : DataShareService, private genericService : GenericService, 
-  private formBuilder : FormBuilder, private baseService : BaseService,
-  private notificationService : NotificationService,public snackBar: MatSnackBar) { 
+  constructor(private dataShareService: DataShareService, private genericService: GenericService,
+  private formBuilder: FormBuilder, private baseService: BaseService,
+  private notificationService: NotificationService, public snackBar: MatSnackBar) {
 
     this.serviceNameSubscription = this.dataShareService.componentData.subscribe( data => {
       this.srvName = data;
       console.log(this.srvName);
-    })
+    });
 
     this.notifySubscription =  this.notificationService.notificationObserver.subscribe( data => {
       this.responseObj = data;
-      if(this.responseObj.data.isSuccess)
-      {
+      if (this.responseObj.data.isSuccess) {
         this.snackBar.open(this.responseObj.data.message, 'infomation', {
           duration: 3000,
           verticalPosition: 'bottom',
           horizontalPosition: 'left',
 
           });
-      }else {
+      } else {
         this.snackBar.open(this.responseObj.data.message, 'error', {
           duration: 3000,
           verticalPosition: 'bottom',
@@ -64,30 +63,28 @@ export class AddComponent implements OnInit,OnDestroy {
   //     this.snackBar.open(this.errorObj.data.message, 'error', {
   //         duration: 2000,
   //       });
-      
   // });
     }
 
-    ngOnInit(){
+    ngOnInit() {
 
-      //this. clearModalEntry();
+      // this. clearModalEntry();
       this.frm_newEntry = this.formBuilder.group({
         name: ['', [<any>Validators.required]]
       });
-  
       this.frm_newEntry.valueChanges.subscribe(payload => {
         if (this.frm_newEntry.dirty) {
-          //this.mainErr = true;
+          // this.mainErr = true;
         }
       });
   }
 
-  clearModalEntry(){
-    //this.frm_newEntry.controls['name'].setValue('');
-  };
+  clearModalEntry() {
+    // this.frm_newEntry.controls['name'].setValue('');
+  }
 
-  onAddEntry(valid){
-  if(valid){
+  onAddEntry(valid) {
+  if (valid) {
     this.newEntry = {
       serviceName : this.srvName,
       name : this.frm_newEntry.controls['name'].value
@@ -97,7 +94,7 @@ export class AddComponent implements OnInit,OnDestroy {
   }
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.serviceNameSubscription.unsubscribe();
   }
 

@@ -7,6 +7,7 @@ import { CountryService } from '../../services/management-portal/country.service
 import { Country } from '../../models/country';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { CONSTANTS } from '../../services/global/global.service';
 
 declare var $;
 
@@ -32,21 +33,20 @@ export class CountryComponent implements OnInit,OnDestroy {
   constructor(public countryService: CountryService, private baseService : BaseService,
     private dataShare : DataShareService,private genericeService : GenericService,
      public router: Router) { 
-
-      this.dataShare.emitData(this.serviceName);
+      
      }
 
      ngOnInit() {
+      this.dataShare.emitData(this.serviceName);
       this.getCountries();
     }
 
   getCountries() {
+    
     this.baseService.findAll().then( (payload : any) => {
       this.countries = payload.data;
-      console.log(this.countries);
-     // this.subscribeToData();
+      this.subscribeToData();
       //this.dataLoaded = true;
-  
     }).catch(err => {
       //this.dataLoaded = false;
         console.log(err);
@@ -67,31 +67,30 @@ export class CountryComponent implements OnInit,OnDestroy {
     }
   }
   onView(id : string){
-    console.log(id);
     this.router.navigate(['portal/management-portal/countries',id])
   }
  
-  add() 
-  {
-    $('#addModal')
-    .modal({
-      closable  : true,
-      onApprove : () => {
-        this.addCountry($('#add-content').val());
-      }
-    })
-    .modal('show');
-  }
+  // add() 
+  // {
+  //   $('#addModal')
+  //   .modal({
+  //     closable  : true,
+  //     onApprove : () => {
+  //       this.addCountry($('#add-content').val());
+  //     }
+  //   })
+  //   .modal('show');
+  // }
 
-  addCountry(name) {
-    const newCountry = {
-      'name' : name
-    };
-    this.countryService.add(newCountry)
-      .subscribe((res:any) => {
-        this.countries.push(res);
-      });
-  }
+  // addCountry(name) {
+  //   const newCountry = {
+  //     'name' : name
+  //   };
+  //   this.countryService.add(newCountry)
+  //     .subscribe((res:any) => {
+  //       this.countries.push(res);
+  //     });
+  // }
 
 
   more(id) {
@@ -106,35 +105,35 @@ export class CountryComponent implements OnInit,OnDestroy {
     $('#t' + id).toggleClass('hidden');
   }
 
-  quickEdit(i, id, name) {
-    console.log($('#icon' + i).removeClass('hidden'));
-    this.countryService.quickEdit(id, name)
-      .subscribe((res:any) => {
-        $('#icon' + i).addClass('hidden');
-        this.edit(i);
-      });
-  }
+  // quickEdit(i, id, name) {
+  //   console.log($('#icon' + i).removeClass('hidden'));
+  //   this.countryService.quickEdit(id, name)
+  //     .subscribe((res:any) => {
+  //       $('#icon' + i).addClass('hidden');
+  //       this.edit(i);
+  //     });
+  // }
 
-  delete(country) {
-    $('#deleteModal')
-    .modal({
-      closable  : true,
-      onDeny    : function(){
+  // delete(country) {
+  //   $('#deleteModal')
+  //   .modal({
+  //     closable  : true,
+  //     onDeny    : function(){
 
-      },
-      onApprove : () => {
-        this.deleteCountry(country);
-      }
-    })
-    .modal('show');
-  }
+  //     },
+  //     onApprove : () => {
+  //       this.deleteCountry(country);
+  //     }
+  //   })
+  //   .modal('show');
+  // }
 
-  deleteCountry(country) {
-    this.countryService.delete(country._id)
-      .subscribe((res:any) => {
-        this.countries = this.countries.filter(e => e !== country);
-      });
-  }
+  // deleteCountry(country) {
+  //   this.countryService.delete(country._id)
+  //     .subscribe((res:any) => {
+  //       this.countries = this.countries.filter(e => e !== country);
+  //     });
+  // }
 
   viewStates(id) {
     this.router.navigate(['/dashboard/country', id]);
@@ -146,4 +145,3 @@ export class CountryComponent implements OnInit,OnDestroy {
     }
   }
 }
- 

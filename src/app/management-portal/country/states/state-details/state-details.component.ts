@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { BaseService } from './../../../../services/global/base-service';
 import { FormGroup } from '@angular/forms';
@@ -12,25 +13,26 @@ import { NotificationService } from '../../../../services/global/notification.se
 @Component({
     selector : 'app-state-details',
     templateUrl : './state-details.component.html',
-    styleUrls : ['./state-details.component.html']
+    styleUrls : ['./state-details.component.css']
 })
 export class StateDetailsComponent implements OnInit,OnDestroy{
 
  @Input('state-details') state : State;
  frm_state : FormGroup;
- private serviceName = 'states';
+ private serviceName = 'countries';
  stateObj : State;
  notifySubscription : Subscription;
  errorObj : Response;
 
  constructor( private baseService : BaseService,private dataShare : DataShareService,
-    private notificationService : NotificationService,public snackBar: MatSnackBar){
+    private notificationService : NotificationService,public snackBar: MatSnackBar,
+    private route : ActivatedRoute){
         this.dataShare.emitData(this.serviceName);
 
         this.notifySubscription =  this.notificationService.notificationObserver.subscribe( data => {
             this.errorObj = data;
             this.snackBar.open(this.errorObj.data.message, 'error', {
-                duration: 2000,
+                duration: 5000,
                 verticalPosition: 'bottom',
                 horizontalPosition: 'left',
 
@@ -38,15 +40,16 @@ export class StateDetailsComponent implements OnInit,OnDestroy{
         });
     }
     onEdit(data){
+        const id = this.route.snapshot.params['id'];
         this.stateObj = data;
-        this.baseService.patch(this.stateObj);
+        this.baseService.objectArrayUpdate(id,this.stateObj);
     }
     onDelete(data){
         this.stateObj = data
         this.baseService.remove(this.stateObj,'');
     }
     ngOnInit() {
-
+    
     }
 
     ngOnDestroy() {

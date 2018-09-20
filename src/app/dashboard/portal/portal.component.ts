@@ -1,3 +1,4 @@
+import { DashboardService } from './../../shared/dashboard.service';
 import { Component, OnInit, OnDestroy,ViewChild, ChangeDetectorRef } from "@angular/core";
 import { LoaderService } from '../../shared/loader.service';
 import { DataShareService } from '../../shared/datashare.service';
@@ -16,57 +17,23 @@ import { UserFacadeService } from '../../services/user-management/user-facade.se
 export class PortalComponent implements OnInit, OnDestroy {
 
     faCoffee = faCoffee;
-    
-    dataLoaded : boolean = false;
-    isNull : boolean = false;
-  
-    pageSize = 10;
-    pageSizeOptions = [5, 10, 25, 100];
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-  
-    facilities : Facility[];
-    filteredFacility : string = '';
-    facilitySubscription : Subscription;
-    spinnerSubscription : Subscription;
-    showSpinner : boolean = false;
-    pageEvent : PageEvent;
+    dataLoaded: Boolean = false;
+    dashboardStats = {};
+    constructor(private facilityService: FacilityManagerService, private ref: ChangeDetectorRef,
+        private dataShareService: DataShareService, private loaderService: LoaderService,
+        private dashboard: DashboardService) {
+        }
 
-    constructor(private facilityService : FacilityManagerService, private ref: ChangeDetectorRef,
-        private dataShareService : DataShareService,private loaderService : LoaderService,
-        private userFacadeService : UserFacadeService) { 
-          
-        } 
-
-    ngOnInit(){
-        this.getFacilities();
-        console.log(this.userFacadeService.getUser());
+    ngOnInit() {
     }
-    getFacilities() {
-        this.showLoader();
-            this.facilityService.findAll().then((payload: any) => {
-          this.facilities = payload.data;
-          if(this.facilities.length > 0){
-            this.dataLoaded = true;
-            this.isNull = false;
-          }
-          this.hideLoader();
-            }).catch(error => {
-          this.showLoader();
-          this.dataLoaded = false;
-            });
-      }
 
+    getDashboardStatistics() {
+       this.dashboard.dashboardStat().then( data => {
+          this.dashboardStats = data;
+       });
+    }
 
-      private showLoader() : void {
-        this.loaderService.show();
-        //.loaderService.show();
-      };
-  
-    private hideLoader(): void {
-        this.loaderService.hide();
-      };
-  
-    ngOnDestroy(){
+    ngOnDestroy() {
 
     }
 }

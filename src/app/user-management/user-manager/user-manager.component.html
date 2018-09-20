@@ -1,0 +1,58 @@
+<!-- <app-spinner></app-spinner> -->
+<div class="main">
+    <div>
+        <h2 class="title">Users</h2>
+        <div class="ui icon input">
+                <input class="prompt" type="text" placeholder="find a user">
+                <i class="search icon"></i>
+            </div>
+            <!-- <div [class.div-hidden] = "!dataLoaded"> -->
+        <div class="sect-toplinks">
+            <div></div>
+          <div class="sect-links">
+            <div class="ui search">
+              <div class="ui icon input">
+                <input class="prompt" type="text" placeholder="select users">
+                <i class="search icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sect-tbl">
+          <table class="ui striped table" >
+            <thead>
+              <tr>
+                <th></th>
+                <th>User ID</th>
+                <th>Type</th>
+                <th>Signup Date</th>
+                <th>Status</th>
+                <th>Contact Person</th>
+                <th>Phone</th>
+              </tr>
+            </thead> 
+            <tbody class="tbody-persons">
+                <tr>
+                  <td> 
+                      <div class="fac-index">i + 1</div> 
+                  </td>
+                  <td>
+                    <div class="tbl-img-wrap">
+                      <img class="ui avatar image" src="../../../../assets/default.png">
+                      <div class="tbl-img-label">facility.name</div>
+                    </div>
+                  </td>
+                  <td>facility.createdAt | date: 'MMMM d, y'</td>
+                  <td>Billed for registration</td>
+                  <td>Completed</td>
+                  <td>Cr</td>
+                  <td>&#x20A6;1,000</td>
+                </tr>  
+              </tbody>
+          </table>
+        </div>
+      </div> 
+</div>
+<div id="newFacility" class="ui tiny modal"> 
+    <!-- <app-fund-wallet></app-fund-wallet>  -->
+</div>

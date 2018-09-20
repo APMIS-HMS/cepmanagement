@@ -1,0 +1,11 @@
+import { Component } from "../../../node_modules/@angular/core";
+
+@Component({
+    selector : 'app-user-management',
+    templateUrl: './user-management.component.html',
+    styleUrls: ['./user-management.component.css']
+})
+
+export class UserManagementComponent {
+
+}

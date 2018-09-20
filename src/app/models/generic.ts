@@ -1,14 +1,14 @@
 export interface NewEntry {
-    serviceName : string,
-    name : string
-}
+    serviceName: String;
+    name: String;
+};
 
 export interface CustomEntry {
-    serviceName : string,
-    name : string
+    serviceName: String;
+    name: String;
 }
 
 export class CustomServiceName {
-    name : string
+    name: String;
 }
 

@@ -28,9 +28,9 @@ export class StatesComponent implements OnInit,OnDestroy {
   result : Country;
   timerSubscription : Subscription;
   countryName : string ='';
+  private countryId : string = '';
+  private stateId : string = '';
 
-
-  
 
  constructor(public countryService: CountryService, private baseService : BaseService,
   private dataShare : DataShareService,private genericeService : GenericService,
@@ -40,16 +40,17 @@ export class StatesComponent implements OnInit,OnDestroy {
     }
 
   ngOnInit() {
-    const id = this.route.snapshot.params['id'];
-    this.getStatesByCountryId(id);
+    this.countryId = this.route.snapshot.params['id'];
+    this.getStatesByCountryId(this.countryId);
   }
 
-  getStatesByCountryId(id) {
+  getStatesByCountryId(selectedCountry) {
 
-    this.baseService.get(id,{}).then( (payload ) => {
+    this.baseService.get(selectedCountry,{}).then( (payload ) => {
       this.result = payload.states;
+      console.log(this.result);
       this.countryName = payload.name;
-      this.subscribeToData(id);
+      //this.subscribeToData(id);
       //this.dataLoaded = true;
   
     }).catch(err => {
@@ -62,6 +63,15 @@ export class StatesComponent implements OnInit,OnDestroy {
     console.log(id);
     this.timerSubscription = Observable.timer(5000).first().subscribe(() => this.getStatesByCountryId(id) );
   }
+
+  onViewCity(id : string){
+    this.router.navigate(['portal/management-portal/cities',id]);
+  };
+
+  // countries/:id/state:id
+  onViewLg(id : string,){
+    this.router.navigate([`portal/management-portal/countries/${this.countryId}/state`,id])
+  };
 
   onSelect(data){
     if(data){

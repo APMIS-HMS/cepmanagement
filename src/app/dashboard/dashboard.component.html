@@ -4,8 +4,8 @@
             <img src="assets/APMIS-LOGO.png"> &nbsp; Management Portal
         </a> 
         <div class="right menu"> 
-            <div (click)="show_db()" *ngIf="isPortal" class="head-link">Reports / Analytics</div>
-            <div (click)="show_db()" *ngIf="!isPortal" class="head-link">Portal</div>
+            <div (click)="show_route()" *ngIf="isPortal" class="head-link">Reports / Analytics</div>
+            <div (click)="show_route()" *ngIf="!isPortal" class="head-link">Portal</div>
 
             <div class="user-wrap" (click)="toggleMenu()">
                 <div class="user-img-wrap">
@@ -25,7 +25,6 @@
     </div>
 </header>
 
-
 <div class="portal-container">
     <div class="top-sect-title">
         <i class="align justify icon hamburger-styl" (click)="showFullTb()"></i>
@@ -33,9 +32,22 @@
     <div class="items-display">
         <ul class="side-links" *ngIf="!showFull && isPortal">
             <li class="quick-links-li" *ngFor="let menu of managementMenus;let i = index">
-                <div (click)="openMenu(i,menu.title)" class="menu-label" [class.menu-label-active]="menu.active">{{menu.title}}</div>
+            <div (click)="openMenu(i,menu.title)" class="menu-label" [class.menu-label-active]="menu.active">{{menu.title}}</div>
                 <ul *ngIf="menu.active" class="child-links">
-                    <li *ngFor="let child of menu.submenu;let j = index" class="child-links-li side-link-active" (click)="child_click(child.title,j,i)" [class.menu-child-links]="child.active" [routerLink] =" [child.path]">{{child.title}}</li>
+                    <li *ngFor="let child of menu.submenu;let j = index" class="child-links-li side-link-active" (click)="child_click(child.title,j,i)" [class.menu-child-links]="child.active" [routerLink] ="[child.path]">
+                        <div>{{child.title}}</div>
+                        <div class="more-submenu" *ngIf="child.submenu.length < 1 ? false : true" (click)="toggleSubMenu()">
+                            <i class="ellipsis vertical icon"></i>
+                            <div class="dropdown-content" [class.open]="subMenuOpen" (mouseleave)="toggleSubMenu()">
+                                <div class ="menu-item">
+                                    <li *ngFor="let innerSubmenu of child.submenu" [routerLink] ="[innerSubmenu.path]">
+                                        <div>{{innerSubmenu.title}}</div>
+                                    </li>
+                                    <!-- <li (click)="onLogout()">Link 2</li>          -->
+                                </div>               
+                             </div>
+                        </div>
+                    </li>
                 </ul>
             </li>
         </ul>
@@ -55,6 +67,19 @@
     </div>
 </div>
 
+<div id="subMenuModal" class="ui mini modal">
+
+        <!-- <form [formGroup]="frm_newEntry" novalidate>
+            <div class="content">
+                <mat-form-field class="form-full-width">
+                    <input formControlName="name" matInput placeholder="{{pageTitle}} name">
+                </mat-form-field>
+                <div class="actions">
+                        <button class="ui approve ok blue button" (click)="onAddEntry(frm_newEntry.valid)">Add</button>
+                </div>
+            </div>
+        </form> -->
+</div>
 
 <footer>
     <p>APMIS : All Purpose Medical Information System </p>

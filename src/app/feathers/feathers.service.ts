@@ -1,3 +1,9 @@
+import { HostUrl } from './../models/generic-state';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { CONSTANTS } from './../services/global/global.service';
+import { OnInit, Injector, Optional } from '@angular/core';
+import { OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 const feathers = require('@feathersjs/feathers');
 const socketio = require('@feathersjs/socketio-client');
@@ -11,17 +17,15 @@ import { LocalStorageService } from 'angular-2-local-storage';
 import { Injectable } from '@angular/core';
 const rx = require('feathers-reactive');
 const RxJS = require('rxjs/Rx');
-
-//const HOST = 'https://apmisapitest.azurewebsites.net'; // Online
 const HOST = 'http://localhost:3031'; //local
 
-
 @Injectable()
-export class SocketService {
-  
+export class SocketService implements OnDestroy {
   public socket: any;
   public HOST;
   private _app: any;
+
+  hostSubscription: Subscription;
 
   errorHandler = error => {
     this._app.authenticate({
@@ -31,46 +35,58 @@ export class SocketService {
     }).then(response => {
       // You are now authenticated again
     });
-  };
-
-  constructor(private locker: LocalStorageService, private _router: Router){
-    this.HOST = HOST;
-    this.socket = io(this.HOST);
-    this._app = feathers()
-      .configure(socketio(this.socket))
-      .configure(rx({ idField: "_id", listStrategy: 'always' }))
-      .configure(authentication({ storage: window.localStorage }));
-
-     this._app.on('reauthentication-error', this.errorHandler)
-    
   }
+
+  constructor(private locker: LocalStorageService) {
+
+      this.HOST = HOST;
+      this.socket = io(this.HOST);
+      this._app = feathers()
+        .configure(socketio(this.socket))
+        .configure(rx({ idField: '_id', listStrategy: 'always' }))
+        .configure(authentication({ storage: window.localStorage }));
+       this._app.on('reauthentication-error', this.errorHandler);
+    }
 
   logOut() {
     this._app.logout();
     this.locker.remove();
   }
+
   loginIntoApp(query: any) {
-    let login = this._app.authenticate({
-      'strategy': 'local',
-      'email': query.email,
-      'password': query.password
-    });
-    //console.log(login);
+     this._app.on('reauthentication-error', this.errorHandler);
+      const login = this._app.authenticate({
+        'strategy': 'local',
+        'email': query.email,
+        'password': query.password
+      });
     return login;
-    // return this._app.authenticate({
-    //   'strategy': 'local',
-    //   'email': query.email,
-    //   'password': query.password
-    // });
   }
   authenticateService() {
     return this._app.authenticate();
   }
-  
-  getService(value : any){
+  // getLocalService(value: any) {
+  //   const socket2 = io('http://localhost:3030', {
+  //     transports: ['polling', 'websocket'],
+  //     polling: {
+  //       extraHeaders: {
+  //         Authorization: this.locker.get('token')
+  //       }
+  //     }
+  //   });
+  //   this._app = feathers()
+  //    .configure(socketio(socket2))
+  //    .configure(rx({ idField: '_id', listStrategy: 'always' }))
+  //    .configure(authentication({ storage: window.localStorage }));
+  //   return this._app.service(value);
+  // }
+
+  getService(value: any) {
     return this._app.service(value);
   }
 
+  ngOnDestroy() {
+  }
 }
 
 const superagent = require('superagent');
@@ -78,12 +94,9 @@ const superagent = require('superagent');
 export class RestService {
   public HOST;
   private _app: any;
-  logOut() {
-    // this.locker.clear();
-    this.locker.clearAll();
-  }
+
   constructor(private locker: LocalStorageService, private _router: Router) {
-    this.HOST = HOST;
+    this.HOST = '';
     if (this.locker.get('auth') !== undefined && this.locker.get('auth') != null) {
       const auth: any = this.locker.get('token')
       this._app = feathers()
@@ -102,6 +115,11 @@ export class RestService {
         .configure(authentication({ storage: window.localStorage })); // Configure feathers-hooks
     }
   }
+
+  logOut() {
+    this.locker.clearAll();
+  }
+
   loginIntoApp(query) {
     return this._app.authenticate({
       'strategy': 'local',
@@ -110,7 +128,6 @@ export class RestService {
     });
   }
   getService(value: any) {
-    // this._app.authenticate();
     return this._app.service(value);
   }
   authenticateService() {

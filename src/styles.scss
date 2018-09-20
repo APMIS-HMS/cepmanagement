@@ -168,6 +168,11 @@ h2.title {
 .menu-label, .child-links-li {
     padding: 5px 10px;
 }
+.child-links-li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .menu-label:hover, .menu-label-active{
     background: #6c6cff;
     color: #fff;
@@ -197,3 +202,4 @@ h2.title {
     background: #6c6cff;
     color : #fff;
 }
+

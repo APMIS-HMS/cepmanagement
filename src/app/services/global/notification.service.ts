@@ -1,16 +1,16 @@
 import { Response } from './../../models/error';
 import { Subject } from 'rxjs';
-import { Injectable } from "../../../../node_modules/@angular/core";
+import { Injectable } from '../../../../node_modules/@angular/core';
 
 @Injectable()
-export class NotificationService{
+export class NotificationService {
 
-    private notificationSubject = new Subject<Response>()
+    private notificationSubject = new Subject<Response>();
     notificationObserver = this.notificationSubject.asObservable();
-    constructor(){
+    constructor() {
     }
 
-    notify(data : Response){
+    notify(data: Response) {
         this.notificationSubject.next(data);
     }
 

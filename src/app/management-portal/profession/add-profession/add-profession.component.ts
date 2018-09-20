@@ -46,29 +46,29 @@ export class AddProfessionComponent implements OnInit {
   }
 
 
-  addProfession() {
-    if (this.name.length > 2) {
-      if (this.caders.length > 0) {
-        const newProfession = this.profession;
-        newProfession.name = this.name;
-        newProfession.caders = this.caders;
-        this.professionService.add(newProfession)
-          .subscribe((res:any) => {
-            console.log(res);
-            this.updateProfession.emit(res);
-            this.caders = [];
-            this.name = '';
-            $('#add-profession.ui.modal')
-            .modal('hide');
-          });
-      } else {
-        this.error.message = 'Please add a cader first';
-        this.error.isSet = true;
-      }
-    } else {
-      this.error.message = 'Please enter a profession name first';
-      this.error.isSet = true;
-    }
-  }
+  // addProfession() {
+  //   if (this.name.length > 2) {
+  //     if (this.caders.length > 0) {
+  //       const newProfession = this.profession;
+  //       newProfession.name = this.name;
+  //       newProfession.caders = this.caders;
+  //       this.professionService.add(newProfession)
+  //         .subscribe((res:any) => {
+  //           console.log(res);
+  //           this.updateProfession.emit(res);
+  //           this.caders = [];
+  //           this.name = '';
+  //           $('#add-profession.ui.modal')
+  //           .modal('hide');
+  //         });
+  //     } else {
+  //       this.error.message = 'Please add a cader first';
+  //       this.error.isSet = true;
+  //     }
+  //   } else {
+  //     this.error.message = 'Please enter a profession name first';
+  //     this.error.isSet = true;
+  //   }
+  // }
 
 }

@@ -20,19 +20,14 @@ export class TitleService extends BaseService {
   public _rest;
   observer: Observer<any>;
   titlesEx;
-  serviceSubscription : Subscription; 
+  serviceSubscription: Subscription; 
 
-  constructor(private dataShare : DataShareService, protected socketService : SocketService,
-  protected restService : RestService,protected customService : CustomService,
-  protected injector : Injector,protected exception : ExceptionRefinerService) { 
-    super(dataShare,socketService,restService,customService,injector,exception);
+  constructor(private dataShare: DataShareService, protected socketService: SocketService,
+  protected restService: RestService, protected customService: CustomService,
+  protected injector: Injector, protected exception: ExceptionRefinerService) { 
+    super(dataShare, socketService, restService, customService, injector, exception);
 
   }
 
-  // getEntries(name) {
-  //   this._socket = this.socketService.getService(name);
-  //   return this._socket.find();
-  // };
-
 }
- 
+

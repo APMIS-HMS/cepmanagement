@@ -20,7 +20,7 @@ export class ProfessionComponent implements OnInit {
   constructor(public professionService: ProfessionService, public router: Router) { }
 
   ngOnInit() {
-    this.getProfession();
+    //this.getProfession();
   }
 
   addProfessionView() {
@@ -34,13 +34,13 @@ export class ProfessionComponent implements OnInit {
     this.professions.push(profession);
   }
 
-  getProfession() {
-    this.professionService.fetch()
-      .subscribe((res:any) => {
-        this.professions = res.data;
-        console.log(this.professions);
-      });
-  }
+  // getProfession() {
+  //   this.professionService.fetch()
+  //     .subscribe((res:any) => {
+  //       this.professions = res.data;
+  //       console.log(this.professions);
+  //     });
+  // }
 
   getProfessionDetails(id) {
     this.router.navigate(['/dashboard/profession', id]);
@@ -58,16 +58,16 @@ export class ProfessionComponent implements OnInit {
     $('#' + id).find('i').toggleClass('up');
   }
 
-  quickEdit(i, id, name) {
-    console.log(i);
-    console.log($('#icon' + i).removeClass('hidden'));
-    this.professionService.quickEdit(id, name)
-      .subscribe((res:any) => {
-        console.log(res);
-        console.log($('#icon' + i).addClass('hidden'));
-        this.edit(i);
-      });
-  }
+  // quickEdit(i, id, name) {
+  //   console.log(i);
+  //   console.log($('#icon' + i).removeClass('hidden'));
+  //   this.professionService.quickEdit(id, name)
+  //     .subscribe((res:any) => {
+  //       console.log(res);
+  //       console.log($('#icon' + i).addClass('hidden'));
+  //       this.edit(i);
+  //     });
+  // }
 
   addCaders(name) {
     let payload = this.cader;
@@ -77,26 +77,26 @@ export class ProfessionComponent implements OnInit {
     this.newCaders.push(payload);
   }
 
-  delete(profession) {
-    const pro = profession;
-    $('#deleteModal')
-    .modal({
-      closable  : false,
-      onDeny    : function(){
+  // delete(profession) {
+  //   const pro = profession;
+  //   $('#deleteModal')
+  //   .modal({
+  //     closable  : false,
+  //     onDeny    : function(){
 
-      },
-      onApprove : () => {
-        console.log(pro);
-        this.deleteProfession(pro);
-      }
-    })
-    .modal('show');
-  }
+  //     },
+  //     onApprove : () => {
+  //       console.log(pro);
+  //       this.deleteProfession(pro);
+  //     }
+  //   })
+  //   .modal('show');
+  // }
 
-  deleteProfession(profession) {
-    this.professionService.delete(profession._id)
-    .subscribe((res:any) => {
-      this.getProfession();
-    });
-  }
+  // deleteProfession(profession) {
+  //   this.professionService.delete(profession._id)
+  //   .subscribe((res:any) => {
+  //     this.getProfession();
+  //   });
+  // }
 }

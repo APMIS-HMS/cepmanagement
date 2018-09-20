@@ -27,6 +27,7 @@ aside {
     top: 0;
     width: 200px;
 }
+
 .ui.vertical.menu {
     width: auto !important;
 }
@@ -73,7 +74,7 @@ main {
     position: absolute;
     background-color: #ffff;
     color : #6c6cff;
-    min-width: 160px;
+    min-width: 190px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 10px;
     list-style: none;
@@ -86,6 +87,7 @@ main {
     display:block;
 }
 .menu-item {
+    
     //margin-bottom: 10px;
     border-bottom: chartreuse;
 }
@@ -127,6 +129,20 @@ main {
     justify-content: space-between;
     width: 100%;
     //align-items: baseline;
+}
+
+.more-submenu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2em;
+    height: 2em;
+    border-radius: 100%;
+    padding: .0492em;
+}
+.more-submenu:hover{  
+    background: #9a9393;
+    color: #fff;
 }
 
 .item-table {

@@ -48,7 +48,6 @@ import {
   MatTooltipModule,
   MatTreeModule
 } from '@angular/material';
-import { FacilityFilterPipe } from './pipes/facility-filter.pipe';
 /**
  * NgModule that includes all Material modules that are required to serve the app.
  */
@@ -65,7 +64,6 @@ import { FacilityFilterPipe } from './pipes/facility-filter.pipe';
     CdkStepperModule,
     CdkTableModule,
     CdkTreeModule,
-    
     // Material
     MatAutocompleteModule,
     MatBadgeModule,
@@ -106,4 +104,6 @@ import { FacilityFilterPipe } from './pipes/facility-filter.pipe';
 
   ]
 })
-export class MaterialModule {}
+export class MaterialModule {
+
+}

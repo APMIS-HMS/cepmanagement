@@ -8,3 +8,9 @@ export interface User {
     corporateOrganisationId: string;
     passwordToken: string;
 }
+
+export interface CurrentUser{
+    _id: string;
+    roles:[any];
+    resources:[any];
+}

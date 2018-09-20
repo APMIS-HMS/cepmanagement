@@ -3,23 +3,20 @@ import { AppSharedModule } from './app.shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 import { UpperCasePipe } from '@angular/common';
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
+import { UserSignUpComponent } from './auth/user-signup/user-signup.component';
 import { AppRoutingModule } from './app.routes';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { HttpModule } from '@angular/http';
-import { ProfessionComponent } from './management-portal/profession/profession.component';
-import { AddProfessionComponent } from './management-portal/profession/add-profession/add-profession.component';
 import { ProfessionService } from './services/management-portal/profession.service';
-import { ProfessionCaderComponent } from './management-portal/profession/profession-cader/profession-cader.component';
 import { TitleService } from './services/management-portal/title.service';
 import { CountryService } from './services/management-portal/country.service';
 import { DashboardStatsComponent } from './dashboard/dashboard-stats/dashboard-stats.component';
 import { MyDatePickerModule } from 'mydatepicker';
 import { ChartsModule } from 'ng2-charts';
-import { SocketService,RestService } from './feathers/feathers.service';
+import { SocketService, RestService } from './feathers/feathers.service';
 import { LocalStorageModule } from 'angular-2-local-storage';
 import { DataShareService } from './shared/datashare.service';
 import { LoaderComponent } from './shared/loader/loader.component';
@@ -36,16 +33,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { GenericService } from './services/global/generic-service';
 import { BaseService } from './services/global/base-service';
 import { CustomService } from './services/global/custom-service';
-import { DataStateService } from'./shared/data-state.service';
+import { DataStateService } from './shared/data-state.service';
 import { ReportComponent } from './dashboard/report/report.component';
 import { NotificationService } from './services/global/notification.service';
-
+import { UserDetailsService } from './services/user-management/user-details.service';
+import { PortalUserService } from './services/user-management/portal-user.service';
+import { LocalSocketService } from './feathers/local-feathers.service';
+import { DashboardService } from './shared/dashboard.service';
+import { PortalUserFacadeService } from './services/user-management/portal-user-facade.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
+    UserSignUpComponent,
     DashboardComponent,
     DashboardStatsComponent,
     LoaderComponent,
@@ -70,14 +72,16 @@ import { NotificationService } from './services/global/notification.service';
     ChartsModule,
     FontAwesomeModule,
     AppSharedModule,
-    AppRoutingModule  
+    AppRoutingModule
   ],
   providers: [
-            ProfessionService, TitleService,CountryService,
-            SocketService,RestService,
-            DataShareService,LoaderService,FacilityManagerService,
-            UserService,UserFacadeService,UpperCasePipe,GenericService,CustomService,BaseService,
-            DataStateService,NotificationService,ExceptionRefinerService
+            ProfessionService, TitleService, CountryService,
+            SocketService, RestService,
+            DataShareService, LoaderService, FacilityManagerService, PortalUserService,
+            UserService, UserFacadeService, UserDetailsService, UpperCasePipe, GenericService,
+            CustomService, BaseService,
+            DataStateService, NotificationService, ExceptionRefinerService, LocalSocketService,
+            DashboardService, PortalUserFacadeService
             // {
             //   provide: ErrorHandler,
             //   useClass: ExceptionRefinerService,

@@ -9,7 +9,7 @@ import { ManagementPortalComponent } from './management-portal.component';
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from '@angular/router';
 
-const managementportalroutes : Routes = [
+const managementportalroutes: Routes = [
     
     { path: '', component : ManagementPortalComponent,
     children : [
@@ -24,7 +24,7 @@ const managementportalroutes : Routes = [
       { path: 'titles', component: TitleComponent },
       { path: 'countries', component: CountryComponent },
       {path : 'countries/:id' , component : StatesComponent},
-    //   { path: 'country/:id', component: StatesComponent },
+      { path: 'countries/:id/state/:id2', component: LgComponent },
     //   { path: 'country/:id/:id2', component: LgComponent },
         { path: 'payout', component: FacilityPayoutComponent }
     ]

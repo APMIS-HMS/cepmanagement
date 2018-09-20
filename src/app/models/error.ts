@@ -8,5 +8,6 @@ export interface Response {
     data : {
         isSuccess : boolean,
         message : string
-    }
+    },
+    messageType? : string
 }

@@ -1,4 +1,16 @@
-
+.top-item{
+    padding: 5px;
+    font-size: 0.8em;
+}
+.below-item{
+    position:absolute;
+    padding: 2px;
+    top:170px;
+    bottom:0;
+    right:0;
+    font-size: 2em;
+    margin-right:5px;
+}
 .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -17,5 +29,5 @@
     margin-bottom: 20px;
 }
 .card-item {
-
+position: relative;
 }

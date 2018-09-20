@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { SocketService, RestService } from '../../feathers/feathers.service';
 
 @Injectable()
@@ -8,8 +8,8 @@ export class UserService {
     public _restLogin;
     isLoggedIn = false;
 
-    constructor(private socketService: SocketService, private restService : RestService){
-
+    constructor(private socketService: SocketService, private restService: RestService
+    ) {
        this._socket = socketService.getService('users');
        this._restLogin = restService.getService('auth/local');
     }
@@ -31,7 +31,6 @@ export class UserService {
     get(id: string, query: any) {
         return this._socket.get(id, query);
     }
-
     create(user: any) {
         return this._socket.create(user);
     }

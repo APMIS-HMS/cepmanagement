@@ -19,44 +19,44 @@ export class ProfessionCaderComponent implements OnInit {
   constructor(public activeRoute: ActivatedRoute, public professionService: ProfessionService, public location: Location) { }
 
   ngOnInit() {
-    this.activeRoute.params.subscribe(params => {
-      console.log(params);
-      this.getProfessionDetails(params['id']);
-       });
+    // this.activeRoute.params.subscribe(params => {
+    //   console.log(params);
+    //   this.getProfessionDetails(params['id']);
+    //    });
   }
 
   back() {
     this.location.back();
   }
 
-  getProfessionDetails(id) {
-    this.professionService.get(id)
-    .subscribe((res:any) => {
-      console.log(res);
-      this.profession = res;
-    });
-  }
+  // getProfessionDetails(id) {
+  //   this.professionService.get(id)
+  //   .subscribe((res:any) => {
+  //     console.log(res);
+  //     this.profession = res;
+  //   });
+  // }
 
-  add() {
-    $('#addModal')
-    .modal({
-      closable  : false,
-      onApprove : () => {
-        this.addCader($('#add-content').val());
-      }
-    })
-    .modal('show');
-  }
+  // add() {
+  //   $('#addModal')
+  //   .modal({
+  //     closable  : false,
+  //     onApprove : () => {
+  //       this.addCader($('#add-content').val());
+  //     }
+  //   })
+  //   .modal('show');
+  // }
 
-  addCader(name) {
-    const cader: Cader = {
-      'name' : name
-    };
-    this.profession.caders.push(cader);
-    this.professionService.saveCaders(this.profession._id, this.profession.caders)
-      .subscribe((res:any) => {
-      });
-  }
+  // addCader(name) {
+  //   const cader: Cader = {
+  //     'name' : name
+  //   };
+  //   this.profession.caders.push(cader);
+  //   this.professionService.saveCaders(this.profession._id, this.profession.caders)
+  //     .subscribe((res:any) => {
+  //     });
+  // }
 
   edit(id) {
     $('#e' + id).toggleClass('hidden');
@@ -70,36 +70,36 @@ export class ProfessionCaderComponent implements OnInit {
     $('#' + id).find('i').toggleClass('up');
   }
 
-  quickEdit(i, id) {
-    console.log(i);
-    console.log($('#icon' + i).removeClass('hidden'));
-    this.professionService.saveCaders(id, this.profession.caders)
-      .subscribe((res:any) => {
-        console.log(res);
-        console.log($('#icon' + i).addClass('hidden'));
-        this.edit(i);
-      });
-  }
+  // quickEdit(i, id) {
+  //   console.log(i);
+  //   console.log($('#icon' + i).removeClass('hidden'));
+  //   this.professionService.saveCaders(id, this.profession.caders)
+  //     .subscribe((res:any) => {
+  //       console.log(res);
+  //       console.log($('#icon' + i).addClass('hidden'));
+  //       this.edit(i);
+  //     });
+  // }
 
 
-  delete(cader) {
-    $('#deleteModal')
-    .modal({
-      closable  : false,
-      onDeny    : function(){
+  // delete(cader) {
+  //   $('#deleteModal')
+  //   .modal({
+  //     closable  : false,
+  //     onDeny    : function(){
 
-      },
-      onApprove : () => {
-        console.log(cader);
-        this.deleteCader(cader);
-      }
-    })
-    .modal('show');
-  }
+  //     },
+  //     onApprove : () => {
+  //       console.log(cader);
+  //       this.deleteCader(cader);
+  //     }
+  //   })
+  //   .modal('show');
+  // }
 
-  deleteCader(cader) {
-    this.profession.caders = this.profession.caders.filter(e => e !== cader);
-    this.professionService.saveCaders(this.profession._id, this.profession.caders)
-      .subscribe();
-  }
+  // deleteCader(cader) {
+  //   this.profession.caders = this.profession.caders.filter(e => e !== cader);
+  //   this.professionService.saveCaders(this.profession._id, this.profession.caders)
+  //     .subscribe();
+  // }
 }
