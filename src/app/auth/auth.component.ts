@@ -82,7 +82,6 @@ export class AuthComponent implements OnInit {
             // check if user exist
             if (portalUser.length < 1) {
               this.userService.logOut();
-              console.log('portal user did not return data');
               this.errMsg = 'Invalid user';
               this.frm_login.controls['password'].reset();
             } else { // check if it's user's first time to login
@@ -94,29 +93,23 @@ export class AuthComponent implements OnInit {
                 // update user records on management portal
                 this.userObj = {
                   email : auth.data.email,
-                  password: query.password
+                  password: query.password,
+                  _id: portalUser._id
                 };
-
-                // this.portaluserService.update(this.userObj);
                 // show progress bar, update user email,password,loginCount=1
                 // redirect to dashboard page
+                // this.portaluserService.update(this.userObj);
+                this.portaluserService.patch(this.userObj).then(updatedUser => {
+                  const updatedUserObj = data.data;
+                  const portalLoginQuery = {
+                    email: updatedUser.email,
+                    password: updatedUser.password
+                  };
+                  this.AuthenticatePortalUser(portalLoginQuery);
+                });
 
               } else { // system authenticates user on management portal and redirects to dashboard
-                this.portaluserService.login(query).then(userObj => {
-                  this.portalUserFacade.authenticateResource().then(res => {
-                    const userAuth = {
-                      data: userObj.user
-                    };
-                    this.locker.set('portalAuth', userAuth);
-                    this.locker.set('portalToken', res.accessToken);
-
-                    this.router.navigate(['/portal/dashboard']).then(pay => {
-                     // this.userService.isLoggedIn = true;
-                      this.portalUserFacade.setUser(userAuth);
-                      this.frm_login.controls['password'].reset();
-                    });
-                  });
-                });
+                this.AuthenticatePortalUser(query);
               }
             }
           });
@@ -137,10 +130,27 @@ export class AuthComponent implements OnInit {
       this.mainErr = false;
     }
   }
+
+  private AuthenticatePortalUser(data) {
+    this.portaluserService.login(data).then(userObj => {
+      this.portalUserFacade.authenticateResource().then(res => {
+        const userAuth = {
+          data: userObj.user
+        };
+        this.locker.set('portalAuth', userAuth);
+        this.locker.set('portalToken', res.accessToken);
+
+        this.router.navigate(['/portal/dashboard']).then(pay => {
+         // this.userService.isLoggedIn = true;
+          this.portalUserFacade.setUser(userAuth);
+          this.frm_login.controls['password'].reset();
+        });
+      });
+    });
+  }
   private showLoader(): void {
     this.loaderService.show();
   }
-
   private hideLoader(): void {
     this.loaderService.hide();
   }

@@ -18,15 +18,7 @@ constructor(private portalSocket: LocalSocketService) {
         return this._socket.find(query);
     }
 
-
     findByApmisId(query) {
-        // return this._socket.find(
-        //     {
-        //         query : {
-        //             apmisId : '5a724a2fddf0d27e94f3629a'
-        //         }
-        //     }
-        // )
         return this._socket.find(query);
     }
     findAll() {
@@ -39,5 +31,12 @@ constructor(private portalSocket: LocalSocketService) {
         console.log(user);
         return this._socket.create(user);
     }
+    update(entry: any) {
+        this._socket.update(entry._id, entry);
+      }
+      patch(entry: any) {
+          entry.loginCount = 1;
+          return this._socket.patch(entry._id, entry);
+      }
 
 }
