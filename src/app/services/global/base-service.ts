@@ -46,8 +46,6 @@ export class BaseService implements OnDestroy {
             console.log(this.serviceName = data);
             this._socket = this.socketService.getService(this.serviceName);
         });
-        this._localSocket = this.localSoecket.getLocalService('users');
-
     }
      findAllAsObservable() {
       // this._socket.find( (data : any) => {

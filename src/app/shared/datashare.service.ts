@@ -16,12 +16,7 @@ export class DataShareService {
 
 
     emitData (data: string) {
-        console.log(data);
         this.dataShareSubject.next(data);
         this.dataShareBehaviourSbj.next(data);
     }
-    // emitLocalData(data: String) {
-    //     console.log(data);
-    //     this.localShareSubject.next(data);
-    // }
 }
