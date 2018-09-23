@@ -82,7 +82,6 @@ export class AuthComponent implements OnInit {
             email : auth.data.email
           }}).then(data => {
             const existingUser = data.data[0];
-            console.log('user is =>',existingUser);
             if (existingUser.length < 1) {
               // if user does not exist on management portal
               // logout the user on apmis and deny access to management portal
@@ -104,10 +103,10 @@ export class AuthComponent implements OnInit {
                   email: auth.data.email,
                   password: CONSTANTS.DEFAULT_ADMIN_PASSWORD,
                 }
-                this.portaluserService.login(userObj).then( login => {
+                this.portaluserService.login(userObj).then(userToLogin => {
                   this.portalUserFacadeService.authenticateResource().then(pAuth => {
                     const user = {
-                      data: login.user
+                      data: userToLogin.user
                     };
                     this.locker.set('portalAuth', user);
                     this.locker.set('portalToken', pAuth.accessToken);
@@ -142,15 +141,15 @@ export class AuthComponent implements OnInit {
 
                 this.portaluserService.login(query).then(permissionedUser => {
                   this.portalUserFacadeService.authenticateResource().then(resUser => {
-                    const user = {
+                    const permUser = {
                       data: permissionedUser.user
                     };
-                    this.locker.set('portalAuth', user);
+                    this.locker.set('portalAuth', permUser);
                     this.locker.set('portalToken', resUser.accessToken);
 
                       this.router.navigate(['/portal/dashboard']).then(pay => {
                         this.userService.isLoggedIn = true;
-                         this.portalUserFacadeService.setUser(user);
+                         this.portalUserFacadeService.setUser(permissionedUser.user);
                          this.frm_login.controls['password'].reset();
                        });
                   });
