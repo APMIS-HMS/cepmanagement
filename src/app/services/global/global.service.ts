@@ -1,9 +1,7 @@
-const _LOCAL_HOST_URL = 'http://localhost:3030';
-const _APMIS_HOST_URL = 'http://localhost:3031';
+const _DEFAULT_ADMIN_PASSWORD = 'admin001';
 
 export const CONSTANTS = {
 
-    'LOCAL_HOST_URL': _LOCAL_HOST_URL,
-    'APMIS_HOST_URL' : _APMIS_HOST_URL
+    'DEFAULT_ADMIN_PASSWORD': _DEFAULT_ADMIN_PASSWORD
 };
 

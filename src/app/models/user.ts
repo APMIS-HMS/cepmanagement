@@ -9,6 +9,12 @@ export interface User {
     passwordToken: string;
 }
 
+export interface UpdateUser{
+    _id: string,
+    apmisId: string,
+    password: string,
+    loginCount: Number
+}
 export interface CurrentUser{
     _id: string;
     roles:[any];

@@ -65,21 +65,23 @@ export class SocketService implements OnDestroy {
   authenticateService() {
     return this._app.authenticate();
   }
-  // getLocalService(value: any) {
-  //   const socket2 = io('http://localhost:3030', {
-  //     transports: ['polling', 'websocket'],
-  //     polling: {
-  //       extraHeaders: {
-  //         Authorization: this.locker.get('token')
-  //       }
-  //     }
-  //   });
-  //   this._app = feathers()
-  //    .configure(socketio(socket2))
-  //    .configure(rx({ idField: '_id', listStrategy: 'always' }))
-  //    .configure(authentication({ storage: window.localStorage }));
-  //   return this._app.service(value);
-  // }
+
+  getLocalService(value: any) {
+    const socket2 = io('http://localhost:3030', {
+      transports: ['polling', 'websocket'],
+      polling: {
+        extraHeaders: {
+          Authorization: this.locker.get('apmisToken')
+        }
+      }
+    });
+    this._app = feathers()
+     .configure(socketio(socket2))
+     .configure(rx({ idField: '_id', listStrategy: 'always' }))
+     .configure(authentication({ storage: window.localStorage }));
+     console.log(value);
+    return this._app.service(value);
+  }
 
   getService(value: any) {
     return this._app.service(value);

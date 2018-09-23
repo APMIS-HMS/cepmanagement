@@ -7,6 +7,7 @@ import { Injectable, Injector } from '@angular/core';
 export class UserFacadeService {
   private user: User;
   private userDetails: any;
+
   constructor(private _socketService: SocketService, private _restService: RestService) {
   }
 
@@ -16,6 +17,7 @@ export class UserFacadeService {
    setUser(user) {
     this.user = user;
   }
+  
   getUserDetails() {
     return this.userDetails;
   }

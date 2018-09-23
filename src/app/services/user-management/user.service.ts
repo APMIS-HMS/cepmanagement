@@ -6,6 +6,7 @@ export class UserService {
 
     public _socket;
     public _restLogin;
+    public _localSocket;
     isLoggedIn = false;
 
     constructor(private socketService: SocketService, private restService: RestService
@@ -20,7 +21,6 @@ export class UserService {
     login(query: any) {
         return this.socketService.loginIntoApp(query);
     }
-
     find(query: any) {
         return this._socket.find(query);
     }

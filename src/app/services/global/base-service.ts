@@ -39,12 +39,14 @@ export class BaseService implements OnDestroy {
 
     constructor(dataShare: DataShareService, protected socketService: SocketService,
         protected restService: RestService, protected customService: CustomService,
-        protected injector: Injector, protected response: ExceptionRefinerService) {
+        protected injector: Injector, protected response: ExceptionRefinerService,
+      private localSoecket: SocketService) {
 
         this.serviceSubscription = dataShare.currentData.subscribe(data => {
             console.log(this.serviceName = data);
             this._socket = this.socketService.getService(this.serviceName);
         });
+        this._localSocket = this.localSoecket.getLocalService('users');
 
     }
      findAllAsObservable() {
@@ -60,6 +62,11 @@ export class BaseService implements OnDestroy {
       findAll() {
         return this._socket.find();
       }
+
+      findByApmisId(query: any){
+        console.log(query);
+        return this._localSocket.find(query);
+    }
 
       find(query: any) {
         return this._socket.find(query);

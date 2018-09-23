@@ -9,7 +9,7 @@
             </div>
             <!-- <div class="text alert-danger" [hidden]="mainErr"><span>{{errMsg}}</span></div> -->
         </h2>
-        <app-progress-bar *ngIf="isFirstTimeLogin" [barText]="progressBarTxt"></app-progress-bar>
+        <app-progress-bar *ngIf="showActivity" [barText]="progressBarTxt"></app-progress-bar>
         <form [formGroup]="frm_login" class="ui large form" novalidate *ngIf="allowLogin">
             <div class="mainErr animated shake" *ngIf="mainErr">{{errMsg}}</div>
 

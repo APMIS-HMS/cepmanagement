@@ -14,7 +14,7 @@ import { CustomService } from '../global/custom-service';
 import { ExceptionRefinerService } from '../global/exception-refiner';
 
 @Injectable()
-export class TitleService extends BaseService {
+export class TitleService {
 
   public _socket;
   public _rest;
@@ -25,8 +25,9 @@ export class TitleService extends BaseService {
   constructor(private dataShare: DataShareService, protected socketService: SocketService,
   protected restService: RestService, protected customService: CustomService,
   protected injector: Injector, protected exception: ExceptionRefinerService) { 
-    super(dataShare, socketService, restService, customService, injector, exception);
+  //   super(dataShare, socketService, restService, customService, injector, exception);
 
+  // }
   }
 
 }

@@ -23,7 +23,6 @@ export class LocalSocketService {
   public socket: any;
   public HOST;
   private _app: any;
-
   hostSubscription: Subscription;
   errorHandler = error => {
     this._app.authenticate({
@@ -64,7 +63,7 @@ export class LocalSocketService {
     return this._app.authenticate();
   }
 
-  getService(value: any) {
+  getService(value: any){
     return this._app.service(value);
   }
 }

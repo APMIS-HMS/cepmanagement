@@ -41,6 +41,9 @@ import { PortalUserService } from './services/user-management/portal-user.servic
 import { LocalSocketService } from './feathers/local-feathers.service';
 import { DashboardService } from './shared/dashboard.service';
 import { PortalUserFacadeService } from './services/user-management/portal-user-facade.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './feathers/auth-interceptor';
+import { PortalAuthInterceptor } from './feathers/auth-interceptor';
 
 
 @NgModule({
@@ -81,7 +84,17 @@ import { PortalUserFacadeService } from './services/user-management/portal-user-
             UserService, UserFacadeService, UserDetailsService, UpperCasePipe, GenericService,
             CustomService, BaseService,
             DataStateService, NotificationService, ExceptionRefinerService, LocalSocketService,
-            DashboardService, PortalUserFacadeService
+            DashboardService, PortalUserFacadeService,
+            {
+              provide: HTTP_INTERCEPTORS,
+              useClass: AuthInterceptor,
+              multi: true
+            },
+            // {
+            //   provide: HTTP_INTERCEPTORS,
+            //   useClass: PortalAuthInterceptor,
+            //   multi: true
+            // }
             // {
             //   provide: ErrorHandler,
             //   useClass: ExceptionRefinerService,

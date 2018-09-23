@@ -29,14 +29,14 @@ constructor(private portalSocket: LocalSocketService) {
     }
     create(user: any) {
         console.log(user);
+        user.loginCount = 0;
         return this._socket.create(user);
     }
     update(entry: any) {
         this._socket.update(entry._id, entry);
       }
-      patch(entry: any) {
+    patch(entry: any) {
           entry.loginCount = 1;
           return this._socket.patch(entry._id, entry);
       }
-
-}
+  }
