@@ -1,3 +1,4 @@
+import { async } from '@angular/core/testing';
 import { PortalUserFacadeService } from './../services/user-management/portal-user-facade.service';
 import { PortalUserService } from './../services/user-management/portal-user.service';
 import { HostUrl } from './../models/generic-state';
@@ -13,6 +14,7 @@ import { LoaderService } from '../shared/loader.service';
 import { CONSTANTS } from './../services/global/global.service';
 import { UpdateUser } from '../models/user';
 import { BaseService } from '../services/global/base-service';
+import { resolve } from 'url';
 
 @Component({
   selector: 'app-auth',
@@ -30,7 +32,7 @@ export class AuthComponent implements OnInit {
   serviceName = 'users';
   hostUrl: HostUrl;
   progressBarTxt: string = '';
-  portalUser: any;
+  private portalUser: any;
   public frm_login: FormGroup;
   showActivity = false;
   constructor(private formBuilder: FormBuilder,
@@ -61,141 +63,117 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  login(valid) {
+  async login(valid) {
     if (valid) {
       const query = {
         email: this.upperCasePipe.transform(this.frm_login.controls['username'].value),
         password: this.frm_login.controls['password'].value
       };
-      console.log(query);
-      this.userService.login(query).then(result => {
-        this.userFacadeService.authenticateResource().then(payload => {
-          const auth = {
-            data: result.user
-          };
-      
-          this.locker.set('apmisAuth', auth);
-          this.locker.set('apmisToken', result.accessToken);
-          console.log(this.locker.get('apmisToken'));
-          // get user from local Db
-          this.portaluserService.findByApmisId({query: {
-            email : auth.data.email
-          }}).then(data => {
-            const existingUser = data.data[0];
-            if (existingUser.length < 1) {
-              // if user does not exist on management portal
-              // logout the user on apmis and deny access to management portal
-              this.userService.logOut();
-              this.errMsg = 'Invalid user';
-              this.frm_login.controls['password'].reset();
-            } else {
-
-              // user exists 
-              // We first check if it is user's first time to login on management portal
-              if (existingUser.loginCount < 1 ) {
-                this.progressBarTxt = 'Configuring user for first time use...';
-                this.showActivity = true;
-                this.allowLogin = false;
-                this.showLoader();
-                // First authenticate user with default settings and
-                // login the user with default password
-                const userObj = {
-                  email: auth.data.email,
-                  password: CONSTANTS.DEFAULT_ADMIN_PASSWORD,
-                }
-                this.portaluserService.login(userObj).then(userToLogin => {
-                  this.portalUserFacadeService.authenticateResource().then(pAuth => {
-                    const user = {
-                      data: userToLogin.user
-                    };
-                    this.locker.set('portalAuth', user);
-                    this.locker.set('portalToken', pAuth.accessToken);
-
-                    // update user email,password,loginCount=1
-                    // redirect to dashboard page
-                    const updateUserObj = {
-                      _id: user.data._id,
-                      email: auth.data.email,
-                      password: query.password
-                    }
-                    this.portaluserService.patch(updateUserObj).then(updateObj => {
-                      //console.log(updateObj);
-                      this.router.navigate(['/portal/dashboard']).then(pay => {
-                        // this.userService.isLoggedIn = true;
-                         //this.portalUserFacade.setUser(updatedUserObj);
-                         this.frm_login.controls['password'].reset();
-                       });
-    
-                    });
-                  });
-                });
-
-              }
-              else if (existingUser.loginCount > 0){
-                // user has already logged in before and password has been updated
-                this.progressBarTxt = 'Please wait while we log you in...';
-                this.showActivity = true;
-                this.allowLogin = false;
-                this.showLoader();
-                this.portalUser = existingUser
-
-                this.portaluserService.login(query).then(permissionedUser => {
-                  this.portalUserFacadeService.authenticateResource().then(resUser => {
-                    const permUser = {
-                      data: permissionedUser.user
-                    };
-                    this.locker.set('portalAuth', permUser);
-                    this.locker.set('portalToken', resUser.accessToken);
-
-                      this.router.navigate(['/portal/dashboard']).then(pay => {
-                        this.userService.isLoggedIn = true;
-                         this.portalUserFacadeService.setUser(permissionedUser.user);
-                         this.frm_login.controls['password'].reset();
-                       });
-                  });
-                });
-              }
+      try{
+        const authUser = await this.userService.login(query);
+        const reAuthUser = await this.userFacadeService.authenticateResource();
+        const authenticatedUser = {
+          data : authUser.user
+        };
+        this.locker.set('apmisAuth', authenticatedUser);
+        this.locker.set('apmisToken', reAuthUser.accessToken);
+        // get user from local Db
+        const userExist = await this.portaluserService.findByApmisId(
+          {
+            query: {
+              email: authenticatedUser.data.email
             }
+          }
+        );
+        // check if user has been permissioned on management portal server
+        if (userExist.data[0].length < 1){
+            // if user does not exist on management portal
+            // logout the user on apmis and deny access to management portal
+            this.userService.logOut();
+            this.errMsg = 'Invalid user';
+            this.frm_login.controls['password'].reset();
+        } else {
+          // user exists, we proceed with portal check
+          // this checks if it is user's first time to login on management portal
+          if (userExist.data[0].loginCount < 1){
+            // the system perform login operation for the user with default settings
+            this.progressBarTxt = 'Configuring user for first time use...';
+            this.showActivity = true;
+            this.allowLogin = false;
+            this.showLoader();
+            const userObj = {
+              email: authenticatedUser.data.email,
+              password: CONSTANTS.DEFAULT_ADMIN_PASSWORD,
+            }
+            this.portaluserService.login(userObj).then(userToLogin => {
+              this.portalUserFacadeService.authenticateResource().then(pAuth => {
+                const user = {
+                  data: userToLogin.user
+                };
+                this.locker.set('portalAuth', user);
+                this.locker.set('portalToken', pAuth.accessToken);
 
-          });
-        }, error => {
-          console.log(error);
-        }).catch(merr => {
-          this.frm_login.controls['password'].reset();
-        });
-      },
-        error => {
-          this.mainErr = true;
-          this.errMsg = 'wrong login credentials';
-          this.frm_login.controls['password'].reset();
-        });
+                // update user email,password,loginCount=1
+                // redirect to dashboard page
+                const updateUserObj = {
+                  _id: user.data._id,
+                  email: authUser.data.email,
+                  password: query.password
+                }
+                this.portaluserService.patch(updateUserObj).then(updateObj => {
+                  //console.log(updateObj);
+                  this.router.navigate(['/portal/dashboard']).then(pay => {
+                    // this.userService.isLoggedIn = true;
+                     //this.portalUserFacade.setUser(updatedUserObj);
+                     this.frm_login.controls['password'].reset();
+                   });
+
+                });
+              });
+            });
+          } else if(userExist.data[0].loginCount > 0){
+            // user has already logged in before and password has been updated
+            this.progressBarTxt = 'Please wait while we log you in...';
+            this.showActivity = true;
+            this.allowLogin = false;
+            this.showLoader();
+            // this.AuthenticatePortalUser(query);
+            const portalLogin = await this.portaluserService.login(query);
+            const authPortalUser = await this.portalUserFacadeService.authenticateResource();
+            const portalUser = {
+              data: portalLogin.user
+            };
+            this.locker.set('portalAuth', portalLogin);
+            this.locker.set('portalToken', authPortalUser.accessToken);
+
+            this.router.navigate(['/portal/dashboard']).then(pay => {
+              this.userService.isLoggedIn = true;
+               this.portalUserFacadeService.setUser(portalUser.data);
+               this.frm_login.controls['password'].reset();
+             });
+          }
+        }
+      }
+      catch(error) {
+        this.userService.logOut();
+        this.errMsg = 'Server error. Please contact system administrator';
+        this.frm_login.controls['password'].reset();
+      }
+
     } else {
       this.mainErr = false;
     }
   }
 
-  private AuthenticatePortalUser(data) {
-    // this.portaluserService.login(data).then(userData => {
-    //   this.portalUserFacadeService.authenticateResource().then(res => {
-    //     const user = {
-    //       data: userData.user
-    //     };
-    //     this.locker.set('portalAuth', user);
-    //     this.locker.set('portalToken', res.accessToken);
-    //   });
-    // },
-    // error => {
-    //     this.hideLoader();
-    //     this.userService.logOut();
-    //     this.errMsg = 'Something went wrong.Please contact the administrator';
-    //     this.frm_login.controls['password'].reset();
-    // },
-    // error => {
-    //     this.hideLoader();
-    //     this.userService.logOut();
-    //     this.errMsg = 'Something went wrong.Please contact the administrator';
-    //     this.frm_login.controls['password'].reset();
-    // });
+  private async AuthenticatePortalUser(user) {
+    const portal = await this.portaluserService.login(user);
+    const reAuthUser = await this.portalUserFacadeService.authenticateResource();
+    this.portalUser = {
+      data: portal.user
+    };
+    console.log(this.portalUser);
+    this.locker.set('portalAuth', user);
+    this.locker.set('portalToken', reAuthUser.accessToken);
   }
   private showLoader(): void {
     this.loaderService.show();

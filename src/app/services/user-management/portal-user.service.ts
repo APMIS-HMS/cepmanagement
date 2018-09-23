@@ -36,7 +36,7 @@ constructor(private portalSocket: LocalSocketService) {
         this._socket.update(entry._id, entry);
       }
     patch(entry: any) {
-          entry.loginCount = 1;
+          entry.loginCount = 0;
           return this._socket.patch(entry._id, entry);
       }
   }
